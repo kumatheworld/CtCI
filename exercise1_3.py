@@ -6,7 +6,7 @@ def solve(s: str, k: int) -> str:
 
 
 class TestSolution(TestCase):
-    def test(self):
+    def test(self) -> None:
         pairs = [
             (("Mr John Smith    ", 13), "Mr%20John%20Smith"),
             (("kuma  the world      ", 15), "kuma%20%20the%20world"),

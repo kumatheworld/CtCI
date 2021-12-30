@@ -6,12 +6,12 @@ def solve(s: str, t: str) -> bool:
 
 
 class TestSolution(TestCase):
-    def test_pos(self):
+    def test_pos(self) -> None:
         pairs = [("(@@)", "@)(@"), ("bear", "bare"), ("there", "three")]
         for s, t in pairs:
             self.assertTrue(solve(s, t))
 
-    def test_neg(self):
+    def test_neg(self) -> None:
         pairs = [(" ", "  "), ("treat", "tear"), ("which", "witch")]
         for s, t in pairs:
             self.assertFalse(solve(s, t))
