@@ -9,13 +9,13 @@ def solve(s: str) -> bool:
 
 class TestSolution(TestCase):
     def test_pos(self) -> None:
-        ss = ["Tact coa", "LeV El"]
-        for s in ss:
+        data = ["Tact coa", "LeV El"]
+        for s in data:
             self.assertTrue(solve(s))
 
     def test_neg(self) -> None:
-        ss = ["Hello", "world"]
-        for s in ss:
+        data = ["Hello", "world"]
+        for s in data:
             self.assertFalse(solve(s))
 
 

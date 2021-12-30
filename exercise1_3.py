@@ -7,11 +7,11 @@ def solve(s: str, k: int) -> str:
 
 class TestSolution(TestCase):
     def test(self) -> None:
-        pairs = [
+        data = [
             (("Mr John Smith    ", 13), "Mr%20John%20Smith"),
             (("kuma  the world      ", 15), "kuma%20%20the%20world"),
         ]
-        for (s, k), t in pairs:
+        for (s, k), t in data:
             self.assertEqual(solve(s, k), t)
 
 

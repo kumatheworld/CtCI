@@ -7,13 +7,13 @@ def solve(s: str) -> bool:
 
 class TestSolution(TestCase):
     def test_pos(self) -> None:
-        ss = ["kuma", "the", "world", "so", "much", "fun"]
-        for s in ss:
+        data = ["kuma", "the", "world", "so", "much", "fun"]
+        for s in data:
             self.assertTrue(solve(s))
 
     def test_neg(self) -> None:
-        ss = ["hello", "kuma the world", "amazing"]
-        for s in ss:
+        data = ["hello", "kuma the world", "amazing"]
+        for s in data:
             self.assertFalse(solve(s))
 
 
