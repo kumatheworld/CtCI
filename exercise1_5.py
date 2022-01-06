@@ -1,22 +1,14 @@
 from unittest import TestCase, main
 
 
-def solve(s: str, t: str, acc: int = 0) -> int:
+def solve(s: str, t: str) -> int:
     if len(s) == 0:
-        return acc + len(t) <= 1
+        return len(t) <= 1
     if len(t) == 0:
-        return acc + len(s) <= 1
+        return len(s) <= 1
     if s[0] == t[0]:
-        return solve(s[1:], t[1:], acc)
-    if acc == 1:
-        return False
-    return any(
-        (
-            solve(s[1:], t, acc + 1),
-            solve(s, t[1:], acc + 1),
-            solve(s[1:], t[1:], acc + 1),
-        )
-    )
+        return solve(s[1:], t[1:])
+    return any((s[1:] == t, s == t[1:], s[1:] == t[1:]))
 
 
 class TestSolution(TestCase):
