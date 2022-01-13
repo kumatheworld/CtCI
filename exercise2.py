@@ -1,4 +1,5 @@
 from collections.abc import Iterable, Iterator
+from itertools import zip_longest
 from typing import Generic, Optional, TypeVar
 
 T = TypeVar("T")
@@ -25,12 +26,9 @@ class LinkedList(Generic[T]):
             node = node.next
 
     def __eq__(self, other: object) -> bool:
-        if not isinstance(other, LinkedList):
-            return False
-        for d1, d2 in zip(self, other):
-            if d1 != d2:
-                return False
-        return True
+        return isinstance(other, LinkedList) and all(
+            x == y for x, y in zip_longest(self, other, fillvalue=object())
+        )
 
     def append(self, data: T) -> None:
         node = Node(data, self.head)
