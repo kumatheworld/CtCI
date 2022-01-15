@@ -25,6 +25,11 @@ class LinkedList(Generic[T]):
             yield node.data
             node = node.next
 
+    def __len__(self) -> int:
+        return len([_ for _ in self])
+        # the following results in infinite recursion
+        # return len(list(self))
+
     def __eq__(self, other: object) -> bool:
         return isinstance(other, LinkedList) and all(
             x == y for x, y in zip_longest(self, other, fillvalue=object())
