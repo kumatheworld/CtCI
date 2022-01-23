@@ -36,15 +36,15 @@ def solve(ll: LinkedList[T], x: T) -> None:
 
 class TestSolution(TestCase):
     def test(self) -> None:
-        l = choices(range(10), k=20)
-        x = 5
-        ll = LinkedList(l)
-        solve(ll, x)
-        l.sort()
-        self.assertEqual(sorted(ll), l)
-        self.assertEqual(
-            sorted(takewhile(lambda y: y >= x, ll)), [y for y in l if y >= x]
-        )
+        data = (([], 0), ([1, 2], 3), ([9, 8], 7), (choices(range(10), k=20), 5))
+        for l, x in data:
+            ll = LinkedList(l)
+            solve(ll, x)
+            l.sort()
+            self.assertEqual(sorted(ll), l)
+            self.assertEqual(
+                sorted(takewhile(lambda y: y >= x, ll)), [y for y in l if y >= x]
+            )
 
 
 if __name__ == "__main__":
