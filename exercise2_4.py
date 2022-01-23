@@ -27,8 +27,10 @@ def solve(ll: LinkedList[T], x: T) -> None:
             node_ge = node
         node = node.next
 
-    node_lt.next = None
-    node_ge.next = head_lt
+    if node_lt is not None:
+        node_lt.next = None
+    if node_ge is not None:
+        node_ge.next = head_lt
     ll.head = head_ge
 
 
