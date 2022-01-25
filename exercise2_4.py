@@ -31,7 +31,9 @@ def solve(ll: LinkedList[T], x: T) -> None:
         node_lt.next = None
     if node_ge is not None:
         node_ge.next = head_lt
-    ll.head = head_ge
+        ll.head = head_ge
+    else:
+        ll.head = head_lt
 
 
 class TestSolution(TestCase):
