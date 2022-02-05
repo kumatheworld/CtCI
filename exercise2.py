@@ -50,3 +50,15 @@ class LinkedList(Generic[T]):
         data = head.data
         self.head = head.next
         return data
+
+
+class BiNode(Generic[T]):
+    def __init__(
+        self,
+        data: T,
+        prev: Optional["BiNode[T]"] = None,
+        next: Optional["BiNode[T]"] = None,
+    ) -> None:
+        self.data = data
+        self.prev = prev
+        self.next = next
