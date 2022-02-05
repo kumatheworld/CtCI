@@ -6,13 +6,13 @@ T = TypeVar("T")
 
 
 class Node(Generic[T]):
-    def __init__(self, data: T, next: Optional["Node[T]"] = None):
+    def __init__(self, data: T, next: Optional["Node[T]"] = None) -> None:
         self.data = data
         self.next = next
 
 
 class LinkedList(Generic[T]):
-    def __init__(self, it: Iterable[T] = ()):
+    def __init__(self, it: Iterable[T] = ()) -> None:
         self.head: Optional[Node[T]] = None
         self.extend(it)
 
