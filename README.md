@@ -1,2 +1,2 @@
 # CtCI
-My exercise solutions for [Cracking the Coding Interview](https://www.crackingthecodinginterview.com), 6th Edition
+My exercise solutions to [Cracking the Coding Interview](https://www.crackingthecodinginterview.com), 6th Edition
