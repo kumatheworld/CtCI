@@ -27,13 +27,13 @@ def solve(ll: LinkedList[T], x: T) -> None:
             node_ge = node
         node = node.next
 
-    if node_lt is not None:
-        node_lt.next = None
     if node_ge is not None:
-        node_ge.next = head_lt
-        ll.head = head_ge
-    else:
+        node_ge.next = None
+    if node_lt is not None:
+        node_lt.next = head_ge
         ll.head = head_lt
+    else:
+        ll.head = head_ge
 
 
 class TestSolution(TestCase):
@@ -45,7 +45,7 @@ class TestSolution(TestCase):
             l.sort()
             self.assertEqual(sorted(ll), l)
             self.assertEqual(
-                sorted(takewhile(lambda y: y >= x, ll)), [y for y in l if y >= x]
+                sorted(takewhile(lambda y: y < x, ll)), [y for y in l if y < x]
             )
 
 
