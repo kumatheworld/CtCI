@@ -7,33 +7,24 @@ from exercise2 import LinkedList, T
 
 def solve(ll: LinkedList[T], x: T) -> None:
     node = ll.head
-    head_lt = None
-    node_lt = None
-    head_ge = None
-    node_ge = None
+    if node is None:
+        return
+
+    head = node
+    tail = node
 
     while node is not None:
+        node_next = node.next
         if node.data < x:
-            if head_lt is None:
-                head_lt = node
-            else:
-                node_lt.next = node
-            node_lt = node
+            node.next = head
+            head = node
         else:
-            if head_ge is None:
-                head_ge = node
-            else:
-                node_ge.next = node
-            node_ge = node
-        node = node.next
+            tail.next = node
+            tail = node
+        node = node_next
 
-    if node_ge is not None:
-        node_ge.next = None
-    if node_lt is not None:
-        node_lt.next = head_ge
-        ll.head = head_lt
-    else:
-        ll.head = head_ge
+    ll.head = head
+    tail.next = None
 
 
 class TestSolution(TestCase):
