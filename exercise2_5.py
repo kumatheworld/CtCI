@@ -1,13 +1,13 @@
+from itertools import zip_longest
 from unittest import TestCase, main
 
 from exercise2 import LinkedList
 
 
 def solve(x: LinkedList[int], y: LinkedList[int]) -> LinkedList[int]:
-    # assume that x and y of the same length
     z = LinkedList()
     c = 0
-    for a, b in zip(x, y):
+    for a, b in zip_longest(x, y, fillvalue=0):
         d = a + b + c
         c = d // 10
         z.append(d % 10)
@@ -18,7 +18,7 @@ def solve(x: LinkedList[int], y: LinkedList[int]) -> LinkedList[int]:
 
 class TestSolution(TestCase):
     def test(self) -> None:
-        data = (("12345", "67890"), ("897438291", "263890129"))
+        data = (("12", "345"), ("67", "89"), ("897438291", "263890129"))
         for sx, sy in data:
             x = LinkedList((int(d) for d in sx))
             y = LinkedList((int(d) for d in sy))
