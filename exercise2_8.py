@@ -1,7 +1,8 @@
 from random import choices, randrange
 from unittest import TestCase, main
 
-from exercise2 import LinkedList, Node, T
+from common import T
+from exercise2 import LinkedList, Node
 
 
 def solve(x: LinkedList[T]) -> Node[T]:

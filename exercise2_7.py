@@ -2,7 +2,8 @@ from random import choices, randrange
 from typing import Optional
 from unittest import TestCase, main
 
-from exercise2 import LinkedList, Node, T
+from common import T
+from exercise2 import LinkedList, Node
 
 
 def rev_singleton_ll(x: LinkedList[T]) -> LinkedList[tuple[Node]]:

@@ -1,8 +1,8 @@
 from collections.abc import Iterable, Iterator
 from itertools import zip_longest
-from typing import Generic, Optional, TypeVar
+from typing import Generic, Optional
 
-T = TypeVar("T")
+from common import T
 
 
 class Node(Generic[T]):

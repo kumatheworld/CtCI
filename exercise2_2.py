@@ -1,7 +1,8 @@
 from random import randrange
 from unittest import TestCase, main
 
-from exercise2 import LinkedList, T
+from common import T
+from exercise2 import LinkedList
 
 
 def solve(ll: LinkedList[T], k: int) -> T:

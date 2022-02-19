@@ -2,7 +2,8 @@ from itertools import takewhile
 from random import choices
 from unittest import TestCase, main
 
-from exercise2 import LinkedList, T
+from common import T
+from exercise2 import LinkedList
 
 
 def solve(ll: LinkedList[T], x: T) -> None:
