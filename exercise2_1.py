@@ -1,11 +1,10 @@
 from random import choices
 from unittest import TestCase, main
 
-from common import T
 from exercise2 import LinkedList
 
 
-def solve(ll: LinkedList[T]) -> None:
+def solve(ll: LinkedList) -> None:
     seen = set()  # is set the best?
     node = ll.head
     if node is not None:
