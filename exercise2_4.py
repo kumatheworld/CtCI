@@ -2,11 +2,11 @@ from itertools import takewhile
 from random import choices
 from unittest import TestCase, main
 
-from common import T
+from common import CT
 from exercise2 import LinkedList
 
 
-def solve(ll: LinkedList[T], x: T) -> None:
+def solve(ll: LinkedList[CT], x: CT) -> None:
     node = ll.head
     if node is None:
         return
