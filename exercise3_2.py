@@ -7,7 +7,7 @@ from common import CT
 class MinStack(Generic[CT]):
     def __init__(self) -> None:
         self.stack = deque[CT]()
-        self.id_min = deque[tuple[int, CT]]()
+        self.mins = deque[CT]()
 
     def __len__(self) -> int:
         return len(self.stack)
@@ -17,18 +17,18 @@ class MinStack(Generic[CT]):
 
     def push(self, item: CT) -> None:
         if not self or item < self.min():
-            self.id_min.append((len(self), item))
+            self.mins.append(item)
         self.stack.append(item)
 
     def pop(self) -> CT:
         if not self:
             raise IndexError("pop from empty stack")
         item = self.stack.pop()
-        if len(self) == self.id_min[-1][0]:
-            self.id_min.pop()
+        if item == self.mins[-1]:
+            self.mins.pop()
         return item
 
     def min(self) -> CT:
         if not self:
             raise IndexError("min from empty stack")
-        return self.id_min[-1][1]
+        return self.mins[-1]
