@@ -5,39 +5,21 @@ from common import CT
 
 
 def solve(stack: deque[CT]) -> None:
-    if not stack:
-        return
-
     buf = deque[CT]()
-    len_stack = 0
     while stack:
         buf.append(stack.pop())
-        len_stack += 1
-    for _ in range(len_stack):
-        stack.append(buf.pop())
-
-    num_unsorted = len_stack
-    while num_unsorted:
-        max_elem = stack.pop()
-        buf.append(max_elem)
-        len_buf = 1
-        max_count = 1
-        while len_buf < num_unsorted:
-            elem = stack.pop()
-            buf.append(elem)
-            len_buf += 1
-            if max_elem == elem:
-                max_count += 1
-            elif max_elem < elem:
-                max_elem = elem
-                max_count = 1
-        for _ in range(max_count):
-            stack.append(max_elem)
-        while buf:
-            elem = buf.pop()
-            if elem != max_elem:
-                stack.append(elem)
-        num_unsorted -= max_count
+    while buf:
+        x = buf.pop()
+        count = 0
+        while stack:
+            y = stack[-1]
+            if x < y:
+                break
+            buf.append(stack.pop())
+            count += 1
+        stack.append(x)
+        for _ in range(count):
+            stack.append(buf.pop())
 
 
 class TestSolution(TestCase):
