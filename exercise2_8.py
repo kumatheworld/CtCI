@@ -5,15 +5,19 @@ from common import T
 from exercise2 import LinkedList, Node
 
 
+# what a beautiful solution! how could one come up with this?
 def solve(x: LinkedList[T]) -> Node[T]:
-    seen = set()
-    node = x.head
-    while node is not None:
-        nid = id(node)
-        if nid in seen:
-            break
-        seen.add(nid)
+    runner = x.head.next
+    node = runner.next
+    while runner is not node:
+        runner = runner.next
+        node = node.next.next
+
+    runner = x.head
+    while runner is not node:
+        runner = runner.next
         node = node.next
+
     return node
 
 
