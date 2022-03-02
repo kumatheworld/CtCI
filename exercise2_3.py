@@ -10,7 +10,7 @@ def solve(node: Node) -> None:
 
 
 class TestSolution(TestCase):
-    def test_pos(self) -> None:
+    def test(self) -> None:
         for s in ("you", "welcome", "to", "kumatheworld"):
             ll = LinkedList(s)
             m = len(s) // 2
