@@ -11,7 +11,8 @@ def solve(node: Node) -> None:
 
 class TestSolution(TestCase):
     def test(self) -> None:
-        for s in ("you", "welcome", "to", "kumatheworld"):
+        data = ("you", "welcome", "to", "kumatheworld")
+        for s in data:
             ll = LinkedList(s)
             m = len(s) // 2
             node = ll.head

@@ -24,8 +24,9 @@ def solve(stack: deque[CT]) -> None:
 
 class TestSolution(TestCase):
     def test(self) -> None:
-        for data in ("", "o", "kk", "I am an unsorted stack"):
-            stack = deque(data)
+        data = ("", "o", "kk", "I am an unsorted stack")
+        for s in data:
+            stack = deque(s)
             gt = deque(sorted(stack, reverse=True))
             solve(stack)
             self.assertEqual(stack, gt)
