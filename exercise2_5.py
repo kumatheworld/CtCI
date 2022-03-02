@@ -18,7 +18,7 @@ def solve(x: LinkedList[int], y: LinkedList[int]) -> LinkedList[int]:
 
 class TestSolution(TestCase):
     def test(self) -> None:
-        data = (("12", "345"), ("67", "89"), ("897438291", "263890129"))
+        data = [("12", "345"), ("67", "89"), ("897438291", "263890129")]
         for sx, sy in data:
             x = LinkedList((int(d) for d in sx))
             y = LinkedList((int(d) for d in sy))

@@ -12,13 +12,13 @@ def solve(ll: LinkedList) -> bool:
 
 class TestSolution(TestCase):
     def test_pos(self) -> None:
-        data = ("", "a", "ee", "lol", "noon", "madam", "123454323454321")
+        data = ["", "a", "ee", "lol", "noon", "madam", "123454323454321"]
         for s in data:
             ll = LinkedList(s)
             self.assertTrue(solve(ll))
 
     def test_neg(self) -> None:
-        data = ("ab", "zoo", "adam", "kumatheworld")
+        data = ["ab", "zoo", "adam", "kumatheworld"]
         for s in data:
             ll = LinkedList(s)
             self.assertFalse(solve(ll))

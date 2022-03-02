@@ -30,7 +30,7 @@ def solve(ll: LinkedList[CT], x: CT) -> None:
 
 class TestSolution(TestCase):
     def test(self) -> None:
-        data = (([], 0), ([1, 2], 3), ([9, 8], 7), (choices(range(10), k=20), 5))
+        data = [([], 0), ([1, 2], 3), ([9, 8], 7), (choices(range(10), k=20), 5)]
         for l, x in data:
             ll = LinkedList(l)
             solve(ll, x)
