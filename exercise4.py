@@ -23,3 +23,8 @@ class Node(Generic[T]):
         self.data = data
         self.left = left
         self.right = right
+
+
+class BinaryTree(Generic[T]):
+    def __init__(self) -> None:
+        self.root: Optional[Node[T]] = None
