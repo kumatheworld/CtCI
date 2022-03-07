@@ -1,6 +1,6 @@
 from typing import Generic, Optional
 
-from common import T
+from common import CT, T
 
 
 class AdjListGraph:
@@ -28,3 +28,7 @@ class Node(Generic[T]):
 class BinaryTree(Generic[T]):
     def __init__(self) -> None:
         self.root: Optional[Node[T]] = None
+
+
+class BinarySearchTree(BinaryTree[CT]):
+    pass
