@@ -54,4 +54,9 @@ class BinaryTree(Generic[T]):
 
 
 class BinarySearchTree(BinaryTree[CT]):
-    pass
+    def insert(self, data: CT) -> None:
+        root = self.root
+        if root is None:
+            self.root = Node(data)
+        else:
+            root.insert(data)
