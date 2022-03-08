@@ -1,3 +1,4 @@
+from collections import deque
 from typing import Generic, Optional
 
 from common import CT, T
@@ -28,6 +29,23 @@ class Node(Generic[T]):
 class BinaryTree(Generic[T]):
     def __init__(self) -> None:
         self.root: Optional[Node[T]] = None
+
+    def __repr__(self) -> str:
+        nodes = deque[Optional[Node[T]]]((self.root,))
+        r3pr = ""
+        cnt = 1
+        while nodes:
+            if cnt == 0:
+                r3pr += "\n"
+                cnt = len(nodes)
+            node = nodes.popleft()
+            if node:
+                r3pr += f"{node.data } "
+                nodes.extend((node.left, node.right))
+            else:
+                r3pr += "* "
+            cnt -= 1
+        return r3pr
 
 
 class BinarySearchTree(BinaryTree[CT]):
