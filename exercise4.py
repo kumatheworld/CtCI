@@ -25,6 +25,11 @@ class Node(Generic[T]):
         self.left = left
         self.right = right
 
+    def insert(self, data: CT) -> None:
+        attr = "left" if data < self.data else "right"
+        node = getattr(self, attr)
+        node.insert(data) if node else setattr(self, attr, Node(data))
+
 
 class BinaryTree(Generic[T]):
     def __init__(self) -> None:
