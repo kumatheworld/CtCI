@@ -30,6 +30,17 @@ class Node(Generic[CT]):
         node = getattr(self, attr)
         node.insert(data) if node else setattr(self, attr, Node(data))
 
+    def in_range(self, a: Optional[CT], b: Optional[CT]) -> bool:
+        data = self.data
+        left = self.left
+        right = self.right
+        return (
+            (a is None or a <= data)
+            and (b is None or data <= b)
+            and (left is None or left.in_range(a, data))
+            and (right is None or right.in_range(data, b))
+        )
+
 
 class BinaryTree(Generic[CT]):
     def __init__(self) -> None:
