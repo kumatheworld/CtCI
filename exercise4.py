@@ -63,6 +63,9 @@ class BinaryTree(Generic[CT]):
             cnt -= 1
         return r3pr
 
+    def is_binary_search_tree(self) -> bool:
+        return self.root.in_range(None, None) if self.root else True
+
 
 class BinarySearchTree(BinaryTree[CT]):
     def insert(self, data: CT) -> None:
