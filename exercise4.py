@@ -1,7 +1,7 @@
 from collections import deque
 from typing import Generic, Optional
 
-from common import CT, T
+from common import CT
 
 
 class AdjListGraph:
@@ -14,12 +14,12 @@ class AdjListGraph:
         return cls(edges)
 
 
-class Node(Generic[T]):
+class Node(Generic[CT]):
     def __init__(
         self,
-        data: T,
-        left: Optional["Node[T]"] = None,
-        right: Optional["Node[T]"] = None,
+        data: CT,
+        left: Optional["Node[CT]"] = None,
+        right: Optional["Node[CT]"] = None,
     ) -> None:
         self.data = data
         self.left = left
@@ -31,12 +31,12 @@ class Node(Generic[T]):
         node.insert(data) if node else setattr(self, attr, Node(data))
 
 
-class BinaryTree(Generic[T]):
+class BinaryTree(Generic[CT]):
     def __init__(self) -> None:
-        self.root: Optional[Node[T]] = None
+        self.root: Optional[Node[CT]] = None
 
     def __repr__(self) -> str:
-        nodes = deque[Optional[Node[T]]]((self.root,))
+        nodes = deque[Optional[Node[CT]]]((self.root,))
         r3pr = ""
         cnt = 1
         while nodes:
