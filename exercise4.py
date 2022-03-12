@@ -70,6 +70,9 @@ class BinaryTree(Generic[CT]):
             cnt -= 1
         return r3pr
 
+    def height(self) -> int:
+        return self.root.height() if self.root else 0
+
     def is_binary_search_tree(self) -> bool:
         return self.root.in_range(None, None) if self.root else True
 
