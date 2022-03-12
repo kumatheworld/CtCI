@@ -25,6 +25,13 @@ class Node(Generic[CT]):
         self.left = left
         self.right = right
 
+    def height(self) -> int:
+        left = self.left
+        right = self.right
+        hl = 0 if left is None else left.height()
+        hr = 0 if right is None else right.height()
+        return max(hl, hr) + 1
+
     def insert(self, data: CT) -> None:
         attr = "left" if data < self.data else "right"
         node = getattr(self, attr)
