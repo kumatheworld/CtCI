@@ -1,3 +1,4 @@
+from random import choices
 from typing import Optional
 from unittest import TestCase, main
 
@@ -19,7 +20,11 @@ def solve(l: list[int]) -> BinarySearchTree[int]:
 
 class TestSolution(TestCase):
     def test(self) -> None:
-        pass
+        for k in range(100):
+            l = sorted(choices(range(10), k=k))
+            t = solve(l)
+            self.assertTrue(t.is_binary_search_tree())
+            self.assertEqual(t.height(), k.bit_length())
 
 
 if __name__ == "__main__":
