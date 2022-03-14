@@ -1,5 +1,5 @@
 from collections import deque
-from typing import Generic, Optional
+from typing import Generic, Iterator, Optional
 
 from common import CT
 
@@ -69,6 +69,19 @@ class BinaryTree(Generic[CT]):
                 r3pr += "* "
             cnt -= 1
         return r3pr
+
+    def __iter__(self) -> Iterator[Node[CT]]:
+        if self.root is None:
+            return
+        nodes = deque[Optional[Node[CT]]]((self.root,))
+        while nodes:
+            node = nodes.popleft()
+            if node:
+                yield node
+                if node.left:
+                    nodes.append(node.left)
+                if node.right:
+                    nodes.append(node.right)
 
     def height(self) -> int:
         return self.root.height() if self.root else 0
