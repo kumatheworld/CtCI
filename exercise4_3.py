@@ -1,7 +1,8 @@
 from collections import deque
 from unittest import TestCase, main
 
-from exercise4 import CT, BinarySearchTree, Node
+from common import CT
+from exercise4 import BinarySearchTree, Node
 
 
 def solve(t: BinarySearchTree[CT]) -> list[deque[Node[CT]]]:
