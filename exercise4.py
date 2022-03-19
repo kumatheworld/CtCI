@@ -99,6 +99,12 @@ class BinaryTree(Generic[CT]):
     def is_binary_search_tree(self) -> bool:
         return self.root.in_range(None, None) if self.root else True
 
+    def point_parent(self) -> None:
+        root = self.root
+        if root:
+            setattr(root, "parent", None)
+            root.point_parent()
+
 
 class BinarySearchTree(BinaryTree[CT]):
     def insert(self, data: CT) -> None:
