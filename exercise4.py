@@ -48,6 +48,16 @@ class Node(Generic[CT]):
             and (right is None or right.in_range(data, b))
         )
 
+    def point_parent(self) -> None:
+        left = self.left
+        right = self.right
+        if left:
+            setattr(left, "parent", self)
+            left.point_parent()
+        if right:
+            setattr(right, "parent", self)
+            right.point_parent()
+
 
 class BinaryTree(Generic[CT]):
     def __init__(self) -> None:
