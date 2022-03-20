@@ -13,8 +13,7 @@ def solve(l: list[int]) -> BinarySearchTree[int]:
         else:
             return None
 
-    t = BinarySearchTree[int]()
-    t.root = solve_rec(l)
+    t = BinarySearchTree[int](solve_rec(l))
     return t
 
 
