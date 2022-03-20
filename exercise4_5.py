@@ -15,7 +15,6 @@ class TestSolution(TestCase):
             t = BinarySearchTree[str]()
             for c in s:
                 t.insert(c)
-
             self.assertTrue(solve(t))
 
     def test_neg(self) -> None:
