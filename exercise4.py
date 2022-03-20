@@ -60,8 +60,8 @@ class Node(Generic[CT]):
 
 
 class BinaryTree(Generic[CT]):
-    def __init__(self) -> None:
-        self.root: Optional[Node[CT]] = None
+    def __init__(self, root=None) -> None:
+        self.root: Optional[Node[CT]] = root
 
     def __repr__(self) -> str:
         nodes = deque[Optional[Node[CT]]]((self.root,))
