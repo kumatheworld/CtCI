@@ -22,94 +22,89 @@ class Node(Generic[CT]):
         right: Optional["Node[CT]"] = None,
     ) -> None:
         self.data = data
-        self.left = left
-        self.right = right
-
-    def height(self) -> int:
-        left = self.left
-        right = self.right
-        hl = 0 if left is None else left.height()
-        hr = 0 if right is None else right.height()
-        return max(hl, hr) + 1
-
-    def insert(self, data: CT) -> None:
-        attr = "left" if data < self.data else "right"
-        node = getattr(self, attr)
-        node.insert(data) if node else setattr(self, attr, Node(data))
-
-    def in_range(self, a: Optional[CT], b: Optional[CT]) -> bool:
-        data = self.data
-        left = self.left
-        right = self.right
-        return (
-            (a is None or a <= data)
-            and (b is None or data <= b)
-            and (left is None or left.in_range(a, data))
-            and (right is None or right.in_range(data, b))
-        )
-
-    def point_parent(self) -> None:
-        left = self.left
-        right = self.right
-        if left:
-            setattr(left, "parent", self)
-            left.point_parent()
-        if right:
-            setattr(right, "parent", self)
-            right.point_parent()
+        self.left = BinaryTree[CT](left)
+        self.right = BinaryTree[CT](right)
 
 
 class BinaryTree(Generic[CT]):
     def __init__(self, root=None) -> None:
         self.root: Optional[Node[CT]] = root
 
+    def __bool__(self) -> bool:
+        return self.root is not None
+
     def __repr__(self) -> str:
-        nodes = deque[Optional[Node[CT]]]((self.root,))
+        trees = deque[BinaryTree[CT]]((self,))
         r3pr = ""
         cnt = 1
-        while nodes:
+        while trees:
             if cnt == 0:
                 r3pr += "\n"
-                cnt = len(nodes)
-            node = nodes.popleft()
-            if node:
+                cnt = len(trees)
+            tree = trees.popleft()
+            if tree:
+                node = tree.root
                 r3pr += f"{node.data } "
-                nodes.extend((node.left, node.right))
+                trees.extend((node.left, node.right))
             else:
                 r3pr += "* "
             cnt -= 1
         return r3pr
 
-    def __iter__(self) -> Iterator[Node[CT]]:
-        if self.root is None:
-            return
-        nodes = deque[Optional[Node[CT]]]((self.root,))
-        while nodes:
-            node = nodes.popleft()
-            if node:
+    def __iter__(self) -> Iterator["Node[CT]"]:
+        trees = deque[BinaryTree[CT]]((self,))
+        while trees:
+            tree = trees.popleft()
+            if tree:
+                node = tree.root
                 yield node
-                if node.left:
-                    nodes.append(node.left)
-                if node.right:
-                    nodes.append(node.right)
+                trees.append(node.left)
+                trees.append(node.right)
+
+    def insert(self, data: CT) -> None:
+        if self:
+            root = self.root
+            tree = root.left if data < root.data else root.right
+            tree.insert(data)
+        else:
+            self.root = Node(data)
 
     def height(self) -> int:
-        return self.root.height() if self.root else 0
+        if self:
+            root = self.root
+            hl = root.left.height()
+            hr = root.right.height()
+            return max(hl, hr) + 1
+        return 0
+
+    def in_range(self, a: Optional[CT], b: Optional[CT]) -> bool:
+        if self:
+            root = self.root
+            data = root.data
+            left = root.left
+            right = root.right
+            return (
+                (a is None or a <= data)
+                and (b is None or data <= b)
+                and left.in_range(a, data)
+                and right.in_range(data, b)
+            )
+        return True
 
     def is_binary_search_tree(self) -> bool:
-        return self.root.in_range(None, None) if self.root else True
+        return self.in_range(None, None)
 
     def point_parent(self) -> None:
-        root = self.root
-        if root:
-            setattr(root, "parent", None)
-            root.point_parent()
+        self.parent = None
+        if self:
+            root = self.root
+            left = root.left
+            left.point_parent()
+            left.parent = self
+            right = root.right
+            right.point_parent()
+            right.parent = self
 
 
 class BinarySearchTree(BinaryTree[CT]):
-    def insert(self, data: CT) -> None:
-        root = self.root
-        if root is None:
-            self.root = Node(data)
-        else:
-            root.insert(data)
+    pass

@@ -1,32 +1,31 @@
 from unittest import TestCase, main
 
 from common import CT
-from exercise4 import BinarySearchTree, BinaryTree, Node
+from exercise4 import BinarySearchTree, BinaryTree
 
 
 class ImbalancedTreeException(Exception):
     pass
 
 
-def height(node: Node[CT]) -> int:
-    left = node.left
-    right = node.right
-    hl = 0 if left is None else height(left)
-    hr = 0 if right is None else height(right)
-    diff = hl - hr
-    if diff < -1 or 1 < diff:
-        raise ImbalancedTreeException
-    return max(hl, hr) + 1
+def height_ex(tree: BinaryTree[CT]) -> int:
+    if tree:
+        root = tree.root
+        hl = height_ex(root.left)
+        hr = height_ex(root.right)
+        diff = hl - hr
+        if diff < -1 or 1 < diff:
+            raise ImbalancedTreeException
+        return max(hl, hr) + 1
+    return 0
 
 
 def solve(t: BinaryTree[CT]) -> bool:
-    if t.root is None:
-        return True
     try:
-        height(t.root)
+        height_ex(t)
+        return True
     except ImbalancedTreeException:
         return False
-    return True
 
 
 class TestSolution(TestCase):

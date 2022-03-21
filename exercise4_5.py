@@ -21,13 +21,13 @@ class TestSolution(TestCase):
         t = BinarySearchTree[str]()
         for c in "kumatheworld":
             t.insert(c)
-        t.root.right.left.right.data = "n"
+        t.root.right.root.left.root.right.root.data = "n"
         self.assertFalse(solve(t))
 
         t = BinarySearchTree[str]()
         for c in "Cracking the Coding Interview":
             t.insert(c)
-        t.root.right.left.right.right.left.left.data = "q"
+        t.root.right.root.left.root.right.root.right.root.left.root.left.root.data = "q"
         self.assertFalse(solve(t))
 
 

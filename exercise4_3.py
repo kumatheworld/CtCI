@@ -17,9 +17,9 @@ def solve(t: BinarySearchTree[CT]) -> list[deque[Node[CT]]]:
             cnt = len(q)
         node = q.popleft()
         if node.left:
-            q.append(node.left)
+            q.append(node.left.root)
         if node.right:
-            q.append(node.right)
+            q.append(node.right.root)
         cnt -= 1
     return l
 
