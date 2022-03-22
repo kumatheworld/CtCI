@@ -25,6 +25,17 @@ class Node(Generic[CT]):
         self.left = BinaryTree[CT](left)
         self.right = BinaryTree[CT](right)
 
+    def point_parent(self) -> None:
+        self.parent = None
+        if self.left:
+            node = self.left.root
+            node.point_parent()
+            node.parent = self
+        if self.right:
+            node = self.right.root
+            node.point_parent()
+            node.parent = self
+
 
 class BinaryTree(Generic[CT]):
     def __init__(self, root=None) -> None:
@@ -93,17 +104,6 @@ class BinaryTree(Generic[CT]):
 
     def is_binary_search_tree(self) -> bool:
         return self.in_range(None, None)
-
-    def point_parent(self) -> None:
-        self.parent = None
-        if self:
-            root = self.root
-            left = root.left
-            left.point_parent()
-            left.parent = self
-            right = root.right
-            right.point_parent()
-            right.parent = self
 
 
 class BinarySearchTree(BinaryTree[CT]):
