@@ -92,13 +92,11 @@ class BinaryTree(Generic[CT]):
         if self:
             root = self.root
             data = root.data
-            left = root.left
-            right = root.right
             return (
                 (a is None or a <= data)
                 and (b is None or data <= b)
-                and left.in_range(a, data)
-                and right.in_range(data, b)
+                and root.left.in_range(a, data)
+                and root.right.in_range(data, b)
             )
         return True
 
