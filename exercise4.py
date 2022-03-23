@@ -27,12 +27,12 @@ class Node(Generic[CT]):
 
     def point_parent(self) -> None:
         self.parent = None
-        if self.left:
-            node = self.left.root
+        if left := self.left:
+            node = left.root
             node.point_parent()
             node.parent = self
-        if self.right:
-            node = self.right.root
+        if right := self.right:
+            node = right.root
             node.point_parent()
             node.parent = self
 
@@ -52,8 +52,7 @@ class BinaryTree(Generic[CT]):
             if cnt == 0:
                 r3pr += "\n"
                 cnt = len(trees)
-            tree = trees.popleft()
-            if tree:
+            if tree := trees.popleft():
                 node = tree.root
                 r3pr += f"{node.data } "
                 trees.extend((node.left, node.right))
@@ -65,8 +64,7 @@ class BinaryTree(Generic[CT]):
     def __iter__(self) -> Iterator["Node[CT]"]:
         trees = deque[BinaryTree[CT]]((self,))
         while trees:
-            tree = trees.popleft()
-            if tree:
+            if tree := trees.popleft():
                 node = tree.root
                 yield node
                 trees.append(node.left)
