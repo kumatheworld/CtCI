@@ -23,8 +23,7 @@ class MinStack(Generic[CT]):
     def pop(self) -> CT:
         if not self:
             raise IndexError("pop from empty stack")
-        item = self.stack.pop()
-        if item == self.mins[-1]:
+        if (item := self.stack.pop()) == self.mins[-1]:
             self.mins.pop()
         return item
 

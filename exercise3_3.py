@@ -19,8 +19,7 @@ class SetOfStacks(Generic[T]):
             self.stacks.append(deque())
 
     def pop(self) -> T:
-        stack = self.stacks[-1]
-        if not stack:
+        if not (stack := self.stacks[-1]):
             try:
                 self.stacks.pop()
                 stack = self.stacks[-1]

@@ -6,8 +6,7 @@ from exercise2 import LinkedList
 
 def solve(ll: LinkedList) -> None:
     seen = set()  # is set the best?
-    node = ll.head
-    if node is not None:
+    if (node := ll.head) is not None:
         runner = node
     while node is not None:
         if node.data in seen:

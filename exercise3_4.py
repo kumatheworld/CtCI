@@ -16,10 +16,8 @@ class BiStackQueue(Generic[T]):
         self.s0.append(item)
 
     def deque(self) -> T:
-        s1 = self.s1
-        if not s1:
-            s0 = self.s0
-            if not s0:
+        if not (s1 := self.s1):
+            if not (s0 := self.s0):
                 raise IndexError("pop from empty queue")
             while s0:
                 s1.append(s0.pop())
