@@ -44,8 +44,7 @@ class LinkedList(Generic[T]):
             self.append(data)
 
     def pop(self) -> T:
-        head = self.head
-        if head is None:
+        if (head := self.head) is None:
             raise IndexError("pop from empty list")
         data = head.data
         self.head = head.next
@@ -114,23 +113,19 @@ class DoublyLinkedList(Generic[T]):
             self.appendleft(data)
 
     def pop(self) -> T:
-        head = self.head
-        if head is None:
+        if (head := self.head) is None:
             raise IndexError("pop from empty list")
         data = head.data
         self.head = head.next
-        head = self.head
-        if head is not None:
+        if (head := self.head) is not None:
             head.prev = None
         return data
 
     def popleft(self) -> T:
-        tail = self.tail
-        if tail is None:
+        if (tail := self.tail) is None:
             raise IndexError("pop from empty list")
         data = tail.data
         self.tail = tail.prev
-        tail = self.tail
-        if tail is not None:
+        if (tail := self.tail) is not None:
             tail.next = None
         return data
