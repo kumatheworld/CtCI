@@ -12,8 +12,7 @@ def solve(stack: deque[CT]) -> None:
         x = buf.pop()
         count = 0
         while stack:
-            y = stack[-1]
-            if x < y:
+            if x < stack[-1]:
                 break
             buf.append(stack.pop())
             count += 1
