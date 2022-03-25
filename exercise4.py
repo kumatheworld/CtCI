@@ -78,6 +78,17 @@ class BinaryTree(Generic[CT]):
         else:
             self.root = Node(data)
 
+    def find(self, data: CT) -> Optional[Node[CT]]:
+        if self:
+            root = self.root
+            if data == (rd := root.data):
+                return root
+            elif data < rd:
+                return root.left.find(data)
+            else:
+                return root.right.find(data)
+        return None
+
     def height(self) -> int:
         if self:
             root = self.root
