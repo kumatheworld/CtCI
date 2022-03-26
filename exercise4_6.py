@@ -1,4 +1,4 @@
-from random import sample
+from random import choice, sample
 from typing import Optional
 from unittest import TestCase, main
 
@@ -10,11 +10,11 @@ def solve(n: Node[CT]) -> Optional[Node[CT]]:
     data = n.data
     succ = None
 
-    if p := n.parent:
-        if p.data > data:
-            succ = p
-        elif (pp := p.parent) and pp.data > data:
-            succ = pp
+    node = n
+    while node := node.parent:
+        if node.data > data:
+            succ = node
+            break
 
     if nr := n.right:
         node = nr.root
@@ -33,7 +33,7 @@ class TestSolution(TestCase):
     def test(self) -> None:
         for k in range(1, 100):
             l = sample(range(1000), k)
-            d = l[0]
+            d = choice(l)
             t = BinarySearchTree[int]()
             for z in l:
                 t.insert(z)
