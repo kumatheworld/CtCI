@@ -1,10 +1,19 @@
+from re import L
 from typing import Optional
 from unittest import TestCase, main
 
 from common import T
+from exercise4 import AdjListGraph
 
 
 def solve(ps: list[T], ds: list[tuple[T, T]]) -> Optional[list[T]]:
+    l = len(ps)
+    d = dict(zip(ps, range(l)))
+    edges = [set() for _ in range(l)]
+    for s, t in ds:
+        edges[d[s]].add(d[t])
+    g = AdjListGraph(edges)
+
     return None
 
 
