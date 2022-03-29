@@ -1,9 +1,11 @@
-from re import L
 from typing import Optional
 from unittest import TestCase, main
 
 from common import T
-from exercise4 import AdjListGraph
+
+
+class CircularDependencyException(Exception):
+    pass
 
 
 def solve(ps: list[T], ds: list[tuple[T, T]]) -> Optional[list[T]]:
@@ -12,9 +14,32 @@ def solve(ps: list[T], ds: list[tuple[T, T]]) -> Optional[list[T]]:
     edges = [set() for _ in range(l)]
     for s, t in ds:
         edges[d[s]].add(d[t])
-    g = AdjListGraph(edges)
 
-    return None
+    order = []
+    ok = [False] * l
+    ng = [False] * l
+
+    def dfs(u: int) -> None:
+        if ng[u]:
+            raise CircularDependencyException
+        if ok[u]:
+            return
+        ng[u] = True
+        for v in edges[u]:
+            dfs(v)
+        ng[u] = False
+        ok[u] = True
+        order.append(u)
+
+    while True:
+        try:
+            node = ok.index(False)
+        except ValueError:
+            return [ps[x] for x in order]
+        try:
+            dfs(node)
+        except CircularDependencyException:
+            return None
 
 
 class TestSolution(TestCase):
