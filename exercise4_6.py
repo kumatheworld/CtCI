@@ -11,20 +11,16 @@ def solve(n: Node[CT]) -> Optional[Node[CT]]:
     succ = None
 
     node = n
-    while node := node.parent:
-        if node.data > data:
-            succ = node
-            break
-
     if nr := n.right:
         node = nr.root
-        if succ is None or succ.data > node.data:
-            succ = node
+        succ = node
         while node := node.left.root:
-            if (nd := node.data) < data:
-                break
-            if nd < succ.data:
+            succ = node
+    else:
+        while node := node.parent:
+            if node.data > data:
                 succ = node
+                break
 
     return succ
 
