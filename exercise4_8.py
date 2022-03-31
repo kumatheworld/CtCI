@@ -32,21 +32,20 @@ class TestSolution(TestCase):
             t = BinaryTree[int]()
             for z in l:
                 t.insert(z)
-            t.root.point_parent()
             x = t.find(choice(l))
             y = t.find(choice(l))
-
             randomize(t)
+            z = solve(x, y)
 
+            t.root.point_parent()
             ax = ancestors(x)
             ay = ancestors(y)
             m = min(len(ax), len(ay))
             i = 0
             while i < m and ax[i] == ay[i]:
                 i += 1
-            z = ax[i - 1]
 
-            self.assertEqual(solve(x, y), z)
+            self.assertEqual(z, ax[i - 1])
 
 
 if __name__ == "__main__":
