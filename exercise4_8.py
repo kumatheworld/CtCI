@@ -5,7 +5,7 @@ from common import CT
 from exercise4 import BinaryTree, Node
 
 
-def solve(x: Node[CT], y: Node[CT]) -> Node[CT]:
+def solve(x: Node[CT], y: Node[CT], t: BinaryTree[CT]) -> Node[CT]:
     return x
 
 
@@ -34,7 +34,7 @@ class TestSolution(TestCase):
             x = t.find(choice(l))
             y = t.find(choice(l))
             randomize(t)
-            z = solve(x, y)
+            z = solve(x, y, t)
 
             t.root.point_parent()
             ax = ancestors(x)
