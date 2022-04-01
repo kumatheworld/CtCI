@@ -1,4 +1,5 @@
 from random import choice, randrange, sample
+from typing import Optional
 from unittest import TestCase, main
 
 from common import CT
@@ -6,7 +7,30 @@ from exercise4 import BinaryTree, Node
 
 
 def solve(x: Node[CT], y: Node[CT], t: BinaryTree[CT]) -> Node[CT]:
-    return x
+    # this is effectively storing intermediate nodes though...
+    def path2(
+        z: Node[CT], t_: BinaryTree[CT], path: list[bool]
+    ) -> Optional[list[bool]]:
+        if t_:
+            root = t_.root
+            if root == z:
+                return path
+            if p4th := path2(z, root.left, path + [False]):
+                return p4th
+            else:
+                return path2(z, root.right, path + [True])
+        return None
+
+    px = path2(x, t, [])
+    py = path2(y, t, [])
+    i = 0
+    m = min(len(px), len(py))
+    node = t.root
+    while i < m and (b := px[i]) == py[i]:
+        node = node.right.root if b else node.left.root
+        i += 1
+
+    return node
 
 
 def randomize(tree: BinaryTree[int]):
