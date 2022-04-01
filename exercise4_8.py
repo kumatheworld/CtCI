@@ -26,7 +26,7 @@ def ancestors(node: Node[CT]) -> list[Node[CT]]:
 
 class TestSolution(TestCase):
     def test(self) -> None:
-        for k in range(100):
+        for k in range(1, 100):
             l = sample(range(k), k)
             t = BinaryTree[int]()
             for z in l:
