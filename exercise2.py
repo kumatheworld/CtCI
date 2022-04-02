@@ -82,7 +82,7 @@ class DoublyLinkedList(Generic[T]):
         return len([_ for _ in self])
 
     def __eq__(self, other: object) -> bool:
-        return isinstance(other, LinkedList) and all(
+        return isinstance(other, DoublyLinkedList) and all(
             x == y for x, y in zip_longest(self, other, fillvalue=object())
         )
 
