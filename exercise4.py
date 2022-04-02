@@ -1,4 +1,5 @@
 from collections import deque
+from itertools import zip_longest
 from typing import Generic, Iterator, Optional
 
 from common import CT
@@ -43,6 +44,11 @@ class BinaryTree(Generic[CT]):
 
     def __bool__(self) -> bool:
         return self.root is not None
+
+    def __eq__(self, other: object) -> bool:
+        return isinstance(other, BinaryTree) and all(
+            x == y for x, y in zip_longest(self, other, fillvalue=object())
+        )
 
     def __repr__(self) -> str:
         trees = deque[BinaryTree[CT]]((self,))
