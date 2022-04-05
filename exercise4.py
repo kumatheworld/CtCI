@@ -1,5 +1,6 @@
 from collections import deque
 from itertools import zip_longest
+from random import choices
 from typing import Generic, Iterator, Optional
 
 from common import CT
@@ -118,6 +119,17 @@ class BinaryTree(Generic[CT]):
 
     def is_binary_search_tree(self) -> bool:
         return self.in_range(None, None)
+
+    def _get_random_node_with_count(self) -> tuple[Optional[Node[CT]], int]:
+        if self:
+            root = self.root
+            nl, cl = root.left._get_random_node_with_count()
+            nr, cr = root.right._get_random_node_with_count()
+            node = choices((root, nl, nr), (1, cl, cr), k=1)[0]
+            count = 1 + cl + cr
+            return node, count
+        else:
+            return None, 0
 
 
 class BinarySearchTree(BinaryTree[CT]):
