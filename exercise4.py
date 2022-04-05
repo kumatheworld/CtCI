@@ -93,7 +93,8 @@ class BinaryTree(Generic[CT]):
                 return root.left.find(data)
             else:
                 return root.right.find(data)
-        return None
+        else:
+            raise ValueError(f"{data} is not in tree")
 
     def height(self) -> int:
         if self:
