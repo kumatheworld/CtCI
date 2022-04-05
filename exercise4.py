@@ -131,6 +131,9 @@ class BinaryTree(Generic[CT]):
         else:
             return None, 0
 
+    def get_random_node(self) -> Optional[Node[CT]]:
+        return self._get_random_node_with_count()[0]
+
 
 class BinarySearchTree(BinaryTree[CT]):
     pass
