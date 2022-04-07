@@ -1,6 +1,6 @@
 from collections import deque
 from itertools import zip_longest
-from random import choices
+from random import choices, getrandbits
 from typing import Generic, Iterator, Optional
 
 from common import CT
@@ -82,6 +82,14 @@ class BinaryTree(Generic[CT]):
             root = self.root
             tree = root.left if data < root.data else root.right
             tree.insert(data)
+        else:
+            self.root = Node(data)
+
+    def random_insert(self, data: CT) -> None:
+        if self:
+            root = self.root
+            tree = root.left if getrandbits(1) else root.right
+            tree.random_insert(data)
         else:
             self.root = Node(data)
 
