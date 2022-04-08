@@ -40,8 +40,8 @@ class Node(Generic[CT]):
 
 
 class BinaryTree(Generic[CT]):
-    def __init__(self, root=None) -> None:
-        self.root: Optional[Node[CT]] = root
+    def __init__(self, root: Optional[Node[CT]] = None) -> None:
+        self.root = root
 
     def __bool__(self) -> bool:
         return self.root is not None
