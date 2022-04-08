@@ -77,6 +77,9 @@ class BinaryTree(Generic[CT]):
                 trees.append(node.left)
                 trees.append(node.right)
 
+    def __copy__(self) -> "BinaryTree[CT]":
+        return BinaryTree[CT](self.root)
+
     def insert(self, data: CT) -> None:
         if self:
             root = self.root
