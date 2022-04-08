@@ -1,3 +1,4 @@
+from copy import copy
 from random import randrange
 from unittest import TestCase, main
 
@@ -15,16 +16,14 @@ class TestSolution(TestCase):
         for _ in range(1000):
             t1.insert(randrange(100))
         t2 = BinaryTree[int]()
-        t3 = BinaryTree[int]()
         for _ in range(10):
             data = randrange(100)
             t2.insert(data)
-            t3.insert(data)
         node = t1.get_random_node()
         if randrange(2):
-            node.left = t3
+            node.left = copy(t2)
         else:
-            node.right = t3
+            node.right = copy(t2)
         self.assertTrue(solve(t1, t2))
 
     def test_neg(self) -> None:
