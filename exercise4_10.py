@@ -1,5 +1,5 @@
 from copy import copy
-from random import randrange
+from random import getrandbits
 from unittest import TestCase, main
 
 from common import CT
@@ -12,15 +12,14 @@ def solve(t1: BinaryTree[CT], t2: BinaryTree[CT]) -> bool:
 
 class TestSolution(TestCase):
     def test_pos(self) -> None:
-        t1 = BinaryTree[int]()
-        for _ in range(1000):
-            t1.insert(randrange(100))
-        t2 = BinaryTree[int]()
+        t1 = BinaryTree[bool]()
+        for _ in range(100):
+            t1.random_insert(bool(getrandbits(1)))
+        t2 = BinaryTree[bool]()
         for _ in range(10):
-            data = randrange(100)
-            t2.insert(data)
+            t2.random_insert(bool(getrandbits(1)))
         node = t1.get_random_node()
-        if randrange(2):
+        if getrandbits(1):
             node.left = copy(t2)
         else:
             node.right = copy(t2)
