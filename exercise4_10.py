@@ -27,7 +27,20 @@ class TestSolution(TestCase):
             self.assertTrue(solve(t1, t2))
 
     def test_neg(self) -> None:
-        pass
+        for _ in range(10):
+            t1 = BinaryTree[int]()
+            for _ in range(10000):
+                t1.random_insert(getrandbits(1))
+            t2 = BinaryTree[int]()
+            for _ in range(10):
+                t2.random_insert(getrandbits(1))
+            node = t1.get_random_node()
+            if getrandbits(1):
+                node.left = copy(t2)
+            else:
+                node.right = copy(t2)
+            t2.random_insert(2)
+            self.assertFalse(solve(t1, t2))
 
 
 if __name__ == "__main__":
