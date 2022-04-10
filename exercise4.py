@@ -46,10 +46,15 @@ class BinaryTree(Generic[CT]):
     def __bool__(self) -> bool:
         return self.root is not None
 
+    def _eq(self, other: "BinaryTree[CT]") -> bool:
+        if not (self and other):
+            return not (self or other)
+        rs = self.root
+        ro = other.root
+        return rs.data == ro.data and rs.left._eq(ro.left) and rs.right._eq(ro.right)
+
     def __eq__(self, other: object) -> bool:
-        return isinstance(other, BinaryTree) and all(
-            x == y for x, y in zip_longest(self, other, fillvalue=object())
-        )
+        return isinstance(other, BinaryTree) and self._eq(other)
 
     def __repr__(self) -> str:
         trees = deque[BinaryTree[CT]]((self,))
