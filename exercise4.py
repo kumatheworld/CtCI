@@ -26,6 +26,13 @@ class Node(Generic[CT]):
         self.left = BinaryTree[CT](left)
         self.right = BinaryTree[CT](right)
 
+    def __copy__(self) -> "Node[CT]":
+        return Node(
+            self.data,
+            left.root.__copy__() if (left := self.left) else None,
+            right.root.__copy__() if (right := self.right) else None,
+        )
+
     def point_parent(self) -> None:
         self.parent = None
         if left := self.left:
