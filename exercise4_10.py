@@ -7,7 +7,12 @@ from exercise4 import BinaryTree
 
 
 def solve(t1: BinaryTree[CT], t2: BinaryTree[CT]) -> bool:
-    return False
+    if t1 == t2:
+        return True
+    if not t1:
+        return False
+    root = t1.root
+    return solve(root.left, t2) or solve(root.right, t2)
 
 
 class TestSolution(TestCase):
