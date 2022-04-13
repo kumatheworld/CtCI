@@ -157,5 +157,38 @@ class BinaryTree(Generic[CT]):
         return self._get_random_node_with_count()[0]
 
 
+class CNode(Node[CT]):
+    def __init__(
+        self,
+        data: CT,
+        left: Optional["CNode[CT]"] = None,
+        right: Optional["CNode[CT]"] = None,
+    ) -> None:
+        self.data = data
+        self.left = BinarySearchTree[CT](left)
+        self.right = BinarySearchTree[CT](right)
+
+
 class BinarySearchTree(BinaryTree[CT]):
-    pass
+    def __init__(self, root: Optional[CNode[CT]] = None) -> None:
+        self.root = root
+
+    def insert(self, data: CT) -> None:
+        if self:
+            root = self.root
+            tree = root.left if data < root.data else root.right
+            tree.insert(data)
+        else:
+            self.root = CNode(data)
+
+    def find(self, data: CT) -> Optional[CNode[CT]]:
+        if self:
+            root = self.root
+            if data == (rd := root.data):
+                return root
+            elif data < rd:
+                return root.left.find(data)
+            else:
+                return root.right.find(data)
+        else:
+            raise ValueError(f"{data} is not in tree")
