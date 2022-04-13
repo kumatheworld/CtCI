@@ -27,7 +27,7 @@ class Node(Generic[CT]):
         self.right = BinaryTree[CT](right)
 
     def __copy__(self) -> "Node[CT]":
-        return Node(
+        return type(self)(
             self.data,
             left.root.__copy__() if (left := self.left) else None,
             right.root.__copy__() if (right := self.right) else None,
@@ -60,7 +60,7 @@ class BinaryTree(Generic[CT]):
         return rs.data == ro.data and rs.left._eq(ro.left) and rs.right._eq(ro.right)
 
     def __eq__(self, other: object) -> bool:
-        return isinstance(other, BinaryTree) and self._eq(other)
+        return isinstance(other, type(self)) and self._eq(other)
 
     def __repr__(self) -> str:
         trees = deque[BinaryTree[CT]]((self,))
@@ -89,7 +89,7 @@ class BinaryTree(Generic[CT]):
                 trees.append(node.right)
 
     def __copy__(self) -> "BinaryTree[CT]":
-        return BinaryTree[CT](self.root.__copy__() if self else None)
+        return type(self)(self.root.__copy__() if self else None)
 
     def insert(self, data: CT) -> None:
         if self:
