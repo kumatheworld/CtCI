@@ -100,16 +100,15 @@ class BinaryTree(Generic[CT]):
             self.root = Node(data)
 
     def find(self, data: CT) -> Optional[Node[CT]]:
-        if self:
-            root = self.root
-            if data == (rd := root.data):
-                return root
-            elif data < rd:
-                return root.left.find(data)
-            else:
-                return root.right.find(data)
-        else:
-            raise ValueError(f"{data} is not in tree")
+        trees = deque[BinaryTree[CT]]((self,))
+        while trees:
+            if tree := trees.popleft():
+                node = tree.root
+                if node.data == data:
+                    return node
+                trees.append(node.left)
+                trees.append(node.right)
+        raise ValueError(f"{data} is not in tree")
 
     def height(self) -> int:
         if self:
