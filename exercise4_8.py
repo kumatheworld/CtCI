@@ -1,4 +1,4 @@
-from random import choice, randrange, sample
+from random import choice, sample
 from typing import Optional
 from unittest import TestCase, main
 
@@ -33,14 +33,6 @@ def solve(x: Node[CT], y: Node[CT], t: BinaryTree[CT]) -> Node[CT]:
     return node
 
 
-def randomize(tree: BinaryTree[int]):
-    if tree:
-        root = tree.root
-        root.data = randrange(100)
-        randomize(root.left)
-        randomize(root.right)
-
-
 def ancestors(node: Node[CT]) -> list[Node[CT]]:
     anc = [node]
     while node := node.parent:
@@ -57,7 +49,6 @@ class TestSolution(TestCase):
                 t.insert(z)
             x = t.find(choice(l))
             y = t.find(choice(l))
-            randomize(t)
             z = solve(x, y, t)
 
             t.root.point_parent()
