@@ -1,5 +1,5 @@
 from collections import deque
-from random import choices, getrandbits
+from random import choice, choices, getrandbits
 from typing import Generic, Iterator, Optional
 
 from common import CT
@@ -109,6 +109,31 @@ class BinaryTree(Generic[CT]):
                 trees.append(node.left)
                 trees.append(node.right)
         raise ValueError(f"{data} is not in tree")
+
+    def delete(self, data: CT) -> None:
+        target = None
+        trees = deque[BinaryTree[CT]]((self,))
+        while trees:
+            if tree := trees.popleft():
+                node = tree.root
+                if (node := tree.root).data == data:
+                    target = tree
+                    break
+                trees.append(node.left)
+                trees.append(node.right)
+        else:
+            raise ValueError(f"{data} is not in tree")
+        alt = target
+        while True:
+            root = alt.root
+            left = root.left
+            right = root.right
+            if left or right:
+                alt = choice([t for t in (left, right) if t])
+            else:
+                break
+        target.root.data = alt.root.data
+        alt.root = None
 
     def height(self) -> int:
         if self:
