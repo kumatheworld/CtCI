@@ -79,7 +79,7 @@ class BinaryTree(Generic[CT]):
             cnt -= 1
         return r3pr
 
-    def __iter__(self) -> Iterator[CT]:  # DFS
+    def __iter__(self) -> Iterator[CT]:  # BFS
         trees = deque[BinaryTree[CT]]((self,))
         while trees:
             if tree := trees.popleft():
