@@ -25,8 +25,12 @@ def solve(x: int, t: BinaryTree[CT]) -> int:
 
 class TestSolution(TestCase):
     def test(self) -> None:
-        # How would I do this?
-        pass
+        # This is not a test! Start the debug mode and just inspect sums
+        t = BinaryTree[int]()
+        for i in range(7):
+            t.insert(i)
+        print(t)
+        print(solve(5, t))
 
 
 if __name__ == "__main__":
