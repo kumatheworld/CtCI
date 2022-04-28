@@ -5,7 +5,7 @@ def solve(x: float) -> str:
     y = x * (1 << 32)
     if not y.is_integer():
         return "ERROR"
-    a = bin(int(y))[2:]
+    a = f"{int(y):b}"
     b = "0" * (32 - len(a)) + a
     c = "." + b[: b.rfind("1") + 1]
     return c

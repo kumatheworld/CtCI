@@ -2,7 +2,7 @@ from unittest import TestCase, main
 
 
 def solve(x: int) -> int:
-    y = [len(z) for z in bin(x)[2:].split("0")]
+    y = [len(z) for z in f"{x:b}".split("0")]
     if len(y) == 1:
         return y[0]
     return max([a + b for a, b in zip(y[:-1], y[1:])]) + 1

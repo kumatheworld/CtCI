@@ -4,7 +4,7 @@ from unittest import TestCase, main
 
 
 def solve(x: int) -> tuple[int, Optional[int]]:
-    b = bin(x)[2:]
+    b = f"{x:b}"
     next_largest = int(re.sub(r"0(1*)(0*)$", r"10\2\1", "0" + b)[:-1], 2)
     p = re.compile(r"10(1*)$")
     next_smallest = int(re.sub(r"10(1*)$", r"01\1", b), 2) if p.search(b) else None
