@@ -21,9 +21,25 @@ def solve(screen: bytearray, width: int, x1: int, x2: int, y: int) -> None:
         screen[t] |= m2
 
 
+def print_screen(screen: bytearray, width: int):
+    w = width // 8
+    for i, b in enumerate(screen, 1):
+        print(f"{b:08b}", end=" ")
+        if i % w == 0:
+            print()
+
+
 class TestSolution(TestCase):
     def test(self) -> None:
-        pass
+        # Change values to see how solve() works
+        screen = bytearray([123, 45, 67, 89])
+        width = 16
+        x1 = 3
+        x2 = 8
+        y = 1
+        print_screen(screen, width)
+        solve(screen, width, x1, x2, y)
+        print_screen(screen, width)
 
 
 if __name__ == "__main__":
