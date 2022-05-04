@@ -12,3 +12,8 @@
   <summary>6.3</summary>
   No we can't. A domino covers exactly one black square wherever it is put, but if we cut off the corner, there will remain either 30 or 32 black squares, in neither of which cases we can put the 31 dominos.
 </details>
+
+<details>
+  <summary>6.4</summary>
+  In the general settings, out of 2^n equally likely possibilities of the ants' directions, there are only 2 with which no collision occurs. Namely, those are the cases where all the ants go in the same direction. Therefore, the probability of any collision is 1 - 1 / 2^(n-1). If n = 3, it is 1 - 1/4 = 3/4.
+</details>
