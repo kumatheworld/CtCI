@@ -17,3 +17,44 @@
   <summary>6.4</summary>
   In the general settings, out of 2^n equally likely possibilities of the ants' directions, there are only 2 with which no collision occurs. Namely, those are the cases where all the ants go in the same direction. Therefore, the probability of any collision is 1 - 1 / 2^(n-1). If n = 3, it is 1 - 1/4 = 3/4.
 </details>
+
+<details>
+  <summary>6.5</summary>
+  Below is a procedure to make four quarts of water. Each step has a sketch of the states of the 2 jugs, where '+' indicates that the jug has that many quarts of water in it.
+
+  0. The jugs are empty
+  ```
+    -----
+    ---
+  ```
+  1. Fill the 5-quart jug
+  ```
+    +++++
+    ---
+  ```
+  2. Fill the 3-quart jug with the water in the 5-quart jug
+  ```
+    ++---
+    +++
+  ```
+  3. Throw away the water in the 3-quart jug
+  ```
+    ++---
+    ---
+  ```
+  4. Move the water in the 5-quart jug to the 3-quart jug
+  ```
+    -----
+    ++-
+  ```
+  5. Fill the 5-quart jug
+  ```
+    +++++
+    ++-
+  ```
+  6. Fill the 3-quart jug with the water in the 5-quart jug and we get four quarts in the 5-quart jug
+  ```
+    ++++-
+    +++
+  ```
+</details>
