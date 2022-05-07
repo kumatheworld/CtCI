@@ -21,7 +21,7 @@ def solve(screen: bytearray, width: int, x1: int, x2: int, y: int) -> None:
         screen[t] |= m2
 
 
-def print_screen(screen: bytearray, width: int):
+def print_screen(screen: bytearray, width: int) -> None:
     w = width // 8
     for i, b in enumerate(screen, 1):
         print(f"{b:08b}", end=" ")
