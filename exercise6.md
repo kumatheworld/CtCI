@@ -67,6 +67,8 @@
 <details>
   <summary>6.7</summary>
   The probability that a family ends up having n boys before giving birth to a girl is 1/2<sup>n+1</sup>. Thus the expected number of boys a family gets is Σ<sub>n=0</sub><sup>∞</sup>n/2<sup>n+1</sup>=1. Therefore, the sex ratio will be roughly 1:1.
+
+  [exercise6_7.py](exercise6_7.py) simulates this.
 </details>
 
 <details>
