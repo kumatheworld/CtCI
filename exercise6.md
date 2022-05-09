@@ -77,3 +77,9 @@
 
   Now we prove that this is an optimal strategy. Suppose that there is a way to find N in 13 steps. The first floor we drop an egg from should be no higher than the 13th floor because if it breaks, we would need to start dropping the second egg from the 1st floor, increasing the level one by one (if not, we might fail to find N), which takes more than 13 steps. Therefore, the first floor to drop the egg should be 13th. The next floor should be 25th for a similar reason. We cannot go higher because the second egg should be dropped from the 14th floor if the first egg breaks. Thus the optimal strategy is to drop the first egg from the 13, 25, 36, 46, 55, 63, 70, 76, 81, 85, 88, 90, 91-th floors, in which case we would need more than 13 steps if N>91. Thus there is no strategy that can always find N in less than 13 steps.
 </details>
+
+<details>
+  <summary>6.9</summary>
+
+  [exercise6_9.py](exercise6_9.py) shows that there will be 10 doors open.
+</details>
