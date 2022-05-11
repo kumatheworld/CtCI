@@ -25,7 +25,7 @@ class AnimalShelter(Animal):
         self.count = 0
 
     def __repr__(self) -> str:
-        # this should be O(N) but don't care
+        # This should be O(N) but don't care
         return repr(
             [
                 f"{type(a[1]).__name__[0]}{(id(a) % 100)}"

@@ -10,7 +10,7 @@ def solve(t: BinaryTree[CT]) -> Node[CT]:
 
 
 class TestSolution(TestCase):
-    # just look at the printed counter!
+    # Just look at the printed counter!
     def test(self) -> None:
         t = BinaryTree[str]()
         data = "kumatheworld"

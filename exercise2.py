@@ -27,7 +27,7 @@ class LinkedList(Generic[T]):
 
     def __len__(self) -> int:
         return len([_ for _ in self])
-        # the following results in infinite recursion
+        # The following results in an infinite recursion
         # return len(list(self))
 
     def __eq__(self, other: object) -> bool:

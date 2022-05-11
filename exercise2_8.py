@@ -5,7 +5,7 @@ from common import T
 from exercise2 import LinkedList, Node
 
 
-# what a beautiful solution! how could one come up with this?
+# What a beautiful solution! how could one come up with this?
 def solve(x: LinkedList[T]) -> Node[T]:
     runner = x.head.next
     node = runner.next

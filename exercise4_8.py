@@ -7,7 +7,7 @@ from exercise4 import BinaryTree, Node
 
 
 def solve(x: Node[CT], y: Node[CT], t: BinaryTree[CT]) -> Node[CT]:
-    # this is effectively storing intermediate nodes though...
+    # This is effectively storing intermediate nodes though...
     def path2(
         z: Node[CT], t_: BinaryTree[CT], path: list[bool]
     ) -> Optional[list[bool]]:

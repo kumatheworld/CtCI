@@ -3,7 +3,7 @@ from unittest import TestCase, main
 import numpy as np
 
 
-# technically solve() could always return the zero matrix
+# Technically solve() could always return the zero matrix
 def solve(m: np.ndarray) -> None:
     cols, rows = np.nonzero(m == 0)
     m[cols] = 0
@@ -11,7 +11,7 @@ def solve(m: np.ndarray) -> None:
 
 
 class TestSolution(TestCase):
-    # just look at the printed arrays!
+    # Just look at the printed arrays!
     def test(self) -> None:
         m = np.random.randint(10, 100, (6, 10))
         m[m > 95] = 0

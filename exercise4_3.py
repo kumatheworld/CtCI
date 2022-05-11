@@ -25,7 +25,7 @@ def solve(t: BinarySearchTree[CT]) -> list[deque[Node[CT]]]:
 
 
 class TestSolution(TestCase):
-    # just look at the printed tree and solution!
+    # Just look at the printed tree and solution!
     def test(self) -> None:
         s = "CrackingTheCodingInterview"
         t = BinarySearchTree[str]()

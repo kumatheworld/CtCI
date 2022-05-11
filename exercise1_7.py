@@ -7,7 +7,7 @@ def solve(m: np.ndarray) -> np.ndarray:
     return np.flipud(m.T)
 
 
-# in-place with just 1 additional space unit but has poor memory access?
+# In-place with just 1 additional space unit but has poor memory access?
 def solve2(m: np.ndarray) -> np.ndarray:
     for i in range(0, len(m) // 2):
         k = len(m) - i - 1
