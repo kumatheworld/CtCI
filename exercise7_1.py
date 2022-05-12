@@ -1,6 +1,7 @@
-from dataclasses import dataclass
+from collections import UserList
 from enum import IntEnum
 from random import shuffle
+from typing import NamedTuple
 
 
 class Suit(IntEnum):
@@ -9,8 +10,11 @@ class Suit(IntEnum):
     DIAMOND = 2
     CLUB = 3
 
+    def __str__(self) -> str:
+        return "SHDC"[self]
 
-class Number(IntEnum):
+
+class Rank(IntEnum):
     ACE = 1
     TWO = 2
     THREE = 3
@@ -25,22 +29,24 @@ class Number(IntEnum):
     QUEEN = 12
     KING = 13
 
+    def __str__(self) -> str:
+        return " A23456789TJQK"[self]
 
-@dataclass
-class Card:
+
+class Card(NamedTuple):
     suit: Suit
-    number: Number
+    rank: Rank
 
-    def __repr__(self) -> str:
-        return "SHDC"[self.suit] + " A23456789TJQK"[self.number]
+    def __str__(self) -> str:
+        return str(self.suit) + str(self.rank)
 
 
-class Deck:
+class Deck(UserList):
     def __init__(self) -> None:
-        self.cards = [Card(suit, number) for suit in Suit for number in Number]
+        self.data = [Card(suit, rank) for suit in Suit for rank in Rank]
 
-    def __repr__(self) -> str:
-        return repr(self.cards)
+    def __str__(self) -> str:
+        return " ".join(str(c) for c in self)
 
     def shuffle(self) -> None:
-        shuffle(self.cards)
+        shuffle(self)
