@@ -52,26 +52,37 @@ class Problem:
 
 
 class Solution(ABC):
+    def __init__(self, problem: Problem) -> None:
+        super().__init__()
+        self.problem = problem
+        self.solution: Optional[int] = None
+
     @abstractmethod
-    def solve(self, p: Problem) -> int:
+    def step(self) -> None:
         pass
 
 
 class Cheat(Solution):
-    def solve(self, p: Problem) -> int:
-        for i, b in enumerate(p.bottles):
+    def step(self) -> None:
+        for i, b in enumerate(self.problem.bottles):
             if b.poisonous:
-                return i
+                self.solution = i
+                return
         raise RuntimeError("no poisonous bottle?")
 
 
 class TestSolution(TestCase):
-    def test(self, s: Solution = Cheat()) -> None:
+    def test(self) -> None:
         num_bottles = 1000
         days = []
         for i in range(num_bottles):
             p = Problem(i, num_bottles=num_bottles)
-            self.assertEqual(s.solve(p), i)
+            s = Cheat(p)
+            s.step()
+            while s.solution is None:
+                p.end_day()
+                s.step()
+            self.assertEqual(s.solution, i)
             days.append(p.day)
         im, dm = max(enumerate(days), key=itemgetter(1))
         print(
