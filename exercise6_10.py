@@ -71,6 +71,19 @@ class Cheat(Solution):
         raise RuntimeError("no poisonous bottle?")
 
 
+class BinaryRepresentation(Solution):
+    def __init__(self, problem: Problem) -> None:
+        super().__init__(problem)
+        self.nb = len(problem.bottles)
+
+    def get_bottle_ids(self, strip_id: int) -> list[int]:
+        ids = [i for i, b in enumerate(range(self.nb)) if (i >> strip_id) & 1]
+        return ids
+
+    def step(self) -> None:
+        pass
+
+
 class TestSolution(TestCase):
     def test(self) -> None:
         num_bottles = 1000
