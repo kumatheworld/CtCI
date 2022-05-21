@@ -74,14 +74,20 @@ class Cheat(Solution):
 class BinaryRepresentation(Solution):
     def __init__(self, problem: Problem) -> None:
         super().__init__(problem)
+        self.ns = len(problem.strips)
         self.nb = len(problem.bottles)
 
-    def get_bottle_ids(self, strip_id: int) -> list[int]:
-        ids = [i for i, b in enumerate(range(self.nb)) if (i >> strip_id) & 1]
-        return ids
-
     def step(self) -> None:
-        pass
+        p = self.problem
+        if (day := p.day) < (ns := self.ns):
+            bottle_ids = [i for i in range(self.nb) if (i >> day) & 1]
+            p.test(day, bottle_ids)
+        if day == p.days_to_see_result + ns - 1:
+            s = 0
+            for i in range(ns):
+                if p.strips[i].positive:
+                    s |= 1 << i
+            self.solution = s
 
 
 class TestSolution(TestCase):
@@ -90,7 +96,7 @@ class TestSolution(TestCase):
         days = []
         for i in range(num_bottles):
             p = Problem(i, num_bottles=num_bottles)
-            s = Cheat(p)
+            s = BinaryRepresentation(p)
             s.step()
             while s.solution is None:
                 p.end_day()
