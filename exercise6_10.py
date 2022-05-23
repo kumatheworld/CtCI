@@ -90,10 +90,6 @@ class BinaryRepresentation(Solution):
             self.solution = s
 
 
-class FastBinaryRepresentation(BinaryRepresentation):
-    pass
-
-
 class TestSolution(TestCase):
     def test(self) -> None:
         num_bottles = 1000
