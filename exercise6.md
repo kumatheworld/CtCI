@@ -83,3 +83,9 @@
 
   [exercise6_9.py](exercise6_9.py) shows that there will be 10 doors open.
 </details>
+
+<details>
+  <summary>6.10</summary>
+
+  [exercise6_10.py](exercise6_10.py) shows that we can identify the poisonous bottle in 16 days.
+</details>
