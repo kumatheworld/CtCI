@@ -20,43 +20,17 @@
 
 <details>
   <summary>6.5</summary>
-  Below is a procedure to make four quarts of water. Each step has a sketch of the states of the 2 jugs, where '+' indicates that the jug has that many quarts of water in it.
+  Below is a procedure to make four quarts of water.
 
-  0. The jugs are empty
-  ```
-    -----
-    ---
-  ```
-  1. Fill the 5-quart jug
-  ```
-    +++++
-    ---
-  ```
-  2. Fill the 3-quart jug with the water in the 5-quart jug
-  ```
-    ++---
-    +++
-  ```
-  3. Throw away the water in the 3-quart jug
-  ```
-    ++---
-    ---
-  ```
-  4. Move the water in the 5-quart jug to the 3-quart jug
-  ```
-    -----
-    ++-
-  ```
-  5. Fill the 5-quart jug
-  ```
-    +++++
-    ++-
-  ```
-  6. Fill the 3-quart jug with the water in the 5-quart jug and we get four quarts in the 5-quart jug
-  ```
-    ++++-
-    +++
-  ```
+  | 5 Quart | 3 Quart | Action |
+  | ------: | ------: | ------ |
+  |       0 |       0 | (The jugs are empty) |
+  |       5 |       0 | Fill the 5-quart jug |
+  |       2 |       3 | Fill the 3-quart jug with the water in the 5-quart jug |
+  |       2 |       0 | Throw away the water in the 3-quart jug |
+  |       0 |       2 | Move the water in the 5-quart jug to the 3-quart jug |
+  |       5 |       2 | Fill the 5-quart jug |
+  |       4 |       3 | Fill the 3-quart jug with the water in the 5-quart jug and we get four quarts in the 5-quart jug |
 </details>
 
 <details>
