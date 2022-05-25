@@ -62,4 +62,6 @@
   <summary>6.10</summary>
 
   [exercise6_10.py](exercise6_10.py) shows that we can identify the poisonous bottle in 16 days.
+
+  Note: I didn't realize that I could run multiple tests in a day. [exercise6_10.py](exercise6_10.py) doesn't accept that, in which case 16 days would be optimal.
 </details>
