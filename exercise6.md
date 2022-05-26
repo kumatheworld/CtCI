@@ -35,7 +35,7 @@
 
 <details>
   <summary>6.6</summary>
-  Skipped for now.
+  Let n be the number of the blue-eyed people. We show by induction that it will take n days for them to leave. If n = 1, the only blue-eyed person will immediately realize that they are blue-eyed because they see no other blue-eyed people. Now assume that it takes k days when there are k blue-eyed people and there are actually k + 1 blue-eyed people. Every blue-eyed person knows that there are either k or k + 1 blue-eyed people and they are not going to leave in k days because they are not sure if it is k or k + 1 (or in other words, if they themselves are blue-eyed or not). On the k-th day however, they realize by the inductive hypothesis that there are actually k + 1 blue-eyed people (i.e. they themselves are actually blue-eyed). Since they must leave as soon as possible, it will take k + 1 days for them to leave the island. Thus it will take as many days as the number of the blue-eyed people.
 </details>
 
 <details>
