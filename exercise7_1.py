@@ -50,3 +50,22 @@ class Deck(UserList[Card]):
 
     def shuffle(self) -> None:
         shuffle(self)
+
+
+class Hand(UserList[Card]):
+    def score(self) -> int:
+        total = 0
+        aces = 0
+        for c in self:
+            r = c.rank
+            total += min(r, 10)
+            if r == 1:
+                aces += 1
+            if total > 21:
+                return 0
+        for _ in range(aces):
+            total_ = total + 10
+            if total_ > 21:
+                break
+            total = total_
+        return total
