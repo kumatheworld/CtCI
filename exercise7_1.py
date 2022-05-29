@@ -41,18 +41,20 @@ class Card(NamedTuple):
         return str(self.suit) + str(self.rank)
 
 
-class Deck(UserList[Card]):
-    def __init__(self) -> None:
-        self.data = [Card(suit, rank) for suit in Suit for rank in Rank]
-
+class Cards(UserList[Card]):
     def __str__(self) -> str:
         return " ".join(str(c) for c in self)
+
+
+class Deck(Cards):
+    def __init__(self) -> None:
+        self.data = [Card(suit, rank) for suit in Suit for rank in Rank]
 
     def shuffle(self) -> None:
         shuffle(self)
 
 
-class Hand(UserList[Card]):
+class Hand(Cards):
     def score(self) -> int:
         total = 0
         aces = 0
