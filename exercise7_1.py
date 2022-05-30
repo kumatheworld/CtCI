@@ -1,3 +1,4 @@
+from abc import ABC, abstractmethod
 from collections import UserList
 from enum import IntEnum
 from random import shuffle
@@ -72,3 +73,14 @@ class Hand(Cards):
                 break
             total = total_
         return total
+
+
+class Player(ABC):
+    def init(self, dealer_card: Card, player_cards: tuple[Card, Card]) -> None:
+        self.dealer_card = dealer_card
+        self.hand = Hand(player_cards)
+
+    @abstractmethod
+    def play(self) -> bool:
+        """True = hit, False = stand"""
+        pass
