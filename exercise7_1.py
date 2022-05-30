@@ -55,6 +55,7 @@ class Deck(Cards):
 
 
 class Hand(Cards):
+    @property
     def score(self) -> int:
         total = 0
         aces = 0
