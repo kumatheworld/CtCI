@@ -1,5 +1,6 @@
 from abc import ABC, abstractmethod
 from collections import UserList
+from dataclasses import dataclass
 from enum import IntEnum
 from random import shuffle
 from typing import NamedTuple
@@ -84,3 +85,27 @@ class Player(ABC):
     def play(self) -> bool:
         """True = hit, False = stand"""
         pass
+
+
+@dataclass
+class BlackJack:
+    player: Player
+
+    def play(self) -> int:
+        """1 if player wins, 0 if draw, -1 if dealer wins"""
+        deck = Deck()
+        deck.shuffle()
+        dealer = Hand([deck.pop(), deck.pop()])
+        player = self.player
+        player.init(dealer[0], (deck.pop(), deck.pop()))
+        while player.play():
+            player.hand.append(deck.pop())
+        while dealer.score < 17:
+            dealer.append(deck.pop())
+        ps = player.hand.score
+        ds = dealer.score
+        if ps > ds:
+            return 1
+        if ps == ds:
+            return 0
+        return -1
