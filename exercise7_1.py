@@ -100,9 +100,10 @@ class BlackJack:
         player.init(dealer[0], (deck.pop(), deck.pop()))
         while player.play():
             player.hand.append(deck.pop())
-        while dealer.score < 17:
+        if (ps := player.hand.score) == 0:
+            return -1
+        while 0 < dealer.score < 17:
             dealer.append(deck.pop())
-        ps = player.hand.score
         ds = dealer.score
         if ps > ds:
             return 1
