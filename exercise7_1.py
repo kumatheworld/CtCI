@@ -86,6 +86,11 @@ class Player(ABC):
         pass
 
 
+class StandAlways(Player):
+    def play(self) -> bool:
+        return False
+
+
 @dataclass
 class BlackJack:
     player: Player
