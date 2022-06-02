@@ -91,6 +91,14 @@ class StandAlways(Player):
         return False
 
 
+class DrawIfSafe(Player):
+    def play(self) -> bool:
+        score_low = sum(min(c.rank, 10) for c in self.hand)
+        if score_low <= 11:
+            return True
+        return False
+
+
 @dataclass
 class BlackJack:
     player: Player
