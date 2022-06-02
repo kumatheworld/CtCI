@@ -62,8 +62,7 @@ class Hand(Cards):
         total = 0
         aces = 0
         for c in self:
-            r = c.rank
-            total += min(r, 10)
+            total += min((r := c.rank), 10)
             if r == 1:
                 aces += 1
             if total > 21:
