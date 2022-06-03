@@ -110,6 +110,17 @@ class DrawIfLEDealerPlusX(Player):
         return False
 
 
+class DrawUntilX(Player):
+    def __init__(self, x: int = 21) -> None:
+        super().__init__()
+        self.x = x
+
+    def play(self) -> bool:
+        if 0 < self.hand.score < self.x:
+            return True
+        return False
+
+
 @dataclass
 class BlackJack:
     player: Player
