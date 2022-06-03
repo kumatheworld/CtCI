@@ -99,6 +99,17 @@ class DrawIfSafe(Player):
         return False
 
 
+class DrawIfLEDealerPlusX(Player):
+    def __init__(self, x: int = 10) -> None:
+        super().__init__()
+        self.x = x
+
+    def play(self) -> bool:
+        if 0 < self.hand.score <= min(self.dealer_card.rank, 10) + self.x:
+            return True
+        return False
+
+
 @dataclass
 class BlackJack:
     player: Player
