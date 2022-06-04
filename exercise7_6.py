@@ -1,29 +1,20 @@
 from dataclasses import dataclass, field
+from typing import TypeAlias
 
-
-class Edge:
-    pass
+Edge: TypeAlias = int
 
 
 @dataclass
 class Piece:
-    left: Edge
-    top: Edge
-    right: Edge
-    bottom: Edge
+    edges: tuple[Edge, Edge, Edge, Edge]
+
+    def rotate(self, n: int) -> None:
+        edges = self.edges
+        self.edges = edges[n:] + edges[:n]
 
 
 @dataclass
-class Board:
+class JigsawPuzzle:
     width: int
     height: int
-    left: list[Edge] = field(init=False)
-    top: list[Edge] = field(init=False)
-    right: list[Edge] = field(init=False)
-    bottom: list[Edge] = field(init=False)
-
-    def __post_init__(self) -> None:
-        self.left = [Edge() for _ in range(self.width)]
-        self.top = [Edge() for _ in range(self.height)]
-        self.right = [Edge() for _ in range(self.width)]
-        self.bottom = [Edge() for _ in range(self.height)]
+    pieces: list[Piece] = field(init=False)
