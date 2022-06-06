@@ -53,3 +53,10 @@ class JigsawPuzzle:
         for p in pieces:
             p.rotate(3)
         self.pieces = pieces
+
+    def eq(self, pieces: list[Piece]) -> bool:
+        for _ in range(4):
+            if pieces == self.pieces:
+                return True
+            self.rotate90deg()
+        return False
