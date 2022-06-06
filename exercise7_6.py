@@ -40,3 +40,16 @@ class JigsawPuzzle:
             for i in range(h)
             for j in range(w)
         ]
+
+    def rotate90deg(self) -> None:
+        w = self.width
+        h = self.height
+        self.width = h
+        self.height = w
+        self_pieces = self.pieces
+        pieces = [
+            self_pieces[j + i] for j in range(w - 1, -1, -1) for i in range(0, w * h, w)
+        ]
+        for p in pieces:
+            p.rotate(3)
+        self.pieces = pieces
