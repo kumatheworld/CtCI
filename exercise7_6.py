@@ -2,6 +2,7 @@ from dataclasses import dataclass, field
 from typing import TypeAlias
 
 Edge: TypeAlias = int
+flat: Edge = 0
 
 
 @dataclass
@@ -31,10 +32,10 @@ class JigsawPuzzle:
         self.pieces = [
             Piece(
                 (
-                    0 if i == 0 else eh[(i - 1) * h + j],
-                    0 if j == 0 else ev[i * h + (j - 1)],
-                    0 if i == h - 1 else eh[i * h + j],
-                    0 if j == w - 1 else ev[i * h + j],
+                    flat if i == 0 else eh[(i - 1) * h + j],
+                    flat if j == 0 else ev[i * h + (j - 1)],
+                    flat if i == h - 1 else eh[i * h + j],
+                    flat if j == w - 1 else ev[i * h + j],
                 )
             )
             for i in range(h)
