@@ -1,3 +1,4 @@
+from abc import ABC, abstractmethod
 from dataclasses import dataclass, field
 from typing import TypeAlias
 
@@ -61,3 +62,9 @@ class JigsawPuzzle:
                 return True
             self.rotate90deg()
         return False
+
+
+class Solver(ABC):
+    @abstractmethod
+    def solve(self, pieces: list[Piece]) -> None:
+        pass
