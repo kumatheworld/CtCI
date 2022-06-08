@@ -1,6 +1,8 @@
+import random
 from abc import ABC, abstractmethod
 from dataclasses import dataclass, field
 from typing import TypeAlias
+from unittest import TestCase, main
 
 Edge: TypeAlias = int
 flat: Edge = 0
@@ -68,3 +70,20 @@ class Solver(ABC):
     @abstractmethod
     def solve(self, pieces: list[Piece]) -> None:
         pass
+
+
+class TestSolution(TestCase):
+    def test(self) -> None:
+        width = 8
+        height = 6
+        jp = JigsawPuzzle(width, height)
+        pieces = random.sample(jp.pieces, width * height)
+        for p in pieces:
+            p.rotate(random.randrange(4))
+        solver = Solver()
+        solver.solve(pieces)
+        self.assertTrue(jp.eq(pieces))
+
+
+if __name__ == "__main__":
+    main()
