@@ -1,5 +1,6 @@
 import random
 from abc import ABC, abstractmethod
+from collections import UserList
 from dataclasses import dataclass, field
 from typing import TypeAlias
 from unittest import TestCase, main
@@ -8,13 +9,25 @@ Edge: TypeAlias = int
 flat: Edge = 0
 
 
-@dataclass
-class Piece:
-    edges: tuple[Edge, Edge, Edge, Edge]
-
+class Piece(UserList[Edge]):
     def rotate(self, n: int) -> None:
-        edges = self.edges
-        self.edges = edges[n:] + edges[:n]
+        self.data = self[n:] + self[:n]
+
+    @property
+    def top(self) -> Edge:
+        return self[0]
+
+    @property
+    def left(self) -> Edge:
+        return self[1]
+
+    @property
+    def bottom(self) -> Edge:
+        return self[2]
+
+    @property
+    def right(self) -> Edge:
+        return self[3]
 
 
 @dataclass
