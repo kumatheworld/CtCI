@@ -35,10 +35,10 @@ class JigsawPuzzle:
         self.pieces = [
             Piece(
                 (
-                    flat if i == 0 else eh[(i - 1) * h + j],
-                    flat if j == 0 else ev[i * h + (j - 1)],
-                    flat if i == h - 1 else eh[i * h + j],
-                    flat if j == w - 1 else ev[i * h + j],
+                    flat if i == 0 else eh[(i - 1) * w + j],
+                    flat if j == 0 else ev[i * (w - 1) + (j - 1)],
+                    flat if i == h - 1 else eh[i * w + j],
+                    flat if j == w - 1 else ev[i * (w - 1) + j],
                 )
             )
             for i in range(h)
