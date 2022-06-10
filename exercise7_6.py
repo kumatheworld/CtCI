@@ -85,6 +85,51 @@ class Solver(ABC):
         pass
 
 
+class Scanner(Solver):
+    def solve(self, pieces: list[Piece]) -> None:
+        unsorted = len(pieces)
+
+        # Find a corner piece and set it to top left
+        edge = flat
+        for i, p in enumerate(pieces):
+            try:
+                idx = tuple(zip(p, p[1:] + p[:1])).index((flat, flat))
+            except ValueError:
+                continue
+            p.rotate(idx)
+            pieces.append(pieces.pop(i))
+            unsorted -= 1
+            edge = p.right
+            break
+
+        # Fill top row
+        while edge is not flat:
+            for i, p in enumerate(pieces[:unsorted]):
+                try:
+                    idx = p.index(edge)
+                except ValueError:
+                    continue
+                p.rotate((idx + 3) % 4)
+                pieces.append(pieces.pop(i))
+                unsorted -= 1
+                edge = p.right
+                break
+
+        # Fill the rest
+        above = unsorted
+        while unsorted:
+            edge = pieces[above].bottom
+            for i, p in enumerate(pieces[:unsorted]):
+                try:
+                    idx = p.index(edge)
+                except ValueError:
+                    continue
+                p.rotate(idx)
+                pieces.append(pieces.pop(i))
+                unsorted -= 1
+                break
+
+
 class TestSolution(TestCase):
     def test(self) -> None:
         width = 8
@@ -93,7 +138,7 @@ class TestSolution(TestCase):
         pieces = random.sample(jp.pieces, width * height)
         for p in pieces:
             p.rotate(random.randrange(4))
-        solver = Solver()
+        solver = Scanner()
         solver.solve(pieces)
         self.assertTrue(jp.eq(pieces))
 
