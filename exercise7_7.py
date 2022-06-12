@@ -1,3 +1,4 @@
+import socket
 from dataclasses import dataclass, field
 from datetime import datetime
 
@@ -16,5 +17,10 @@ class Message:
 
 @dataclass
 class ChatServer:
-    users: list[User]
-    messages: list[Message] = field(init=False, default_factory=list)
+    users: dict[socket._RetAddress, User]
+    host: str = "127.0.0.1"
+    port: int = 65432
+    bufsize: int = 1024
+    messages: list[Message] = field(
+        default_factory=list, init=False, repr=False, compare=False
+    )
