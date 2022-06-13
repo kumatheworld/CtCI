@@ -4,8 +4,15 @@ from datetime import datetime
 
 
 @dataclass
-class User:
+class CommUnit:
     name: str
+    host: str = "127.0.0.1"
+    port: int = 65432
+
+
+@dataclass
+class User(CommUnit):
+    pass
 
 
 @dataclass
@@ -16,10 +23,7 @@ class Message:
 
 
 @dataclass
-class ChatServer:
-    users: dict[socket._RetAddress, User]
-    host: str = "127.0.0.1"
-    port: int = 65432
+class ChatServer(CommUnit):
     bufsize: int = 1024
     messages: list[Message] = field(
         default_factory=list, init=False, repr=False, compare=False
