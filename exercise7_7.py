@@ -17,7 +17,7 @@ class User(CommUnit):
 
 @dataclass
 class Message:
-    sender: User
+    sender: str
     content: str
     timestamp: datetime
 
