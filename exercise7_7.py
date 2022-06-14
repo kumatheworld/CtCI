@@ -12,7 +12,13 @@ class CommUnit:
 
 @dataclass
 class User(CommUnit):
-    pass
+    def run(self) -> None:
+        with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+            s.connect((self.host, self.port))
+            s.sendall(self.name.encode())
+            while True:
+                content = input().encode()
+                s.sendall(content)
 
 
 @dataclass
