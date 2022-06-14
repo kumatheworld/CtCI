@@ -25,6 +25,9 @@ class Message:
 @dataclass
 class ChatServer(CommUnit):
     bufsize: int = 1024
+    users: dict[tuple[str, int], str] = field(
+        default_factory=dict, init=False, compare=False
+    )
     messages: list[Message] = field(
         default_factory=list, init=False, repr=False, compare=False
     )
