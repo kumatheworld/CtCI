@@ -37,3 +37,25 @@ class ChatServer(CommUnit):
     messages: list[Message] = field(
         default_factory=list, init=False, repr=False, compare=False
     )
+
+    def run(self) -> None:
+        bufsize = self.bufsize
+        messages = self.messages
+        with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+            s.bind((self.host, self.port))
+            s.listen()
+            conn, addr = s.accept()
+            with conn:
+                while True:
+                    data = conn.recv(bufsize)
+                    if not data:
+                        break
+                    content = data.decode()
+                    try:
+                        username = self.users[addr]
+                    except KeyError:
+                        self.users[addr] = content
+                    else:
+                        timestamp = datetime.now()
+                        message = Message(username, content, timestamp)
+                        messages.append(message)
