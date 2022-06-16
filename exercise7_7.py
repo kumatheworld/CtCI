@@ -1,4 +1,5 @@
 import socket
+from argparse import ArgumentParser
 from dataclasses import dataclass, field
 from datetime import datetime
 
@@ -59,3 +60,20 @@ class ChatServer(CommUnit):
                         timestamp = datetime.now()
                         message = Message(username, content, timestamp)
                         messages.append(message)
+
+
+if __name__ == "__main__":
+    parser = ArgumentParser()
+    parser.add_argument("name", type=str)
+    parser.add_argument("--server", action="store_true")
+    parser.add_argument("--host", default="127.0.0.1", type=str)
+    parser.add_argument("--port", default=65432, type=int)
+    parser.add_argument("--bufsize", default=1024, type=int)
+
+    args = parser.parse_args()
+    if args.server:
+        server = ChatServer(args.name, args.host, args.port, args.bufsize)
+        server.run()
+    else:
+        user = User(args.name, args.host, args.port)
+        user.run()
