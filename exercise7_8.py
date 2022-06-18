@@ -21,6 +21,9 @@ class Square:
     def __str__(self) -> str:
         return str(self.state)
 
+    def flip(self) -> None:
+        self.state = self.state.opposite()
+
 
 @dataclass
 class Othello:
