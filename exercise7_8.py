@@ -10,6 +10,9 @@ class State(Enum):
     def __str__(self) -> str:
         return "." if self.value is None else "xo"[self.value]
 
+    def opposite(self) -> "State":
+        return self if self.value is None else State(not self.value)
+
 
 @dataclass
 class Square:
