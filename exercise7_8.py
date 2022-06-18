@@ -1,14 +1,22 @@
 from dataclasses import dataclass, field
-from enum import IntEnum
+from enum import Enum
 
 
-class Square(IntEnum):
-    EMPTY = 0
-    BLACK = 1
-    WHITE = 2
+class State(Enum):
+    EMPTY = None
+    BLACK = False
+    WHITE = True
 
     def __str__(self) -> str:
-        return ".xo"[self]
+        return "." if self.value is None else "xo"[self.value]
+
+
+@dataclass
+class Square:
+    state: State = State.EMPTY
+
+    def __str__(self) -> str:
+        return str(self.state)
 
 
 @dataclass
@@ -16,11 +24,11 @@ class Othello:
     board: list[list[Square]] = field(init=False)
 
     def __post_init__(self) -> None:
-        board = [[Square.EMPTY] * 8 for _ in range(8)]
-        board[3][3] = Square.WHITE
-        board[3][4] = Square.BLACK
-        board[4][3] = Square.BLACK
-        board[4][4] = Square.WHITE
+        board = [[Square()] * 8 for _ in range(8)]
+        board[3][3] = Square(State.WHITE)
+        board[3][4] = Square(State.BLACK)
+        board[4][3] = Square(State.BLACK)
+        board[4][4] = Square(State.WHITE)
         self.board = board
 
     def __str__(self) -> str:
