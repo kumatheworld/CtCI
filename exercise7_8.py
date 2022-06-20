@@ -1,6 +1,6 @@
 from dataclasses import dataclass, field
 from enum import Enum
-from typing import Optional
+from typing import Literal, Optional, TypeAlias
 
 
 class Color(Enum):
@@ -35,6 +35,9 @@ class Direction(Enum):
     NW = (-1, -1)
     N = (0, -1)
     NE = (1, -1)
+
+
+Coordinate: TypeAlias = Literal[0, 1, 2, 3, 4, 5, 6, 7]
 
 
 @dataclass
