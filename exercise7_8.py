@@ -28,7 +28,7 @@ class Square:
 
 @dataclass
 class Othello:
-    board: list[list[Square]] = field(init=False)
+    board: list[list[Square]] = field(init=False, repr=False, compare=False)
 
     def __post_init__(self) -> None:
         board = [[Square()] * 8 for _ in range(8)]
