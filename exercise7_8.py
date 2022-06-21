@@ -55,3 +55,27 @@ class Othello:
 
     def __str__(self) -> str:
         return "\n".join("".join(str(square) for square in row) for row in self.board)
+
+    def get_flippable_squares(self, color: Color, p: Point) -> list[Square]:
+        x, y = p
+        board = self.board
+        if board[x][y].state is not None:
+            return []
+
+        squares = []
+        for d in Direction:
+            dx, dy = d.value
+            xx, yy = x + dx, y + dy
+            ss: list[Square] = []
+            while xx in range(8) and yy in range(8):
+                square = board[xx][yy]
+                match square.state:
+                    case None:
+                        break
+                    case c if c is color:
+                        squares.extend(ss)
+                    case _:
+                        ss.append(square)
+                xx += dx
+                yy += dy
+        return squares
