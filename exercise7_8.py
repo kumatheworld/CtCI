@@ -43,7 +43,7 @@ Point: TypeAlias = tuple[Coordinate, Coordinate]
 
 class Othello:
     def __init__(self) -> None:
-        board = [[Square()] * 8 for _ in range(8)]
+        board = tuple(tuple(Square() for _ in range(8)) for _ in range(8))
         board[3][3].state = Color.WHITE
         board[3][4].state = Color.BLACK
         board[4][3].state = Color.BLACK
