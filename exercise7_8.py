@@ -1,4 +1,4 @@
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 from enum import Enum
 from typing import Literal, Optional, TypeAlias
 
@@ -41,16 +41,13 @@ Coordinate: TypeAlias = Literal[0, 1, 2, 3, 4, 5, 6, 7]
 Point: TypeAlias = tuple[Coordinate, Coordinate]
 
 
-@dataclass
 class Othello:
-    board: list[list[Square]] = field(init=False, repr=False, compare=False)
-
-    def __post_init__(self) -> None:
+    def __init__(self) -> None:
         board = [[Square()] * 8 for _ in range(8)]
-        board[3][3] = Square(Color.WHITE)
-        board[3][4] = Square(Color.BLACK)
-        board[4][3] = Square(Color.BLACK)
-        board[4][4] = Square(Color.WHITE)
+        board[3][3].state = Color.WHITE
+        board[3][4].state = Color.BLACK
+        board[4][3].state = Color.BLACK
+        board[4][4].state = Color.WHITE
         self.board = board
 
     def __str__(self) -> str:
