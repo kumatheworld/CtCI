@@ -76,3 +76,11 @@ class Othello:
                 xx += dx
                 yy += dy
         return squares
+
+    def get_placeable_points(self, color: Color) -> list[Point]:
+        return [
+            (x, y)
+            for x in range(8)
+            for y in range(8)
+            if self.get_flippable_squares(color, (x, y))
+        ]
