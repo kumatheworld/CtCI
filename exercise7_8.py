@@ -49,6 +49,7 @@ class Othello:
         board[4][3].state = Color.BLACK
         board[4][4].state = Color.WHITE
         self.board = board
+        self.turn = Color.BLACK
 
     def __str__(self) -> str:
         return "\n".join("".join(str(square) for square in row) for row in self.board)
