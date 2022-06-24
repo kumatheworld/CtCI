@@ -20,6 +20,7 @@ class Color(Enum):
 @dataclass
 class Square:
     state: Optional[Color] = None
+    flippable_points: set[Point] = set()
 
     def __str__(self) -> str:
         return "." if self.state is None else str(self.state)
