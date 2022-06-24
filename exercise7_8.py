@@ -2,6 +2,9 @@ from dataclasses import dataclass
 from enum import Enum
 from typing import Literal, Optional, TypeAlias
 
+Coordinate: TypeAlias = Literal[0, 1, 2, 3, 4, 5, 6, 7]
+Point: TypeAlias = tuple[Coordinate, Coordinate]
+
 
 class Color(Enum):
     BLACK = False
@@ -35,10 +38,6 @@ class Direction(Enum):
     NW = (-1, -1)
     N = (0, -1)
     NE = (1, -1)
-
-
-Coordinate: TypeAlias = Literal[0, 1, 2, 3, 4, 5, 6, 7]
-Point: TypeAlias = tuple[Coordinate, Coordinate]
 
 
 class Othello:
