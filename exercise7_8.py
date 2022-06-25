@@ -1,6 +1,8 @@
 from abc import ABC, abstractmethod
 from dataclasses import dataclass, field
 from enum import Enum
+from itertools import product
+from random import choice
 from typing import Literal, Optional, TypeAlias
 
 Coordinate: TypeAlias = Literal[0, 1, 2, 3, 4, 5, 6, 7]
@@ -92,3 +94,14 @@ class Player(ABC):
     @abstractmethod
     def play(self, othello: Othello) -> Point:
         pass
+
+
+class RandomPlayer(Player):
+    def play(self, othello: Othello) -> Point:
+        return choice(
+            [
+                (x, y)
+                for x, y in product(range(8), range(8))
+                if othello.board[x][y].flippable_points
+            ]
+        )
