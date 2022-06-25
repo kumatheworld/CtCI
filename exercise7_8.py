@@ -1,3 +1,4 @@
+from abc import ABC, abstractmethod
 from dataclasses import dataclass, field
 from enum import Enum
 from typing import Literal, Optional, TypeAlias
@@ -85,3 +86,9 @@ class Othello:
             for y in range(8)
             if self.get_flippable_squares(color, (x, y))
         ]
+
+
+class Player(ABC):
+    @abstractmethod
+    def play(self, othello: Othello) -> Point:
+        pass
