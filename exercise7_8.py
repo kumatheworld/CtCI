@@ -62,37 +62,43 @@ class Othello:
     def __str__(self) -> str:
         return "\n".join("".join(str(square) for square in row) for row in self.board)
 
-    def get_flippable_squares(self, color: Color, p: Point) -> list[Square]:
-        x, y = p
+    def play(self) -> None:
         board = self.board
-        if board[x][y].state is not None:
-            return []
+        color = Color.BLACK
+        player_on = self.player_black
+        player_off = self.player_white
 
-        squares = []
-        for d in Direction:
-            dx, dy = d.value
-            xx, yy = x + dx, y + dy
-            ss: list[Square] = []
-            while xx in range(8) and yy in range(8):
-                square = board[xx][yy]
-                match square.state:
-                    case None:
-                        break
-                    case c if c is color:
-                        squares.extend(ss)
-                    case _:
-                        ss.append(square)
-                xx += dx
-                yy += dy
-        return squares
+        for _ in range(60):
+            # Compute flippable points
+            for x, y in product(range(8), range(8)):
+                points: set[Point] = set()
+                for d in Direction:
+                    dx, dy = d.value
+                    xx, yy = x + dx, y + dy
+                    ps: set[Point] = set()
+                    while xx in range(8) and yy in range(8):
+                        match board[xx][yy].state:
+                            case None:
+                                break
+                            case c if c is color:
+                                points |= ps
+                            case _:
+                                ps.add((xx, yy))
+                        xx += dx
+                        yy += dy
+                board[x][y].flippable_points = points
+                # TODO: Change players if there're no flippable points
 
-    def get_placeable_points(self, color: Color) -> list[Point]:
-        return [
-            (x, y)
-            for x in range(8)
-            for y in range(8)
-            if self.get_flippable_squares(color, (x, y))
-        ]
+            # Player plays their turn
+            x, y = player_on.play(othello)
+            # TODO: Handle possible errors from player
+            board[x][y].state = color
+            for xx, yy in board[x][y].flippable_points:
+                board[xx][yy].state = color
+
+            # End turn
+            player_on, player_off = player_off, player_on
+            color = color.opposite()
 
 
 class Player(ABC):
