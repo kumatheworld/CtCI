@@ -45,14 +45,19 @@ class Direction(Enum):
 
 
 class Othello:
-    def __init__(self) -> None:
+    def __init__(
+        self,
+        player_black: "Player",
+        player_white: "Player",
+    ) -> None:
         board = tuple(tuple(Square() for _ in range(8)) for _ in range(8))
         board[3][3].state = Color.WHITE
         board[3][4].state = Color.BLACK
         board[4][3].state = Color.BLACK
         board[4][4].state = Color.WHITE
         self.board = board
-        self.turn = Color.BLACK
+        self.player_black = player_black
+        self.player_white = player_white
 
     def __str__(self) -> str:
         return "\n".join("".join(str(square) for square in row) for row in self.board)
