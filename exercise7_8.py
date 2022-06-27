@@ -71,22 +71,26 @@ class Othello:
         for _ in range(60):
             # Compute flippable points
             for x, y in product(range(8), range(8)):
-                points: set[Point] = set()
+                if (square := board[x][y]).state is not None:
+                    square.flippable_points = set()
+                    continue
+                flippable_points: set[Point] = set()
                 for d in Direction:
                     dx, dy = d.value
                     xx, yy = x + dx, y + dy
-                    ps: set[Point] = set()
+                    fps: set[Point] = set()
                     while xx in range(8) and yy in range(8):
                         match board[xx][yy].state:
                             case None:
                                 break
                             case c if c is color:
-                                points |= ps
+                                flippable_points |= fps
+                                break
                             case _:
-                                ps.add((xx, yy))
+                                fps.add((xx, yy))
                         xx += dx
                         yy += dy
-                board[x][y].flippable_points = points
+                square.flippable_points = flippable_points
                 # TODO: Change players if there're no flippable points
 
             # Player plays their turn
