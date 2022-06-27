@@ -28,10 +28,6 @@ class Square:
     def __str__(self) -> str:
         return "." if self.state is None else str(self.state)
 
-    def flip(self) -> None:
-        if self.state is not None:
-            self.state = self.state.opposite()
-
 
 class Direction(Enum):
     E = (1, 0)
