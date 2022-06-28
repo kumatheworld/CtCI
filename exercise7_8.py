@@ -61,15 +61,18 @@ class Othello:
     def play(self) -> None:
         board = self.board
         color = Color.BLACK
+        placeable_points = [
+            (x, y)
+            for x in range(8)
+            for y in range(8)
+            if x < 3 or 4 < x or y < 3 or 4 < y
+        ]
         player_on = self.player_black
         player_off = self.player_white
 
-        for _ in range(60):
+        while placeable_points:
             # Compute flippable points
-            for x, y in product(range(8), range(8)):
-                if (square := board[x][y]).state is not None:
-                    square.flippable_points = set()
-                    continue
+            for x, y in placeable_points:
                 flippable_points: set[Point] = set()
                 for d in Direction:
                     dx, dy = d.value
@@ -86,15 +89,17 @@ class Othello:
                                 fps.add((xx, yy))
                         xx += dx
                         yy += dy
-                square.flippable_points = flippable_points
+                board[x][y].flippable_points = flippable_points
                 # TODO: Change players if there're no flippable points
 
             # Player plays their turn
             x, y = player_on.play(othello)
             # TODO: Handle possible errors from player
-            board[x][y].state = color
-            for xx, yy in board[x][y].flippable_points:
+            (square := board[x][y]).state = color
+            for xx, yy in square.flippable_points:
                 board[xx][yy].state = color
+            square.flippable_points = set()
+            placeable_points.remove((x, y))
 
             # End turn
             player_on, player_off = player_off, player_on
