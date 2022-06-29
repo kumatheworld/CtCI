@@ -1,7 +1,9 @@
+import selectors
 import socket
 from argparse import ArgumentParser
 from dataclasses import dataclass, field
 from datetime import datetime
+from types import SimpleNamespace
 
 
 @dataclass
@@ -40,26 +42,47 @@ class ChatServer(CommUnit):
     )
 
     def run(self) -> None:
+        sel = selectors.DefaultSelector()
+        lsock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        lsock.bind((self.host, self.port))
+        lsock.listen()
+        lsock.setblocking(False)
+        sel.register(lsock, selectors.EVENT_READ, data=None)
+
         bufsize = self.bufsize
-        messages = self.messages
-        with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
-            s.bind((self.host, self.port))
-            s.listen()
-            conn, addr = s.accept()
-            with conn:
-                while True:
-                    data = conn.recv(bufsize)
-                    if not data:
-                        break
-                    content = data.decode()
-                    try:
-                        username = self.users[addr]
-                    except KeyError:
-                        self.users[addr] = content
+        users = self.users
+        try:
+            while True:
+                events = sel.select(timeout=None)
+                for key, mask in events:
+                    sock = key.fileobj
+                    if (data := key.data) is None:
+                        conn, addr = sock.accept()
+                        conn.setblocking(False)
+                        data = SimpleNamespace(addr=addr, inb=b"", outb=b"")
+                        events = selectors.EVENT_READ | selectors.EVENT_WRITE
+                        sel.register(conn, events, data=data)
+                        username = conn.recv(bufsize).decode()
+                        users[addr] = username
+                        print(f"{username} entered the chat")
                     else:
-                        timestamp = datetime.now()
-                        message = Message(username, content, timestamp)
-                        messages.append(message)
+                        if mask & selectors.EVENT_READ:
+                            if recv_data := sock.recv(bufsize):
+                                data.outb += recv_data
+                            else:
+                                print(f"{users[data.addr]} left the chat")
+                                sel.unregister(sock)
+                                sock.close()
+                        if mask & selectors.EVENT_WRITE:
+                            if recv_data := data.outb:
+                                content = recv_data.decode()
+                                print(f"{users[data.addr]}: {content}")
+                                sent = sock.send(recv_data)
+                                data.outb = recv_data[sent:]
+        except KeyboardInterrupt:
+            print("End of chat")
+        finally:
+            sel.close()
 
 
 if __name__ == "__main__":
