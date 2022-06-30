@@ -1,7 +1,7 @@
 import selectors
 import socket
 from argparse import ArgumentParser
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 from types import SimpleNamespace
 
 
@@ -29,9 +29,6 @@ class User(CommUnit):
 @dataclass
 class ChatServer(CommUnit):
     bufsize: int = 1024
-    users: dict[tuple[str, int], str] = field(
-        default_factory=dict, init=False, compare=False
-    )
 
     def run(self) -> None:
         sel = selectors.DefaultSelector()
@@ -42,7 +39,7 @@ class ChatServer(CommUnit):
         sel.register(lsock, selectors.EVENT_READ, data=None)
 
         bufsize = self.bufsize
-        users = self.users
+        users = {}
         try:
             while True:
                 events = sel.select(timeout=None)
