@@ -19,9 +19,12 @@ class User(CommUnit):
         with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
             s.connect((self.host, self.port))
             s.sendall(self.name.encode())
-            while True:
-                content = input().encode()
-                s.sendall(content)
+            try:
+                while True:
+                    content = input().encode()
+                    s.sendall(content)
+            except KeyboardInterrupt:
+                pass
 
 
 @dataclass
