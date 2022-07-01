@@ -3,6 +3,7 @@ import socket
 from argparse import ArgumentParser
 from dataclasses import dataclass, field
 from types import SimpleNamespace
+from typing import Optional
 
 
 @dataclass
@@ -33,6 +34,11 @@ class ChatServer(CommUnit):
         default_factory=dict, init=False, compare=False
     )
 
+    def broadcast(
+        self, message: str, exclude: Optional[tuple[str, int]] = None
+    ) -> None:
+        print(message)
+
     def run(self) -> None:
         sel = selectors.DefaultSelector()
         lsock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -55,24 +61,27 @@ class ChatServer(CommUnit):
                         events = selectors.EVENT_READ | selectors.EVENT_WRITE
                         sel.register(conn, events, data=data)
                         username = conn.recv(bufsize).decode()
+                        self.broadcast(f"{username} entered the chat")
                         users[addr] = username
-                        print(f"{username} entered the chat")
                     else:
                         if mask & selectors.EVENT_READ:
                             if recv_data := sock.recv(bufsize):
                                 data.outb += recv_data
                             else:
-                                print(f"{users[data.addr]} left the chat")
                                 sel.unregister(sock)
                                 sock.close()
+                                self.broadcast(f"{users[data.addr]} left the chat")
+                                del users[data.addr]
                         if mask & selectors.EVENT_WRITE:
                             if recv_data := data.outb:
                                 content = recv_data.decode()
-                                print(f"{users[data.addr]}: {content}")
                                 sent = sock.send(recv_data)
                                 data.outb = recv_data[sent:]
+                                self.broadcast(
+                                    f"{users[data.addr]}: {content}", data.addr
+                                )
         except KeyboardInterrupt:
-            print("End of chat")
+            self.broadcast("End of chat")
         finally:
             sel.close()
 
