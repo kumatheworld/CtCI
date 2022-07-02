@@ -121,3 +121,19 @@ class RandomPlayer(Player):
                 if othello.board[x][y].flippable_points
             ]
         )
+
+
+class RandomMaxPlayer(Player):
+    def play(self, othello: Othello) -> Point:
+        num_flippable_points = [
+            ((x, y), len(othello.board[x][y].flippable_points))
+            for x, y in product(range(8), range(8))
+        ]
+        num_flippable_points_max = max(n for _, n in num_flippable_points)
+        return choice(
+            [
+                (x, y)
+                for (x, y), n in num_flippable_points
+                if n == num_flippable_points_max
+            ]
+        )
