@@ -68,6 +68,7 @@ class Othello:
         ]
         player_on = self.player_black
         player_off = self.player_white
+        stuck = False
 
         while placeable_points:
             # Compute flippable points
@@ -89,16 +90,22 @@ class Othello:
                         xx += dx
                         yy += dy
                 board[x][y].flippable_points = flippable_points
-                # TODO: Change players if there're no flippable points
 
-            # Player plays their turn
-            x, y = player_on.play(othello)
-            # TODO: Handle possible errors from player
-            (square := board[x][y]).state = color
-            for xx, yy in square.flippable_points:
-                board[xx][yy].state = color
-            square.flippable_points = set()
-            placeable_points.remove((x, y))
+            if any(
+                board[x][y].flippable_points for x, y in product(range(8), range(8))
+            ):
+                # Player plays their turn
+                x, y = player_on.play(othello)
+                (square := board[x][y]).state = color
+                for xx, yy in square.flippable_points:
+                    board[xx][yy].state = color
+                square.flippable_points = set()
+                placeable_points.remove((x, y))
+                stuck = False
+            else:
+                if stuck:
+                    break
+                stuck = True
 
             # End turn
             player_on, player_off = player_off, player_on
