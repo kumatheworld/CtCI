@@ -63,8 +63,7 @@ class Othello:
         color = Color.BLACK
         placeable_points = [
             (x, y)
-            for x in range(8)
-            for y in range(8)
+            for x, y in product(range(8), range(8))
             if x < 3 or 4 < x or y < 3 or 4 < y
         ]
         player_on = self.player_black
