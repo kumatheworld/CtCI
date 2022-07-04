@@ -143,3 +143,16 @@ class RandomMaxPlayer(Player):
                 if n == num_flippable_points_max
             ]
         )
+
+
+class RandomCornerPlayer(Player):
+    def play(self, othello: Othello) -> Point:
+        flippable_points_with_dist = [
+            ((x, y), abs(2 * x - 7) + abs(2 * y - 7))
+            for x, y in product(range(8), range(8))
+            if othello.board[x][y].flippable_points
+        ]
+        dist_max = max(d for _, d in flippable_points_with_dist)
+        return choice(
+            [(x, y) for (x, y), d in flippable_points_with_dist if d == dist_max]
+        )
