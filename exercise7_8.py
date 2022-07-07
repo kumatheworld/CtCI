@@ -1,4 +1,5 @@
 from abc import ABC, abstractmethod
+from collections import Counter
 from dataclasses import dataclass, field
 from enum import Enum
 from itertools import product
@@ -156,3 +157,14 @@ class RandomCornerPlayer(Player):
         return choice(
             [(x, y) for (x, y), d in flippable_points_with_dist if d == dist_max]
         )
+
+
+if __name__ == "__main__":
+    player_black = RandomPlayer()
+    player_white = RandomCornerPlayer()
+    othello = Othello(player_black, player_white)
+
+    othello.play()
+    result = dict(Counter([str(s) for r in othello.board for s in r]))
+    print(othello)
+    print(result)
