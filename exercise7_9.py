@@ -1,13 +1,29 @@
 from collections import UserList
+from dataclasses import dataclass
 from typing import Iterable, Optional
 
 from common import T
 
 
+@dataclass
+class CyclicInt(int):
+    value: int
+    order: int
+
+    def __new__(cls, value, order) -> "CyclicInt":
+        return super().__new__(cls, value % order)
+
+    def __iadd__(self, other: int) -> "CyclicInt":
+        return self.__class__(self.value + other, self.order)
+
+    def __add__(self, other: int) -> int:
+        return (self.value + other) % self.order
+
+
 class CircularArray(UserList[T]):
     def __init__(self, initlist: Optional[Iterable[T]] = None) -> None:
-        self.base = 0
         self._data = list(initlist) if initlist else []
+        self.base = CyclicInt(0, len(self._data))
 
     @property
     def data(self) -> list[T]:
@@ -18,4 +34,4 @@ class CircularArray(UserList[T]):
         self._data[(self.base + i) % len(self)] = item
 
     def rotate(self, n: int) -> None:
-        self.base = (self.base + n) % len(self)
+        self.base += n
