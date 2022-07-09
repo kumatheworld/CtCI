@@ -6,15 +6,19 @@ from common import T
 
 
 @dataclass
-class CyclicInt(int):
+class CyclicInt:
     value: int
     order: int
 
-    def __new__(cls, value, order) -> "CyclicInt":
-        return super().__new__(cls, value % order)
+    def __post_init__(self) -> None:
+        self.value %= self.order
+
+    def __index__(self) -> int:
+        return self.value
 
     def __iadd__(self, other: int) -> "CyclicInt":
-        return self.__class__(self.value + other, self.order)
+        self.value = (self.value + other) % self.order
+        return self
 
     def __add__(self, other: int) -> int:
         return (self.value + other) % self.order
