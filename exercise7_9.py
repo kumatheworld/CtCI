@@ -35,7 +35,7 @@ class CircularArray(UserList[T]):
         return self._data[b:] + self._data[:b]
 
     def __setitem__(self, i: int, item: T) -> None:
-        self._data[(self.base + i) % len(self)] = item
+        self._data[self.base + i] = item
 
     def rotate(self, n: int) -> None:
         self.base += n
