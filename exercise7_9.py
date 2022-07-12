@@ -16,6 +16,9 @@ class CircularArray(UserList[T]):
         self.base = 0
         return self._data
 
+    def __contains__(self, item: T) -> bool:
+        return item in self._data
+
     def __len__(self) -> int:
         return len(self._data)
 
