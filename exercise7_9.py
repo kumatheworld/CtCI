@@ -22,6 +22,10 @@ class CircularArray(UserList[T]):
     def __len__(self) -> int:
         return len(self._data)
 
+    # TODO: i: SupportsIndex | slice
+    def __getitem__(self, i: int):
+        return self._data[(self.base + i) % len(self)]
+
     # TODO: i: SupportsIndex | slice, item: T | Iterable[T] correnspondingly
     def __setitem__(self, i: int, item: T) -> None:
         self._data[self.base + i] = item
