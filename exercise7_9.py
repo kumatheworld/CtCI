@@ -12,7 +12,9 @@ class CircularArray(UserList[T]):
     @property
     def data(self) -> list[T]:
         b = self.base
-        return self._data[b:] + self._data[:b]
+        self._data = self._data[b:] + self._data[:b]
+        self.base = 0
+        return self._data
 
     def __len__(self) -> int:
         return len(self._data)
