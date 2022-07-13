@@ -36,5 +36,8 @@ class CircularArray(UserList[T]):
     def copy(self) -> "CircularArray":
         return self.__copy__()
 
+    def count(self, item: T):
+        return self._data.count(item)
+
     def rotate(self, n: int) -> None:
         self.base = (self.base + n) % len(self)
