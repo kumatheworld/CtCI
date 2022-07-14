@@ -39,5 +39,16 @@ class CircularArray(UserList[T]):
     def count(self, item: T):
         return self._data.count(item)
 
+    def index(self, item, *args):
+        try:
+            return self._data[self.base :].index(item, *args)
+        except ValueError:
+            try:
+                j = self._data[: self.base].index(item, *args)
+            except ValueError:
+                raise ValueError(f"{item} is not in list")
+            else:
+                return j - self.base + len(self)
+
     def rotate(self, n: int) -> None:
         self.base = (self.base + n) % len(self)
