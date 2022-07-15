@@ -1,3 +1,4 @@
+from dataclasses import dataclass
 from enum import IntEnum
 
 
@@ -12,3 +13,12 @@ class ExplosiveNumber(IntEnum):
     SEVEN = 7
     EIGHT = 8
     MINE = 9
+
+
+@dataclass
+class Square:
+    number: ExplosiveNumber = ExplosiveNumber.ZERO
+    discovered: bool = False
+
+    def __str__(self) -> str:
+        return str(int(self.number)) if self.discovered else " "
