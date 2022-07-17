@@ -51,3 +51,6 @@ class MineSweeper:
             tuple(Square(ExplosiveNumber(board[i][j])) for j in range(w))
             for i in range(h)
         )
+
+    def __str__(self) -> str:
+        return "\n".join("".join(str(square) for square in row) for row in self.board)
