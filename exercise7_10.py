@@ -54,3 +54,7 @@ class MineSweeper:
 
     def __str__(self) -> str:
         return "\n".join("".join(str(square) for square in row) for row in self.board)
+
+    @property
+    def board(self) -> tuple[tuple[Square, ...], ...]:
+        return self.__board
