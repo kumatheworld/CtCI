@@ -2,6 +2,7 @@ from dataclasses import dataclass
 from enum import IntEnum
 from itertools import product
 from random import sample
+from typing import Optional
 
 
 class ExplosiveNumber(IntEnum):
@@ -56,8 +57,13 @@ class MineSweeper:
         )
 
     def __str__(self) -> str:
-        return "\n".join("".join(str(square) for square in row) for row in self.board)
+        return "\n".join(
+            "".join(" " if n is None else str(n) for n in row) for row in self.board
+        )
 
     @property
-    def board(self) -> tuple[tuple[Square, ...], ...]:
-        return self.__board
+    def board(self) -> tuple[tuple[Optional[ExplosiveNumber], ...], ...]:
+        return tuple(
+            tuple(square.number if square.discovered else None for square in row)
+            for row in self.__board
+        )
