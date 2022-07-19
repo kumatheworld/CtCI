@@ -26,7 +26,7 @@ class Square:
     discovered: bool = False
 
     def __str__(self) -> str:
-        return str(int(self.number)) if self.discovered else "-"
+        return str(self.number) if self.discovered else "-"
 
 
 @dataclass
