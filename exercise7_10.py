@@ -16,6 +16,9 @@ class ExplosiveNumber(IntEnum):
     EIGHT = 8
     MINE = 9
 
+    def __str__(self) -> str:
+        return str(int(self))
+
 
 @dataclass
 class Square:
