@@ -2,7 +2,7 @@ from dataclasses import dataclass
 from enum import IntEnum
 from itertools import product
 from random import sample
-from typing import Optional
+from typing import Iterator, Optional
 
 
 class ExplosiveNumber(IntEnum):
@@ -36,6 +36,16 @@ class MineSweeper:
     height: int
     num_mines: int
 
+    def _neighbors(self, x: int, y: int) -> Iterator[tuple[int, int]]:
+        w = self.width
+        h = self.height
+        for dx, dy in product((-1, 0, 1), (-1, 0, 1)):
+            if dx != 0 or dy != 0:
+                i = x + dx
+                j = y + dy
+                if i in range(h) and j in range(w):
+                    yield i, j
+
     def __post_init__(self) -> None:
         w = self.width
         h = self.height
@@ -43,12 +53,8 @@ class MineSweeper:
         mines = sample(list(product(range(h), range(w))), self.num_mines)
         board = [[0] * self.width for _ in range(self.height)]
         for x, y in mines:
-            for dx, dy in product((-1, 0, 1), (-1, 0, 1)):
-                if dx != 0 or dy != 0:
-                    i = x + dx
-                    j = y + dy
-                    if i in range(h) and j in range(w):
-                        board[i][j] += 1
+            for i, j in self._neighbors(x, y):
+                board[i][j] += 1
         for x, y in mines:
             board[x][y] = ExplosiveNumber.MINE
         self.__board = tuple(
