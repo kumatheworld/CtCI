@@ -64,7 +64,7 @@ class MineSweeper:
 
     def __str__(self) -> str:
         return "\n".join(
-            "".join(" " if n is None else str(n) for n in row) for row in self.board
+            "".join("-" if n is None else str(n) for n in row) for row in self.board
         )
 
     @property
