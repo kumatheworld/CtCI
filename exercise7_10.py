@@ -41,9 +41,7 @@ class MineSweeper:
         h = self.height
         for dx, dy in product((-1, 0, 1), (-1, 0, 1)):
             if dx != 0 or dy != 0:
-                i = x + dx
-                j = y + dy
-                if i in range(h) and j in range(w):
+                if (i := x + dx) in range(h) and (j := y + dy) in range(w):
                     yield i, j
 
     def __post_init__(self) -> None:
