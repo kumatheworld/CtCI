@@ -73,3 +73,15 @@ class MineSweeper:
             tuple(square.number if square.discovered else None for square in row)
             for row in self.__board
         )
+
+    def reveal(self, x: int, y: int) -> bool:
+        """True if Explode, False otherwise"""
+        if (s := self.__board[x][y]).discovered:
+            return False
+        if (n := s.number) == ExplosiveNumber.MINE:
+            return True
+        s.discovered = True
+        if n == ExplosiveNumber.ZERO:
+            for i, j in self._neighbors(x, y):
+                self.reveal(i, j)
+        return False
