@@ -65,6 +65,9 @@ class MineSweeper:
             "".join("-" if n is None else str(n) for n in row) for row in self.board
         )
 
+    def __str_debug(self) -> str:
+        return "\n".join("".join(str(s.number) for s in row) for row in self.__board)
+
     @property
     def board(self) -> tuple[tuple[Optional[ExplosiveNumber], ...], ...]:
         return tuple(
