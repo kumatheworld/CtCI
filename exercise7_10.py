@@ -79,6 +79,12 @@ class MineSweeper:
             for row in self.__board
         )
 
+    def ishalfway(self) -> bool:
+        return any(
+            any(s for s in row if s.number != ExplosiveNumber.MINE and not s.discovered)
+            for row in self.__board
+        )
+
     def reveal(self, x: int, y: int) -> None:
         if (s := self.__board[x][y]).discovered:
             return
