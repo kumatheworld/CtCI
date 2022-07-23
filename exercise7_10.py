@@ -5,6 +5,10 @@ from random import sample
 from typing import Iterator, Optional
 
 
+class Explosion(Exception):
+    pass
+
+
 class ExplosiveNumber(IntEnum):
     ZERO = 0
     ONE = 1
@@ -75,14 +79,12 @@ class MineSweeper:
             for row in self.__board
         )
 
-    def reveal(self, x: int, y: int) -> bool:
-        """True if Explode, False otherwise"""
+    def reveal(self, x: int, y: int) -> None:
         if (s := self.__board[x][y]).discovered:
-            return False
+            return
         if (n := s.number) == ExplosiveNumber.MINE:
-            return True
+            raise Explosion("BANG!")
         s.discovered = True
         if n == ExplosiveNumber.ZERO:
             for i, j in self._neighbors(x, y):
                 self.reveal(i, j)
-        return False
