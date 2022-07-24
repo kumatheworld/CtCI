@@ -94,3 +94,13 @@ class MineSweeper:
         if n == ExplosiveNumber.ZERO:
             for i, j in self._neighbors(x, y):
                 self.reveal(i, j)
+
+
+if __name__ == "__main__":
+    game = MineSweeper(8, 6, 5)
+    print("Start!", game, sep="\n")
+    while game.ishalfway():
+        x, y = (int(s) for s in input("Point x,y to reveal: ").split(","))
+        game.reveal(x, y)
+        print(game)
+    print("Congrats!")
