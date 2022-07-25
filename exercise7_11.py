@@ -1,3 +1,5 @@
+from itertools import chain
+
 class File:
     pass
 
@@ -16,3 +18,6 @@ class Directory(File):
                 f"Cannot create a file when that file already exists: '{name}'"
             )
         self.dirs[name] = Directory()
+
+    def ls(self) -> str:
+        return " ".join(chain(self.files.keys(), (k + "/" for k in self.dirs.keys())))
