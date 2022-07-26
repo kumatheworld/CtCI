@@ -1,4 +1,6 @@
 from itertools import chain
+from typing import Optional
+
 
 class File:
     pass
@@ -21,3 +23,10 @@ class Directory(File):
 
     def ls(self) -> str:
         return " ".join(chain(self.files.keys(), (k + "/" for k in self.dirs.keys())))
+
+
+class FileSystem:
+    def __init__(self) -> None:
+        self.cwd = Directory()
+        self.owd: Optional[Directory] = None
+        self.parents: list[Directory] = []
