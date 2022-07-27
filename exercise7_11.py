@@ -7,7 +7,8 @@ class File:
 
 
 class Directory(File):
-    def __init__(self) -> None:
+    def __init__(self, parent: Optional["Directory"] = None) -> None:
+        self.parent = parent
         self.files: dict[str, File] = {}
         self.dirs: dict[str, "Directory"] = {}
 
@@ -19,7 +20,7 @@ class Directory(File):
             raise FileExistsError(
                 f"Cannot create a file when that file already exists: '{name}'"
             )
-        self.dirs[name] = Directory()
+        self.dirs[name] = Directory(parent=self)
 
     def ls(self) -> str:
         return " ".join(chain(self.files.keys(), (k + "/" for k in self.dirs.keys())))
@@ -29,4 +30,3 @@ class FileSystem:
     def __init__(self) -> None:
         self.cwd = Directory()
         self.owd: Optional[Directory] = None
-        self.parents: list[Directory] = []
