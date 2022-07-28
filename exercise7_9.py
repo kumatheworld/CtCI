@@ -46,7 +46,7 @@ class CircularArray(UserList[T]):
             try:
                 j = self._data[: self.base].index(item, *args)
             except ValueError:
-                raise ValueError(f"{item} is not in list")
+                raise ValueError(f"{item} is not in list") from None
             else:
                 return j - self.base + len(self)
 
