@@ -28,5 +28,5 @@ class Directory(File):
 
 class FileSystem:
     def __init__(self) -> None:
-        self.cwd = Directory()
+        self.root = self.cwd = Directory()
         self.owd: Optional[Directory] = None
