@@ -1,3 +1,4 @@
+import os
 from itertools import chain
 from typing import Optional
 
@@ -29,4 +30,5 @@ class Directory(File):
 class FileSystem:
     def __init__(self) -> None:
         self.root = self.cwd = Directory()
+        self.pwd = os.path.sep
         self.owd: Optional[Directory] = None
