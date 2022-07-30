@@ -1,6 +1,6 @@
 import os
 from itertools import chain
-from typing import Optional
+from typing import Iterator, Optional
 
 
 class File:
@@ -25,6 +25,14 @@ class Directory(File):
 
     def ls(self) -> str:
         return " ".join(chain(self.files.keys(), (k + "/" for k in self.dirs.keys())))
+
+    def _tree(self) -> Iterator[str]:
+        for filename in self.files.keys():
+            yield f"|-- {filename}"
+        for dirname, d1r in self.dirs.items():
+            yield f"|-- {dirname}"
+            for line in d1r._tree():
+                yield f"|   {line}"
 
 
 class FileSystem:
