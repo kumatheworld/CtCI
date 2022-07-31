@@ -40,3 +40,6 @@ class FileSystem:
         self.root = self.cwd = Directory()
         self.pwd = os.path.sep
         self.owd: Optional[Directory] = None
+
+    def __str__(self) -> str:
+        return self.pwd + "\n" + "\n".join(self.cwd._tree())
