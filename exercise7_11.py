@@ -38,8 +38,12 @@ class Directory(File):
 class FileSystem:
     def __init__(self) -> None:
         self.root = self.cwd = Directory()
-        self.pwd = os.path.sep
         self.owd: Optional[Directory] = None
+        self.dirnames: list[str] = []
+
+    @property
+    def pwd(self) -> str:
+        return os.path.sep + os.path.sep.join(self.dirnames)
 
     def __str__(self) -> str:
         return self.pwd + "\n" + "\n".join(self.cwd._tree())
