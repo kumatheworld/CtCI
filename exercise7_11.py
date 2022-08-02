@@ -24,10 +24,10 @@ class Directory(File):
         self.dirs[name] = Directory(parent=self)
 
     def ls(self) -> str:
-        return " ".join(chain(self.files.keys(), (k + "/" for k in self.dirs.keys())))
+        return " ".join(chain(self.files, (k + "/" for k in self.dirs)))
 
     def _tree(self) -> Iterator[str]:
-        for filename in self.files.keys():
+        for filename in self.files:
             yield f"|-- {filename}"
         for dirname, d1r in self.dirs.items():
             yield f"|-- {dirname}"
