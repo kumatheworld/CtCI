@@ -66,23 +66,11 @@ class BiNode(Generic[T]):
         self.next = next
 
 
-class DoublyLinkedList(Generic[T]):
+class DoublyLinkedList(LinkedList[T]):
     def __init__(self, it: Iterable[T] = ()) -> None:
         self.head: Optional[BiNode[T]] = None
         self.tail: Optional[BiNode[T]] = None
         self.extend(it)
-
-    def __repr__(self) -> str:
-        return f"DLL{tuple(iter(self))[::-1]}"
-
-    def __iter__(self) -> Iterator[T]:
-        node = self.head
-        while node is not None:
-            yield node.data
-            node = node.next
-
-    def __len__(self) -> int:
-        return len([_ for _ in self])
 
     def __eq__(self, other: object) -> bool:
         return isinstance(other, DoublyLinkedList) and all(
@@ -106,10 +94,6 @@ class DoublyLinkedList(Generic[T]):
         else:
             tail.next = node
         self.tail = node
-
-    def extend(self, it: Iterable[T]) -> None:
-        for data in it:
-            self.append(data)
 
     def extendleft(self, it: Iterable[T]) -> None:
         for data in it:
