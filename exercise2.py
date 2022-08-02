@@ -17,7 +17,7 @@ class LinkedList(Generic[T]):
         self.extend(it)
 
     def __repr__(self) -> str:
-        return f"LL{tuple(iter(self))[::-1]}"
+        return f"{type(self).__name__}({tuple(iter(self))[::-1]})"
 
     def __iter__(self) -> Iterator[T]:
         node = self.head
