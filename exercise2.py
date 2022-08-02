@@ -16,6 +16,9 @@ class LinkedList(Generic[T]):
         self.head: Optional[Node[T]] = None
         self.extend(it)
 
+    def __bool__(self) -> bool:
+        return self.head is not None
+
     def __repr__(self) -> str:
         return f"{type(self).__name__}({tuple(iter(self))[::-1]})"
 
