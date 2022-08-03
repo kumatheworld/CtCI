@@ -129,3 +129,24 @@ class DoublyLinkedList(LinkedList[T]):
         if (tail := self.tail) is not None:
             tail.next = None
         return data
+
+    def remove(self, data: T) -> None:
+        if (node := self.head) is not None:
+            if node.data == data:
+                self.head = (nn := node.next)
+                if nn is None:
+                    self.tail = None
+                else:
+                    nn.prev = None
+                return
+            while (node := node.next) is not None:
+                if node.data == data:
+                    np = node.prev
+                    nn = node.next
+                    np.next = nn
+                    if nn is None:
+                        self.tail = np
+                    else:
+                        nn.prev = np
+                    return
+        raise ValueError(f"{data} not in list")
