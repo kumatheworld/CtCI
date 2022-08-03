@@ -53,6 +53,19 @@ class LinkedList(Generic[T]):
         self.head = head.next
         return data
 
+    def remove(self, data: T) -> None:
+        if (node := self.head) is not None:
+            if node.data == data:
+                self.head = node.next
+                return
+            runner = node
+            while (node := node.next) is not None:
+                if node.data == data:
+                    runner.next = None if (nn := node.next) is None else nn
+                    return
+                runner = runner.next
+        raise ValueError(f"{data} not in list")
+
 
 class BiNode(Generic[T]):
     def __init__(
