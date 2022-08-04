@@ -62,7 +62,7 @@ class BinaryTree(Generic[CT]):
     def __eq__(self, other: object) -> bool:
         return isinstance(other, type(self)) and self._eq(other)
 
-    def __repr__(self) -> str:
+    def __str__(self) -> str:
         trees = deque[BinaryTree[CT]]((self,))
         r3pr = ""
         cnt = 1

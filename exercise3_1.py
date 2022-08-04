@@ -13,7 +13,7 @@ class TriStackArray(Generic[T]):
         self.size = size
         self.array: list[Optional[T]] = [None] * size
 
-    def __repr__(self) -> str:
+    def __str__(self) -> str:
         a = self.array
         return (
             f"{[a[i] for i in range(0, self.p0, 1)]}, "

@@ -24,9 +24,9 @@ class AnimalShelter(Animal):
         self.qc = deque[tuple[int, Cat]]()
         self.count = 0
 
-    def __repr__(self) -> str:
+    def __str__(self) -> str:
         # This should be O(N) but don't care
-        return repr(
+        return str(
             [
                 f"{type(a[1]).__name__[0]}{(id(a) % 100)}"
                 for a in sorted(self.qd + self.qc, key=itemgetter(0))

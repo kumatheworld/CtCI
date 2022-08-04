@@ -9,8 +9,8 @@ class SetOfStacks(Generic[T]):
         self.max_size = max_size
         self.stacks = deque[deque[T]]([deque()])
 
-    def __repr__(self) -> str:
-        return repr(self.stacks)
+    def __str__(self) -> str:
+        return str(self.stacks)
 
     def push(self, item: T) -> None:
         stack = self.stacks[-1]

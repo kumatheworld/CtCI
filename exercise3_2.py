@@ -12,8 +12,8 @@ class MinStack(Generic[CT]):
     def __len__(self) -> int:
         return len(self.stack)
 
-    def __repr__(self) -> str:
-        return f"stack={repr(self.stack)}, min={self.min()}" if self else "Empty"
+    def __str__(self) -> str:
+        return f"stack={self.stack}, min={self.min()}" if self else "Empty"
 
     def push(self, item: CT) -> None:
         if not self or item < self.min():

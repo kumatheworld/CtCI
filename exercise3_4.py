@@ -9,7 +9,7 @@ class BiStackQueue(Generic[T]):
         self.s0 = deque[T]()
         self.s1 = deque[T]()
 
-    def __repr__(self) -> str:
+    def __str__(self) -> str:
         return f"(s0={self.s0}, s1={self.s1}"
 
     def enque(self, item: T) -> None:
