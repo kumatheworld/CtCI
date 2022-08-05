@@ -1,8 +1,9 @@
+from collections.abc import Iterator
 from dataclasses import dataclass
 from enum import IntEnum
 from itertools import product
 from random import sample
-from typing import Iterator, Optional
+from typing import Optional
 
 
 class Explosion(Exception):

@@ -1,6 +1,7 @@
 import os
+from collections.abc import Iterator
 from itertools import chain
-from typing import Iterator, Optional
+from typing import Optional
 
 
 class File:

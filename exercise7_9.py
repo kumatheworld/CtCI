@@ -1,5 +1,6 @@
 from collections import UserList
-from typing import Iterable, Optional
+from collections.abc import Iterable
+from typing import Optional
 
 from common import T
 

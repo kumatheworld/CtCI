@@ -1,6 +1,7 @@
 from collections import deque
+from collections.abc import Iterator
 from random import choice, choices, getrandbits
-from typing import Generic, Iterator, Optional
+from typing import Generic, Optional
 
 from common import CT
 
