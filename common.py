@@ -1,5 +1,7 @@
+import sys
 from _thread import interrupt_main
 from contextlib import contextmanager
+from functools import wraps
 from threading import Timer
 from typing import Any, Protocol, TypeVar
 
@@ -21,6 +23,21 @@ class Comparable(Protocol):
 
 
 CT = TypeVar("CT", bound=Comparable)
+
+
+def recursion_limit(limit: int):
+    def decorator(func):
+        @wraps(func)
+        def wrapper(*args, **kwargs):
+            limit_old = sys.getrecursionlimit()
+            sys.setrecursionlimit(limit)
+            value = func(*args, **kwargs)
+            sys.setrecursionlimit(limit_old)
+            return value
+
+        return wrapper
+
+    return decorator
 
 
 class TimeoutException(Exception):
