@@ -1,7 +1,7 @@
 from functools import cache
 from unittest import TestCase, main
 
-from common import recursion_limit
+from common import recursion_limit, time_limit
 
 rec_lim = 1_000_000
 
@@ -22,6 +22,11 @@ def solve(n: int) -> int:
 class TestSolution(TestCase):
     def test_first_couple(self) -> None:
         self.assertEqual([solve(n) for n in range(4)], [1, 1, 2, 4])
+
+    def test_runtime(self) -> None:
+        n = 1000
+        with time_limit(1):
+            solve(n)
 
 
 if __name__ == "__main__":
