@@ -1,14 +1,22 @@
 from functools import cache
 from unittest import TestCase, main
 
+from common import recursion_limit
 
-@cache
+rec_lim = 1_000_000
+
+
+@recursion_limit(rec_lim)
 def solve(n: int) -> int:
-    if n < 0:
-        return 0
-    if n == 0:
-        return 1
-    return solve(n - 1) + solve(n - 2) + solve(n - 3)
+    @cache
+    def solve_(k: int) -> int:
+        if k < 0:
+            return 0
+        if k == 0:
+            return 1
+        return solve_(k - 1) + solve_(k - 2) + solve_(k - 3)
+
+    return solve_(n)
 
 
 class TestSolution(TestCase):
