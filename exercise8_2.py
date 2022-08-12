@@ -1,17 +1,17 @@
-from enum import Enum
+from enum import Enum, auto
 
 
 class Cell(Enum):
-    O = 0
-    X = 1
+    O = auto()
+    X = auto()
 
     def __str__(self) -> str:
-        return "OX"[self.value]
+        return super().__str__()[-1]
 
 
 class Direction(Enum):
-    BOTTOM = 0
-    RIGHT = 1
+    BOTTOM = auto()
+    RIGHT = auto()
 
     def __str__(self) -> str:
-        return "BR"[self.value]
+        return super().__str__().split(".")[-1][0]
