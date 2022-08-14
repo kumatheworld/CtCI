@@ -1,5 +1,7 @@
 from collections import UserList
 from enum import Enum, auto
+from typing import Optional
+from unittest import TestCase, main
 
 import numpy as np
 
@@ -28,3 +30,15 @@ class CellMatrix(UserList):
 
     def __str__(self) -> str:
         return "\n".join("".join(str(c) for c in row) for row in self)
+
+
+def solve(g: CellMatrix) -> Optional[list[Direction]]:
+    return []
+
+
+class TestSolution(TestCase):
+    def test(self) -> None:
+        pass
+
+if __name__ == "__main__":
+    main()
