@@ -22,7 +22,7 @@ class Direction(Enum):
         return super().__str__().split(".")[-1][0]
 
 
-class CellMatrix(UserList):
+class Grid(UserList):
     def __init__(self, width: int, height: int, prob_o: float):
         self.data = [
             [Cell(c) for c in row] for row in np.random.rand(height, width) > prob_o
@@ -32,7 +32,7 @@ class CellMatrix(UserList):
         return "\n".join("".join(str(c) for c in row) for row in self)
 
 
-def solve(g: CellMatrix) -> Optional[list[Direction]]:
+def solve(g: Grid) -> Optional[list[Direction]]:
     return []
 
 
