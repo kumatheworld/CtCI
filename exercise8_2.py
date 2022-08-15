@@ -24,6 +24,8 @@ class Direction(Enum):
 
 class Grid(UserList):
     def __init__(self, width: int, height: int, prob_o: float):
+        self.width = width
+        self.height = height
         self.data = [
             [Cell(c) for c in row] for row in np.random.rand(height, width) > prob_o
         ]
