@@ -1,5 +1,6 @@
 from collections import UserList
 from enum import Enum, auto
+from itertools import permutations
 from typing import Optional
 from unittest import TestCase, main
 
@@ -47,6 +48,14 @@ class Grid(UserList):
             if self[i][j] == Cell.X:
                 return False
         return True
+
+    def is_connected(self) -> bool:
+        routes = permutations(
+            [Direction.BOTTOM] * (self.height - 1)
+            + [Direction.RIGHT] * (self.width - 1)
+        )
+        return any(self.accepts(route) for route in routes)
+
 
 def solve(g: Grid) -> Optional[list[Direction]]:
     return []
