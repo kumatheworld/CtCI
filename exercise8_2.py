@@ -33,6 +33,20 @@ class Grid(UserList):
     def __str__(self) -> str:
         return "\n".join("".join(str(c) for c in row) for row in self)
 
+    def accepts(self, route: tuple[Direction, ...]) -> bool:
+        if self[0][0] == Cell.X:
+            return False
+
+        i = j = 0
+        for d in route:
+            match d:
+                case Direction.BOTTOM:
+                    i += 1
+                case Direction.RIGHT:
+                    j += 1
+            if self[i][j] == Cell.X:
+                return False
+        return True
 
 def solve(g: Grid) -> Optional[list[Direction]]:
     return []
