@@ -7,14 +7,6 @@ from unittest import TestCase, main
 import numpy as np
 
 
-class Cell(Enum):
-    O = 0
-    X = 1
-
-    def __str__(self) -> str:
-        return super().__str__()[-1]
-
-
 class Direction(Enum):
     BOTTOM = auto()
     RIGHT = auto()
@@ -27,15 +19,13 @@ class Grid(UserList):
     def __init__(self, width: int, height: int, prob_o: float):
         self.width = width
         self.height = height
-        self.data = [
-            [Cell(c) for c in row] for row in np.random.rand(height, width) > prob_o
-        ]
+        self.data = (np.random.rand(height, width) > prob_o).tolist()
 
     def __str__(self) -> str:
-        return "\n".join("".join(str(c) for c in row) for row in self)
+        return "\n".join("".join("OX"[c] for c in row) for row in self)
 
     def accepts(self, route: tuple[Direction, ...]) -> bool:
-        if self[0][0] == Cell.X:
+        if not self[0][0]:
             return False
 
         i = j = 0
@@ -45,7 +35,7 @@ class Grid(UserList):
                     i += 1
                 case Direction.RIGHT:
                     j += 1
-            if self[i][j] == Cell.X:
+            if not self[i][j]:
                 return False
         return True
 
