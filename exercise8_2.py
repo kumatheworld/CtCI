@@ -47,8 +47,24 @@ class Grid(UserList):
         return any(self.accepts(route) for route in routes)
 
 
-def solve(g: Grid) -> Optional[list[Direction]]:
-    return []
+def solve(g: Grid) -> Optional[tuple[Direction, ...]]:
+    w = g.width
+    h = g.height
+    routes: list[Optional[list[Direction]]] = [None] * w
+    for i in range(h):
+        r = None
+        for j in range(w):
+            if g[i][j]:
+                if r is None:
+                    if (rj := routes[j]) is not None:
+                        rj.append(Direction.BOTTOM)
+                        r = rj
+                else:
+                    r.append(Direction.RIGHT)
+                    routes[j] = r
+            else:
+                routes[j] = None
+    return None if (r := routes[-1]) is None else tuple(r)
 
 
 class TestSolution(TestCase):
