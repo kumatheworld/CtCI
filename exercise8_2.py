@@ -69,7 +69,19 @@ def solve(g: Grid) -> Optional[tuple[Direction, ...]]:
 
 class TestSolution(TestCase):
     def test(self) -> None:
-        pass
+        width = 6
+        height = 4
+        prob_o = 0.8
+        n = 10
+        for _ in range(n):
+            g = Grid(width, height, prob_o)
+            route = solve(g)
+            if g.is_connected():
+                self.assertIsNotNone(route)
+                self.assertTrue(g.accepts(route))
+            else:
+                self.assertIsNone(route)
+
 
 if __name__ == "__main__":
     main()
