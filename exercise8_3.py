@@ -12,7 +12,7 @@ class TestSolution(TestCase):
         it = 1000
         l3n = 1000
         for _ in range(it):
-            a = sample(range(-200, 1200), l3n)
+            a = sorted(sample(range(-200, 1200), l3n))
             ids = [i for i, x in enumerate(a) if i == x]
             b = solve(a)
             if ids:
