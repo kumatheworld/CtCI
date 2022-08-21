@@ -15,7 +15,7 @@ def solve(s: set[T]) -> set[frozenset[T]]:
 class TestSolution(TestCase):
     def test(self) -> None:
         s = "kumatheworld"
-        for i in range(len(s)):
+        for i in range(len(s) + 1):
             pref = set(s[:i])
             t = set(solve(pref))
             self.assertEqual(len(t), 1 << i)
