@@ -4,7 +4,16 @@ from unittest import TestCase, main
 
 
 def solve(n: int) -> Iterator[str]:
-    return iter(())
+    if n == 0:
+        yield ""
+    elif n == 1:
+        yield "()"
+    else:
+        l = list(solve(n - 1))
+        for parens in l:
+            yield f"(){parens}"
+            yield f"({parens})"
+            yield f"{parens}()"
 
 
 class TestSolution(TestCase):
