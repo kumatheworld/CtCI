@@ -34,9 +34,9 @@ class TestSolution(TestCase):
     def test(self) -> None:
         n = 20
         for i in range(n):
-            l = set(solve(i))
-            self.assertEqual(len(l), self.num_patterns(i))
-            for parens in l:
+            s = set(solve(i))
+            self.assertEqual(len(s), self.num_patterns(i))
+            for parens in s:
                 self.assertTrue(self.is_valid(parens))
 
 
