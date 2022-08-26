@@ -32,7 +32,7 @@ class TestSolution(TestCase):
         return 3 * f(n - 1) - f(n - 2)
 
     def test(self) -> None:
-        n = 20
+        n = 10
         for i in range(n):
             s = set(solve(i))
             self.assertEqual(len(s), self.num_patterns(i))
