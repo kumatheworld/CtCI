@@ -21,7 +21,7 @@ class TestSolution(TestCase):
             im1 = im.copy()
             xy = (randrange(w), randrange(h))
             value = (randrange(256), randrange(256), randrange(256))
-            solve(im1, xy, value)
+            solve(im0, xy, value)
             ImageDraw.floodfill(im1, xy, value)
             self.assertEqual(im0, im1)
 
