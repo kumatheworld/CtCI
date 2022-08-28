@@ -11,8 +11,8 @@ def solve(im: Image.Image, xy: tuple[int, int], value: Any) -> None:
 
 class TestSolution(TestCase):
     def test(self) -> None:
-        w = 100
-        h = 100
+        w = 32
+        h = 32
         it = 10
         im = ImageGrab.grab()
         im = im.resize((w, h))
