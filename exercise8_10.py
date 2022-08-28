@@ -2,11 +2,29 @@ from random import randrange
 from typing import Any
 from unittest import TestCase, main
 
+from numpy import full
 from PIL import Image, ImageDraw, ImageGrab
 
 
 def solve(im: Image.Image, xy: tuple[int, int], value: Any) -> None:
-    return
+    color = im.getpixel(xy)
+    w, h = im.size
+    unseen = full((w + 1, h + 1), True)
+    unseen[w] = False
+    unseen[:, h] = False
+    directions = ((1, 0), (0, 1), (-1, 0), (0, -1))
+
+    def solve_(x: int, y: int) -> None:
+        unseen[x, y] = False
+        im.putpixel((x, y), value)
+        for dx, dy in directions:
+            x_ = x + dx
+            y_ = y + dy
+            if unseen[x_, y_] and im.getpixel((x_, y_)) == color:
+                solve_(x_, y_)
+
+    x, y = xy
+    solve_(x, y)
 
 
 class TestSolution(TestCase):
