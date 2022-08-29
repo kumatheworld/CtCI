@@ -11,7 +11,7 @@ def solve(x: int, t: BinaryTree[CT]) -> int:
             data = root.data
             rl, cl = partial_sums(root.left)
             rr, cr = partial_sums(root.right)
-            sums_rooted = [data + s for s in rl + rr] + [data]
+            sums_rooted = [*(data + s for s in rl + rr), data]
             count = cl + cr + sums_rooted.count(x)
             return sums_rooted, count
         else:

@@ -15,10 +15,10 @@ def solve(x: Node[CT], y: Node[CT], t: BinaryTree[CT]) -> Node[CT]:
             root = t_.root
             if root == z:
                 return path
-            if p4th := path2(z, root.left, path + [False]):
+            if p4th := path2(z, root.left, [*path, False]):
                 return p4th
             else:
-                return path2(z, root.right, path + [True])
+                return path2(z, root.right, [*path, True])
         return None
 
     px = path2(x, t, [])
