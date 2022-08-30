@@ -3,7 +3,10 @@ from unittest import TestCase, main
 
 
 def solve(n: int) -> int:
-    return 0
+    def c(i: int) -> int:
+        return (1 + i // 10) * (1 + i // 5 - i // 10)
+
+    return sum(c(n - 25 * j) for j in range(n // 25 + 1))
 
 
 class TestSolution(TestCase):
