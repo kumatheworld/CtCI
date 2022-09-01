@@ -23,7 +23,7 @@ class TestSolution(TestCase):
     def test_first_couple(self) -> None:
         self.assertEqual([solve(n) for n in range(4)], [1, 1, 2, 4])
 
-    def test_runtime(self) -> None:
+    def test_speed(self) -> None:
         n = 1000
         with time_limit(1):
             solve(n)
