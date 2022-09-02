@@ -4,7 +4,7 @@ from unittest import TestCase, main
 from common import T
 
 
-class CircularDependencyException(Exception):
+class CircularDependencyError(Exception):
     pass
 
 
@@ -21,7 +21,7 @@ def solve(ps: list[T], ds: list[tuple[T, T]]) -> Optional[list[T]]:
 
     def dfs(u: int) -> None:
         if ng[u]:
-            raise CircularDependencyException
+            raise CircularDependencyError
         if ok[u]:
             return
         ng[u] = True
@@ -38,7 +38,7 @@ def solve(ps: list[T], ds: list[tuple[T, T]]) -> Optional[list[T]]:
             return [ps[x] for x in order]
         try:
             dfs(node)
-        except CircularDependencyException:
+        except CircularDependencyError:
             return None
 
 
