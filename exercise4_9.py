@@ -19,10 +19,11 @@ def solve(t: BinarySearchTree[CT]) -> list[list[CT]]:
         root = t.root
         l = solve(root.left)
         r = solve(root.right)
+        d = root.data
         c = []
         for x in l:
             for y in r:
-                c.extend([[root.data] + z for z in merge_in_order(x, y)])
+                c.extend([[d, *z] for z in merge_in_order(x, y)])
         return c
     return [[]]
 
