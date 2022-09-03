@@ -11,8 +11,8 @@ def solve(t: BinarySearchTree[CT]) -> list[list[CT]]:
             return [y]
         if y == []:
             return [x]
-        xx = [[x[0]] + z for z in merge_in_order(x[1:], y)]
-        yy = [[y[0]] + z for z in merge_in_order(x, y[1:])]
+        xx = [[*z, x[-1]] for z in merge_in_order(x[:-1], y)]
+        yy = [[*z, y[-1]] for z in merge_in_order(x, y[:-1])]
         return xx + yy
 
     if t:
