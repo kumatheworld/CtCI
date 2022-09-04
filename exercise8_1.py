@@ -1,22 +1,14 @@
-from functools import cache
+from collections import deque
 from unittest import TestCase, main
 
-from common import recursion_limit, time_limit
-
-rec_lim = 1_000_000
+from common import time_limit
 
 
-@recursion_limit(rec_lim)
 def solve(n: int) -> int:
-    @cache
-    def solve_(k: int) -> int:
-        if k < 0:
-            return 0
-        if k == 0:
-            return 1
-        return solve_(k - 1) + solve_(k - 2) + solve_(k - 3)
-
-    return solve_(n)
+    q = deque((0, 0, 1))
+    for _ in range(n):
+        q.append(q.popleft() + sum(q))
+    return q[-1]
 
 
 class TestSolution(TestCase):
