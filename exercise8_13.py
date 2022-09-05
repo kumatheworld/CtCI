@@ -1,5 +1,10 @@
+from collections.abc import Iterator
+from itertools import chain, combinations
 from random import randint
 from typing import Any, NamedTuple
+from unittest import TestCase, main
+
+from common import time_limit
 
 
 class Box(NamedTuple):
@@ -30,3 +35,34 @@ def solve(stack: list[Box]) -> int:
         highests.append(h_max)
 
     return max(highests)
+
+
+class TestSolution(TestCase):
+    @staticmethod
+    def generate_all_heights(stack: list[Box]) -> Iterator[int]:
+        powerset = chain.from_iterable(
+            combinations(stack, i) for i in range(len(stack) + 1)
+        )
+        for boxes in powerset:
+            s = sorted(boxes)
+            if all(b < c for b, c in zip(s[:-1], s[1:])):
+                yield sum(box.height for box in boxes)
+
+    def test(self) -> None:
+        n = 10
+        it = 100
+        for _ in range(it):
+            stack = [Box.randint() for _ in range(n)]
+            heights = self.generate_all_heights(stack)
+            self.assertEqual(solve(stack), max(heights))
+
+    def test_speed(self) -> None:
+        n = 1000
+        t = 10
+        stack = [Box.randint() for _ in range(n)]
+        with time_limit(t):
+            solve(stack)
+
+
+if __name__ == "__main__":
+    main()
