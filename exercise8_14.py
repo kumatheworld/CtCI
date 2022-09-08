@@ -1,4 +1,6 @@
 from functools import cache
+from itertools import chain
+from random import choices
 from unittest import TestCase, main
 
 
@@ -35,9 +37,17 @@ class TestSolution(TestCase):
         return count
 
     def test(self) -> None:
-        data = [(("1^0|0|1", False), 2), (("0&0&0&1^1|0", True), 10)]
-        for (s, b), c in data:
-            self.assertEqual(solve(s, b), c)
+        n = 50
+        for i in range(1, n):
+            bits = "01"
+            ops = "&|^"
+            rand_bits = choices(bits, k=i + 1)
+            rand_ops = choices(ops, k=i)
+            s = "".join("".join(chain.from_iterable(zip(rand_bits[:-1], rand_ops))))[
+                :-1
+            ]
+            b = bool(rand_bits[-1])
+            self.assertEqual(solve(s, b), self.solve_naive(s, b))
 
 
 if __name__ == "__main__":
