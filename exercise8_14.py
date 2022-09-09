@@ -1,11 +1,44 @@
 from functools import cache
 from itertools import chain
+from math import comb
 from random import choices
 from unittest import TestCase, main
 
 
 def solve(s: str, b: bool) -> int:
-    return 0
+    @cache
+    def catalan(n: int) -> int:
+        return comb(2 * n, n) // (n + 1)
+
+    @cache
+    def solve_t(s_: str) -> int:
+        if len(s_) == 1:
+            return int(s_)
+
+        count = 0
+        for i, op in enumerate(s_[1::2], 1):
+            l = s_[: 2 * i - 1]
+            r = s_[2 * i :]
+            lt = solve_t(l)
+            lf = solve_f(l)
+            rt = solve_t(r)
+            rf = solve_f(r)
+            match op:
+                case "&":
+                    count += lt * rt
+                case "|":
+                    count += lf * rt + lt * rf + rt * lt
+                case "^":
+                    count += lf * rt + lt * rf
+                case _:
+                    raise ValueError("Operator must be in ('&', '|', '^')")
+
+        return count
+
+    def solve_f(s_: str) -> int:
+        return catalan(len(s_) // 2) - solve_t(s_)
+
+    return solve_t(s) if b else solve_f(s)
 
 
 class TestSolution(TestCase):
