@@ -1,6 +1,7 @@
 import selectors
 import socket
 from argparse import ArgumentParser
+from contextlib import suppress
 from dataclasses import dataclass, field
 from types import SimpleNamespace
 from typing import Optional
@@ -19,12 +20,10 @@ class User(CommUnit):
         with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
             s.connect((self.host, self.port))
             s.sendall(self.name.encode())
-            try:
+            with suppress(KeyboardInterrupt):
                 while True:
                     content = input().encode()
                     s.sendall(content)
-            except KeyboardInterrupt:
-                pass
 
 
 @dataclass
