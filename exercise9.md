@@ -17,3 +17,13 @@ Disclaimer: At this time, I have little to no experience about this topic during
   <summary>9.3</summary>
   I would use the breadth-first search algorithm to collect URLs. One way to avoid infinite loops would be to restrict the searching time or the number of (potentially duplicate) websites. We could easily remove the duplicates once the algorithm has stopped. Another way would be to use a container like a list or a heap to hold the already-visited websites to avoid visiting the same websites. This approach would be better if the search got into an infinite loop in the early stage, but I don't think it would be very likely. Even if it is, by setting the time limit to the first approach, we could actually collect many URLs by running the algorithm multiple times.
 </details>
+
+<details>
+  <summary>9.4</summary>
+
+  I would first sort the URLs and then compare 2 adjecent URLs from the beginning to the end. Of course, we could possibly find duplicate URLs during the sorting process, in which case we could stop the algorithm right away if we were supposed to find just one pair of duplicate URLs.
+
+  We now consider how much storage space we would need. If the average URL length is $l$ (i.e. we need $l$ bytes for one URL), the total space we need to store the entire array of URLs would be roughly $10l$ GB. If $l=100$, we'd roughly need 1TB of space, which would be small enough to fit into one machine. An in-place sorting algorithm like the quick sort would work just fine with little to no extra space if we're allowed to change the order of the URLs.
+
+  If not, or we have no space to store the URLs in one machine, we could perform sorting in each machine and then use the merge sort algorithm to sort the entire array of URLs in linear time. After sorting, the duplication check would be done in each machine for the most part. If there were no duplicates, we would need to check the last URL in one machine corresponds to the first URL in the next, which could also be easily done.
+</details>
