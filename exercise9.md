@@ -27,3 +27,21 @@ Disclaimer: At this time, I have little to no experience about this topic during
 
   If not, or we have no space to store the URLs in one machine, we could perform sorting in each machine and then use the merge sort algorithm to sort the entire array of URLs in linear time. After sorting, the duplication check would be done in each machine for the most part. If there were no duplicates, we would need to check the last URL in one machine corresponds to the first URL in the next, which could also be easily done.
 </details>
+
+<details>
+  <summary>9.5</summary>
+
+  I would have all the 100 machines hold the same hash table to cache search results. The hash table would also hold keep the time the given query was most recently accessed the so it would work as an LRU cache. Now, we call the cache $C$ and suppose that a client has given a query $q$. We consider the following 3 situations.
+
+  1. $q$ was not found in $C$
+
+      In this case, the client would be added to a new empty queue $Q_q$ and the hash table would be updated with a pair $(q, \mathrm{None})$, where $\mathrm{None}$ is a dummy value.
+
+  2. $q$ was found in $C$ with the value $\mathrm{None}$ (i.e. the query was being processed)
+
+      In this case, the client would be added to $Q_q$ and wait. Once the process is done, the hash table would be updated with the return value of `processSearch(q)`, which would be broadcasted to the clients in $Q_q$. The queue would be cleared after the broadcast.
+
+  3. $q$ was found in $C$ with the value not $\mathrm{None}$ (i.e. the query had already been processed and the result remains in $C$)
+
+      In this case, the value would be immediately returned to the client. Meanwhile, `processSearch(q)` would run occasionally (i.e. at least once in a predefined time interval) to make sure that the cache stays up-to-date. Once the process is done, the cache would be updated with the new return value.
+</details>
