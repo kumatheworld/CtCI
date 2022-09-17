@@ -45,3 +45,13 @@ Disclaimer: At this time, I have little to no experience about this topic during
 
       In this case, the value would be immediately returned to the client. Meanwhile, `processSearch(q)` would run occasionally (i.e. at least once in a predefined time interval) to make sure that the cache stays up-to-date. Once the process is done, the cache would be updated with the new return value.
 </details>
+
+<details>
+  <summary>9.6</summary>
+
+  To represent a product, I would define a class that holds as attributes a list of categories and how many times it has been purchased. The data would be spread out across multiple machines based on the hash value of the product ID.
+
+  Say that there are 10,000 categories and we want to list out up to 10,000 best-selling products. Each product ID would be up to 10B large, so the total storage space to store all the information for best-selling products across all the categories would be up to 1GB, which would be small enough to fit in one machine. To get the list of the best-selling products by category, we would just make use of the ID tables of best-selling products and fetch the real objects from the machine cluster based on the hash values.
+
+  To keep the table up-to-date, we would occasionally have to update it like once an hour. To do that, we would ask each machine to list up to 10,000 best-selling products and then aggregate all the information across machines to get the final list of 10,000 best-setting products.
+</details>
