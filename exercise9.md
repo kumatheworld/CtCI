@@ -8,6 +8,7 @@ Disclaimer: At this time, I have little to no experience about this topic during
 
 <details>
   <summary>9.2</summary>
+
   I'd use a hash table to represent the social network, where a user's ID is mapped to their friends' IDs. Since there could be billions of people and millions of connections per person, I'd have to divide up the table to multiple machines. I'd do so in a way that inter-machine connections would be minimized, where I'd rearrange the hash table occasionally. I'm not quite sure how to achieve that but one heuristic way would be to assign each key to a machine that the key has many values in while making sure that the keys are not located in a biased way.
 
   Now, to find the shortest path between two people, I would just do the breadth-first search across machines starting from one of the 2 people. During the process, all the machines that have at least one related person (i.e. one that's been discovered in the search) would share all the people that have been discovered, and each related person would keep track of the path from the source person. The algorithm would stop once we have found the other one of the 2 people. We could speed up the algorithm by starting the search from both of the 2 people.
@@ -15,6 +16,7 @@ Disclaimer: At this time, I have little to no experience about this topic during
 
 <details>
   <summary>9.3</summary>
+
   I would use the breadth-first search algorithm to collect URLs. One way to avoid infinite loops would be to restrict the searching time or the number of (potentially duplicate) websites. We could easily remove the duplicates once the algorithm has stopped. Another way would be to use a container like a list or a heap to hold the already-visited websites to avoid visiting the same websites. This approach would be better if the search got into an infinite loop in the early stage, but I don't think it would be very likely. Even if it is, by setting the time limit to the first approach, we could actually collect many URLs by running the algorithm multiple times.
 </details>
 
