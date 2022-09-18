@@ -57,3 +57,16 @@ Disclaimer: At this time, I have little to no experience about this topic during
 
   To keep the table up-to-date, we would occasionally have to update it like once an hour. To do that, we would ask each machine to list up to 10,000 best-selling products and then aggregate all the information across machines to get the final list of 10,000 best-setting products.
 </details>
+
+<details>
+  <summary>9.7</summary>
+
+  I have actually never used such a financial management system and am not going to use one anytime soon. If I was asked to create one, I would first try to use similar applications out there and find user reviews to figure out what it should be like. Below are what I think would be good from the viewpoint of one that has little to no knowledge about finance.
+
+  I would offer the system in the form of a mobile application or a web application. I would have the backend system include the following at least.
+
+  * Manual editing of expenditure as well as automatic transaction history from the bank account. We would need this because people would still use cash to buy or sell things, the exact usage of which would not be tracked automatically.
+  * Statistics (mean, median, standard deviation, etc.) about the income, expenditure and investments would be shown. If there were a large enough number of users, those statistics would be also shown by category like income, age, sex, etc.
+  * Prediction using a machine learning model. I'm not quite sure about how to build such a model and keep it up-to-date, but we could rely on some solutions on recent competitions in a website like [Kaggle](https://www.kaggle.com/). Since the data we have would be tabular for the most part, we would not need large space to store the model like we would when we use deep neural networks. However, we could also possibly leverage some recent high-performance language model to make potentially better predictions, if there were a mecanism for users to input their demands in text.
+  * Email or app notifications of recommendations on a weekly or monthly basis based on predictions.
+</details>
