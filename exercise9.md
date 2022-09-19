@@ -70,3 +70,22 @@ Disclaimer: At this time, I have little to no experience about this topic during
   * Prediction using a machine learning model. I'm not quite sure about how to build such a model and keep it up-to-date, but we could rely on some solutions on recent competitions in a website like [Kaggle](https://www.kaggle.com/). Since the data we have would be tabular for the most part, we would not need large space to store the model like we would when we use deep neural networks. However, we could also possibly leverage some recent high-performance language model to make potentially better predictions, if there were a mecanism for users to input their demands in text.
   * Email or app notifications of recommendations on a weekly or monthly basis based on predictions.
 </details>
+
+<details>
+  <summary>9.8</summary>
+
+  I would first build a web server to store those pieces of text and design a web interface for users to interact. When a user confirms text, the server would generate a file with a .html file that has a random or user-specified name to store the content of the text. The user could also easily specify how it would be displayed like using different sizes or colors, where the server would make use of CSS or Javascript.
+
+  I would design the website in a way that users may or may not sign up. Whether the user is registered or not,
+  we would need some mecanism to limit the amount of text one user could create since they could possibly send a large piece of text or a ton of requests. We would do that based on the IP address if the user had not signed up.
+
+  For users that have accounts, we would at least provide the following features:
+
+  * The whole list or directory tree of URLs with previews that they have created
+  * Rename URLs as much as possible
+  * Change the content of a URL with the editing history
+  * Delete pages
+  * Paste links to other pieces of text
+
+  I would provides as many of those features as possible to those who don't have accounts as well because it might be awkward if they could never delete pages, for example. To do that, for those who don't have accounts and would possibly like to change the text or delete it, I would include a password authentication system.
+</details>
