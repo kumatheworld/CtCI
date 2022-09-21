@@ -4,21 +4,21 @@ from unittest import TestCase, main
 
 
 def solve(a: list[int]) -> Optional[int]:
-    def solve_(a_: list[int], offset: int) -> Optional[int]:
-        if a_ == []:
+    def solve_(offset: int, length: int) -> Optional[int]:
+        if not length:
             return None
 
-        m = len(a_) // 2
-        n = m + offset
-        d = a_[m] - n
+        m = length // 2
+        n = offset + m
+        d = a[n] - n
         if d < 0:
-            return solve_(a_[m + 1 :], n + 1)
+            return solve_(n + 1, length - m - 1)
         elif d > 0:
-            return solve_(a_[:m], offset)
+            return solve_(offset, m)
         else:
             return n
 
-    return solve_(a, 0)
+    return solve_(0, len(a))
 
 
 class TestSolution(TestCase):
