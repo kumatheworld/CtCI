@@ -1,10 +1,10 @@
 from bisect import bisect_left
-from typing import Optional
+from typing import Optional, Sequence
 
 from common import CT
 
 
-def binary_search(a: list[CT], x: int, lo: int = 0, hi: Optional[int] = None) -> int:
+def binary_search(a: Sequence[CT], x: CT, lo: int = 0, hi: Optional[int] = None) -> int:
     idx = bisect_left(a, x, lo, hi)
     if idx < len(a) and a[idx] == x:
         return idx
