@@ -23,7 +23,7 @@ def solve(a: list[int], x: int) -> int:
                 return solve_(n + 1, length - m - 1)
         else:
             if r < x < l:
-                return binary_search(a, x, n + 1, offset + length - 1)
+                return binary_search(a, x, n + 1, offset + length)
             else:
                 return solve_(offset, m)
 
