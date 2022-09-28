@@ -2,7 +2,7 @@ from unittest import TestCase, main
 
 import numpy as np
 
-from common import CT
+from common import CT, time_limit
 
 
 def solve(a: list[CT], na: int, b: list[CT]) -> None:
@@ -31,6 +31,18 @@ class TestSolution(TestCase):
             c.sort()
             solve(a, n, b)
             np.testing.assert_array_equal(a[: n + m], c)
+
+    def test_speed(self) -> None:
+        t = 10
+        n = 1_000_000
+        m = n
+
+        a = np.random.randint(n, size=n + m + 10)
+        b = np.random.randint(m, size=m)
+        a[:n].sort()
+        b.sort()
+        with time_limit(t):
+            solve(a, n, b)
 
 
 if __name__ == "__main__":
