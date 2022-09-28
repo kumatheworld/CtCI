@@ -4,7 +4,7 @@ from random import choices
 from typing import Iterable
 from unittest import TestCase, main
 
-from common import T
+from common import T, time_limit
 
 
 def tci(s: Iterable[T]) -> tuple[tuple[T, int], ...]:
@@ -27,6 +27,13 @@ class TestSolution(TestCase):
             self.assertEqual(
                 len(list(groupby(tci(s) for s in a))), len(set(tci(s) for s in b))
             )
+
+    def test_speed(self) -> None:
+        t = 10
+        n = 1_000_000
+        a = [bin(i) for i in choices(range(n), k=n)]
+        with time_limit(t):
+            solve(a)
 
 
 if __name__ == "__main__":
