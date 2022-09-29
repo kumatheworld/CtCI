@@ -1,6 +1,7 @@
-from random import choices, randrange
+from random import choice, choices, randrange
 from unittest import TestCase, main
 
+from common import time_limit
 from exercise10 import binary_search
 
 
@@ -46,6 +47,16 @@ class TestSolution(TestCase):
             else:
                 idx = solve(a, x)
                 self.assertEqual(a[idx], x)
+
+    def test_speed(self) -> None:
+        t = 1  # much lower values than the actual time also work... why?
+        n = 1_000_000
+        a = sorted(choices(range(n), k=n))
+        shift = randrange(n)
+        x = choice(a)
+        a = a[shift:] + a[:shift]
+        with time_limit(t):
+            solve(a, x)
 
 
 if __name__ == "__main__":
