@@ -1,7 +1,9 @@
 from collections import defaultdict
-from random import randrange, sample
+from random import choice, randrange, sample
 from typing import Sequence
 from unittest import TestCase, main
+
+from common import time_limit
 
 
 def solve(a: Sequence[str], s: str) -> int:
@@ -48,6 +50,14 @@ class TestSolution(TestCase):
             else:
                 idx = solve(a, s)
                 self.assertEqual(a[idx], s)
+
+    def test_speed(self) -> None:
+        t = 1
+        n = 1_000_000
+        a = RandDivStr(n)
+        s = choice(list(a.dict.values()))
+        with time_limit(t):
+            solve(a, s)
 
 
 if __name__ == "__main__":
