@@ -28,7 +28,6 @@ class RandDivStr(Sequence[str]):
 
     def index(self, value: str) -> int:
         for k, v in self.dict.items():
-            print(k, v)
             if v == value:
                 return k
         raise ValueError(f"{value} is not in list")
