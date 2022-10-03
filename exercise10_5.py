@@ -39,7 +39,7 @@ class TestSolution(TestCase):
         density = 0.1
         it = 1_000
         for i in range(it):
-            a = RandDivStr(i)
+            a = RandDivStr(i, density)
             s = str(randrange(int(it * density)))
             try:
                 a.index(s)
