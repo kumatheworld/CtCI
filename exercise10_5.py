@@ -15,8 +15,7 @@ class RandDivStr(Sequence[str]):
         self.length = length
         l3n = int(length * density)
         keys = sorted(sample(range(length), l3n))
-        values_int = sorted(randrange(l3n) for _ in range(l3n))
-        values = (str(i) for i in values_int)
+        values = sorted(str(randrange(l3n)) for _ in range(l3n))
         self.dict = defaultdict(str, zip(keys, values))
 
     def __str__(self) -> str:
