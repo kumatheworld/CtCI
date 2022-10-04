@@ -12,7 +12,7 @@ class Direction(Enum):
     RIGHT = auto()
 
     def __str__(self) -> str:
-        return super().__str__().split(".")[-1][0]
+        return self.name[0]
 
 
 class Grid(UserList):
