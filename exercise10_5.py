@@ -51,7 +51,7 @@ class TestSolution(TestCase):
                 self.assertEqual(a[idx], s)
 
     def test_speed(self) -> None:
-        t = 1
+        t = 1  # much lower values than the actual time also work... why?
         n = 1_000_000
         a = RandDivStr(n)
         s = choice(list(a.dict.values()))
