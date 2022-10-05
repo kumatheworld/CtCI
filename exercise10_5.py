@@ -1,4 +1,4 @@
-from collections import defaultdict
+from collections import defaultdict, deque
 from random import choice, randrange, sample
 from typing import Sequence
 from unittest import TestCase, main
@@ -7,6 +7,33 @@ from common import time_limit
 
 
 def solve(a: Sequence[str], s: str) -> int:
+    ql = deque([(0, len(a))])
+    qr = deque[tuple[int, int]]([])
+
+    while ql or qr:
+        if not qr:
+            ql, qr = qr, ql
+
+        offset, length = qr.popleft()
+        if length == 0:
+            continue
+
+        m = length // 2
+        n = offset + m
+        if (t := a[n]) == s:
+            return n
+
+        if t == "":
+            ql.append((offset, m))
+            ql.append((n + 1, length - m - 1))
+        else:
+            if s < t:
+                qr.clear()
+                ql.append((offset, m))
+            else:
+                ql.clear()
+                ql.append((n + 1, length - m - 1))
+
     raise ValueError(f"{s} is not in list")
 
 
