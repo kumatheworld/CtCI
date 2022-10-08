@@ -1,6 +1,7 @@
+from collections import deque
 from pathlib import Path
 from subprocess import run
-from tempfile import TemporaryDirectory
+from tempfile import TemporaryDirectory, TemporaryFile
 from unittest import TestCase, main
 
 
@@ -17,7 +18,19 @@ def solve(p: Path, split_lines: int = 1000) -> None:
             run(["sort", "-o", file, file], cwd=dirname, check=True)
 
         # Merge sorted files
-        pass
+        q = deque(d1r.iterdir())
+        while True:
+            f0 = q.popleft()
+            try:
+                f1 = q.popleft()
+            except IndexError:
+                break
+            with f0.open() as g0, f1.open() as g1, TemporaryFile() as f2:
+                # Merge g0 and g1
+                pass
+                q.append(f2)
+            f0.unlink()
+            f1.unlink()
 
 
 class TestSolution(TestCase):
