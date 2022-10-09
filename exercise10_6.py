@@ -1,4 +1,5 @@
 from collections import deque
+from heapq import merge
 from pathlib import Path
 from subprocess import run
 from tempfile import TemporaryDirectory, TemporaryFile
@@ -26,8 +27,7 @@ def solve(p: Path, split_lines: int = 1000) -> None:
             except IndexError:
                 break
             with f0.open() as g0, f1.open() as g1, TemporaryFile() as f2:
-                # Merge g0 and g1
-                pass
+                f2.writelines(s.encode() for s in merge(g0, g1))
                 q.append(f2)
             f0.unlink()
             f1.unlink()
