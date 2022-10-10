@@ -2,7 +2,7 @@ from collections import deque
 from heapq import merge
 from pathlib import Path
 from subprocess import run
-from tempfile import TemporaryDirectory, TemporaryFile
+from tempfile import NamedTemporaryFile, TemporaryDirectory
 from unittest import TestCase, main
 
 
@@ -26,16 +26,22 @@ def solve(p: Path, split_lines: int = 1000) -> None:
                 f1 = q.popleft()
             except IndexError:
                 break
-            with f0.open() as g0, f1.open() as g1, TemporaryFile() as f2:
-                f2.writelines(s.encode() for s in merge(g0, g1))
-                q.append(f2)
+            g2 = NamedTemporaryFile(mode="w", dir=d1r, delete=False)
+            with f0.open() as g0, f1.open() as g1:
+                g2.writelines(merge(g0, g1))
+            g2.close()
             f0.unlink()
             f1.unlink()
+            f2 = Path(g2.name)
+            q.append(f2)
+        with f0.open() as g0:
+            print(g0.readlines())
+        f0.unlink()
 
 
 class TestSolution(TestCase):
     def test(self) -> None:
-        pass
+        solve(Path(__file__), 3)
 
 
 if __name__ == "__main__":
