@@ -16,4 +16,4 @@ def solve(p: Path, max_int_digits=32, delimiter=",") -> Optional[int]:
                 missing[i] = False
 
     idx = np.argmax(missing)
-    return idx if idx or missing[0] else None
+    return idx.item() if idx or missing[0] else None
