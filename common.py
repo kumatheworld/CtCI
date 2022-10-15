@@ -1,4 +1,5 @@
 import sys
+import tracemalloc
 from _thread import interrupt_main
 from contextlib import contextmanager
 from functools import wraps
@@ -54,3 +55,36 @@ def time_limit(seconds):
         raise TimeoutException("operation timed out") from e
     finally:
         timer.cancel()
+
+
+TRACE_FILTERS = (
+    tracemalloc.Filter(False, "<frozen importlib._bootstrap>"),
+    tracemalloc.Filter(False, "<frozen importlib._bootstrap_external>"),
+    tracemalloc.Filter(False, "<unknown>"),
+    tracemalloc.Filter(False, __file__),
+    tracemalloc.Filter(False, tracemalloc.__file__),
+)
+
+
+@contextmanager
+def memory_limit(size: int):
+    if not tracemalloc.is_tracing():
+        tracemalloc.start()
+
+    snapshot1 = tracemalloc.take_snapshot()
+
+    yield
+
+    snapshot2 = tracemalloc.take_snapshot().filter_traces(TRACE_FILTERS)
+    snapshot1 = snapshot1.filter_traces(TRACE_FILTERS)
+
+    snapshot = snapshot2.compare_to(snapshot1, "lineno")
+
+    try:
+        used_size = sum(stat.size_diff for stat in snapshot)
+        if used_size > size:
+            raise AttributeError(
+                f"Memory usage {used_size} exceeded the threshold {size}"
+            )
+    finally:
+        tracemalloc.stop()
