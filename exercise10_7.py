@@ -4,6 +4,8 @@ from unittest import TestCase, main
 
 import numpy as np
 
+from common import memory_limit
+
 
 def solve(f: TextIO, max_int_digits=32) -> Optional[int]:
     missing = np.full(1 << max_int_digits, True)
@@ -32,6 +34,17 @@ class TestSolution(TestCase):
                     self.assertIsNone(idx)
                 else:
                     self.assertNotIn(idx, x)
+
+    def test_space(self) -> None:
+        max_int_digits = 15
+        max_elem = 1 << max_int_digits
+        size = 2 * max_elem
+        with TemporaryFile("w+") as f:
+            x = np.random.randint(max_elem, size=size)
+            np.savetxt(f, x, fmt="%d")
+            f.seek(0)
+            with memory_limit(size // 4):
+                solve(f, max_int_digits)
 
 
 if __name__ == "__main__":
