@@ -66,6 +66,7 @@ TRACE_FILTERS = (
 )
 
 
+# Not working?
 @contextmanager
 def memory_limit(size: int):
     if not tracemalloc.is_tracing():
