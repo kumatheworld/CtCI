@@ -5,6 +5,8 @@ from unittest import TestCase, main
 
 import numpy as np
 
+from common import memory_limit
+
 
 def solve(a: list[int]) -> None:
     # Is it allowed to print one value multiple times?
@@ -31,6 +33,13 @@ class TestSolution(TestCase):
             cnt = Counter(a)
             dup = {k for k, v in cnt.items() if v > 1}
             assert set(output) == dup
+
+    def test_space(self) -> None:
+        n = 32000
+        size = 1_000_000
+        a = np.random.randint(n, size=size).tolist()
+        with redirect_stdout(None), memory_limit(1 << 15):
+            solve(a)
 
 
 if __name__ == "__main__":
