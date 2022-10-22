@@ -1,5 +1,4 @@
-import heapq
-from bisect import bisect_right
+from bisect import bisect_right, insort
 from collections import UserList
 
 from common import CT
@@ -7,7 +6,7 @@ from common import CT
 
 class RankedSequence(UserList[CT]):
     def track(self, x: CT) -> None:
-        heapq.heappush(self.data, x)
+        insort(self.data, x)
 
     def get_rank(self, x: CT) -> int:
         idx = bisect_right(self.data, x) - 1
