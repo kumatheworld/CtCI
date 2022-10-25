@@ -35,11 +35,12 @@ class TestSolution(TestCase):
         it = 100
         size = 100
         for _ in range(it):
-            l = choices(range(size), k=size)
-            k = l.copy()
-            solve(l)
-            self.assertEqual(sorted(k), sorted(l))
-            self.assertIsAlternating(l)
+            for s in range(size):
+                l = choices(range(s), k=s)
+                k = l.copy()
+                solve(l)
+                self.assertEqual(sorted(k), sorted(l))
+                self.assertIsAlternating(l)
 
 
 if __name__ == "__main__":
