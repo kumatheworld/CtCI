@@ -1,4 +1,3 @@
-from collections import Counter
 from random import choices
 from typing import Optional
 from unittest import TestCase, main
@@ -39,7 +38,7 @@ class TestSolution(TestCase):
             l = choices(range(size), k=size)
             k = l.copy()
             solve(l)
-            self.assertEqual(Counter(k), Counter(l))
+            self.assertEqual(sorted(k), sorted(l))
             self.assertIsAlternating(l)
 
 
