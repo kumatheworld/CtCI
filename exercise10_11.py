@@ -6,7 +6,10 @@ from common import CT
 
 
 def solve(l: list[CT]) -> None:
-    pass
+    k = sorted(l)
+    m = (len(l) + 1) // 2
+    l[::2] = k[:m]
+    l[1::2] = k[-1 : m - 1 : -1]
 
 
 class TestSolution(TestCase):
