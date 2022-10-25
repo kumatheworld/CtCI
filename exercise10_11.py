@@ -32,7 +32,7 @@ class TestSolution(TestCase):
                 self.assertIsAlternating(l, start + 1, not le)
 
     def test(self) -> None:
-        it = 1000
+        it = 100
         size = 100
         for _ in range(it):
             l = choices(range(size), k=size)
