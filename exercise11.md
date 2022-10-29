@@ -22,3 +22,9 @@
 
   Once I have done this, I would quickly check the return values of `nextPositions()` of some pieces. We could do this either on a real chess board where other pieces sit or an imaginery board where only that pieces are put somewhere on the board. The latter case would be better for isolating `nextPositions()` but we would definitely have to test the method on the real board as well to see if it works under the presence of other pieces. Once this quick check has been done, I would write some exhaustive tests for sanity-check, such as seeing if all the elements of `nextPositions()` are on the chess board or they aren't on any piece of the player's piece.
 </details>
+
+<details>
+  <summary>11.4</summary>
+
+  I would first visit the website and load some pages following links from it. I might try different browsers to see if there's any difference, but since I have little knowledge about web, I would google how to test websites or simply ask friends how they would do that.
+</details>
