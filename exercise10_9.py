@@ -1,14 +1,16 @@
+from contextlib import suppress
 from unittest import TestCase, main
 
 import numpy as np
 
+from exercise10 import binary_search
+
 
 def solve(a: np.ndarray, x: int) -> tuple[int, int]:
-    i, j = np.where(a == x)
-    try:
-        return i[0], j[0]
-    except IndexError:
-        raise ValueError(f"{x} is not in matrix")
+    for i, row in enumerate(a):
+        with suppress(ValueError):
+            return i, binary_search(row, x)
+    raise ValueError(f"{x} is not in matrix")
 
 
 class TestSolution(TestCase):
