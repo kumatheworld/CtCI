@@ -28,3 +28,15 @@
 
   I would first visit the website and load some pages following links from it. I might try different browsers to see if there's any difference, but since I have little knowledge about web, I would google how to test websites or simply ask friends how they would do that.
 </details>
+
+<details>
+  <summary>11.5</summary>
+
+  I would first hold the pen and try to write to see if it works decently. Next, I would think of the most fragile parts of the pen. Depending on the type of the pen, we could think of the following:
+
+  1. If it's a with a cap, it's likely that the tip becomes too dry to write anything while there still remains some ink. We could remove the cap and leave it for a few days. Maybe we need longer days, in which case I would use a fan to put the pen under wind to shorten the process.
+  2. It it's a click pen, it might break when it's clicked many times. I would test how many times it can be clicked by using some machine.
+  3. If it's a mechanical pencil, its tip might break when it's dropped. I would test how tolerent the tip is by dropping it many times.
+
+  We would need multiple pens for those tests. Also, there could be some unexpected use cases such as some people might want to modify it for penspinning, in which case we would need to make sure that the ink would not leak.
+</details>
