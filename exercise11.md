@@ -40,3 +40,9 @@
 
   We would need multiple pens for those tests. Also, there could be some unexpected use cases such as some people might want to modify it for penspinning, in which case we would need to make sure that the ink would not leak.
 </details>
+
+<details>
+  <summary>11.6</summary>
+
+  I would first create multiple accounts for testing the ATM. At least 2 accounts would be necessary to test money transfer. Most functionalities would have already been tested using a simluator, so tests on the real machine would be quick for the most part.
+</details>
