@@ -43,6 +43,5 @@
 
 <details>
   <summary>11.6</summary>
-
-  I would first create multiple accounts for testing the ATM. At least 2 accounts would be necessary to test money transfer. Most functionalities would have already been tested using a simluator, so tests on the real machine would be quick for the most part.
+  Most functionalities would have already been tested using a simluator, so tests on the real machine would be quick for the most part. One thing that's specific to the real situation is how much money is stored in the machine, which can be also simulated beforehand but needs some extra care. To test this, I would try to withdraw some money using a virtual account while deliverately making the amount of money in the ATM small. Or the opposite extreme could also happen, where the amount of money is too big too store, which could be tested similarly. Another core functionality of an ATM would be money transfer, but it would be easily tested using a simulator.
 </details>
