@@ -60,7 +60,7 @@ class MineSweeper:
                 board[i][j] += 1
         for x, y in mines:
             board[x][y] = ExplosiveNumber.MINE
-        self.__board = tuple(
+        self._board = tuple(
             tuple(Square(ExplosiveNumber(board[i][j])) for j in range(w))
             for i in range(h)
         )
@@ -71,23 +71,23 @@ class MineSweeper:
         )
 
     def __str_debug(self) -> str:
-        return "\n".join("".join(str(s.number) for s in row) for row in self.__board)
+        return "\n".join("".join(str(s.number) for s in row) for row in self._board)
 
     @property
     def board(self) -> tuple[tuple[Optional[ExplosiveNumber], ...], ...]:
         return tuple(
             tuple(square.number if square.discovered else None for square in row)
-            for row in self.__board
+            for row in self._board
         )
 
     def ishalfway(self) -> bool:
         return any(
             any(s for s in row if s.number != ExplosiveNumber.MINE and not s.discovered)
-            for row in self.__board
+            for row in self._board
         )
 
     def reveal(self, x: int, y: int) -> None:
-        if (s := self.__board[x][y]).discovered:
+        if (s := self._board[x][y]).discovered:
             return
         if (n := s.number) == ExplosiveNumber.MINE:
             raise Explosion("BANG!")
