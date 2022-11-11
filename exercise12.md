@@ -5,3 +5,11 @@
 
   If the the number of inputs is small, we could use a `std::vector` of tuples instead of a hash table, where the lookup can be done by `std::find_if()`, but if we don't care about the performance too much, we can just use `std::map`.
 </details>
+
+<details>
+  <summary>12.4</summary>
+
+  A virtual function is a method in a class definition declared with the keyword `virtual`, which can be overridden by subclasses during runtime unlike those without it.
+
+  As I am not familiar with C++, I had to refer to the following [website](https://www.geeksforgeeks.org/virtual-functions-and-runtime-polymorphism-in-cpp/).
+</details>
