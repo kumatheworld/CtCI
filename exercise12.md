@@ -13,3 +13,9 @@
 
   As I am not familiar with C++, I had to refer to the following [website](https://www.geeksforgeeks.org/virtual-functions-and-runtime-polymorphism-in-cpp/).
 </details>
+
+<details>
+  <summary>12.5</summary>
+
+  Deep copy is a means to copy an object by recursively replicating all the members and the objects they may refer to, while shallow copy only copies the members. They are different when the object has a dynamically allocated member. It is generally recommended to use deep copy in such a situation to avoid object members being changed by a shallowly copied object. However, we could still use shallow copy like when we train a neural network like a [Siamese network](https://en.wikipedia.org/wiki/Siamese_neural_network), where we would like to share the referenced dynamic object.
+</details>
