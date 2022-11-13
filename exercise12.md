@@ -19,3 +19,16 @@
 
   Deep copy is a means to copy an object by recursively replicating all the members and the objects they may refer to, while shallow copy only copies the members. They are different when the object has a dynamically allocated member. It is generally recommended to use deep copy in such a situation to avoid object members being changed by a shallowly copied object. However, we could still use shallow copy like when we train a neural network like a [Siamese network](https://en.wikipedia.org/wiki/Siamese_neural_network), where we would like to share the referenced dynamic object.
 </details>
+
+<details>
+  <summary>12.6</summary>
+
+  `volatile` is a type qualifier that tells the compiler not to do any optimization about the variable that could possibly change the behavior of the program.
+
+  Here I list some websites as references since I was not so familiar with C/C++.
+
+* <https://en.wikipedia.org/wiki/Volatile_(computer_programming>)
+* <https://www.geeksforgeeks.org/understanding-volatile-qualifier-in-c/>
+* <https://stackoverflow.com/questions/246127/why-is-volatile-needed-in-c>
+
+</details>
