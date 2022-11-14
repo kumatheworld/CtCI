@@ -23,9 +23,9 @@
 <details>
   <summary>12.6</summary>
 
-  `volatile` is a type qualifier that tells the compiler not to do any optimization about the variable that could possibly change the behavior of the program.
+  `volatile` is a type qualifier that tells the compiler not to do any optimization about the variable that could possibly change the behavior of the program. Specifically, without the declaration, the compiler might assume that the variable would never change though it could due to another thread accessing it or simply being a global variable that could be modified somewhere else, for example. Adding the `volatile` qualifier can prevent those potentially unexpected situations.
 
-  Here I list some websites as references since I was not so familiar with C/C++.
+  Here I list some websites as references since I was not so familiar with C/C++. Good examples can be found there.
 
 * <https://en.wikipedia.org/wiki/Volatile_(computer_programming)>
 * <https://www.geeksforgeeks.org/understanding-volatile-qualifier-in-c/>
