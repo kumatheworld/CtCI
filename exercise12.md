@@ -27,7 +27,7 @@
 
   Here I list some websites as references since I was not so familiar with C/C++.
 
-* <https://en.wikipedia.org/wiki/Volatile_(computer_programming>)
+* <https://en.wikipedia.org/wiki/Volatile_(computer_programming)>
 * <https://www.geeksforgeeks.org/understanding-volatile-qualifier-in-c/>
 * <https://stackoverflow.com/questions/246127/why-is-volatile-needed-in-c>
 
