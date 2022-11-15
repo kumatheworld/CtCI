@@ -32,3 +32,15 @@
 * <https://stackoverflow.com/questions/246127/why-is-volatile-needed-in-c>
 
 </details>
+
+<details>
+  <summary>12.7</summary>
+
+  This is because failing to make the destructor `virtual` could lead to an undefined behavior. Specifically, suppose a class `Base` has defined a destructor without `virtual` and another class `Derived` inherits `Base`. When we have a `Base` pointer that actually refers to a `Derived` object and tries to delete it through the pointer, the behavior of the deletion process is undefined. If we have defined the destructor of `Base` as a virtual function, the deletion process will call the destructors of `Derived` and `Base` in this order.
+
+  Here I list some websites as references since I was not so familiar with C/C++. Good examples can be found there.
+
+* <https://www.geeksforgeeks.org/virtual-destructor/>
+* <https://stackoverflow.com/questions/461203/when-to-use-virtual-destructors>
+
+</details>
