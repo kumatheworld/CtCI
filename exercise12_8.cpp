@@ -13,3 +13,17 @@ public:
         right = nullptr;
     }
 };
+
+template <class T>
+Node<T> *copy(Node<T> *p)
+{
+    if (p == nullptr)
+    {
+        return nullptr;
+    }
+
+    Node<T> *q = new Node<T>(p->data);
+    q->left = copy(p->left);
+    q->right = copy(p->right);
+    return q;
+}
