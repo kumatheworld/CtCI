@@ -1,13 +1,14 @@
+template <class T>
 class Node
 {
 public:
-    int data;
-    Node *left;
-    Node *right;
+    T data;
+    Node<T> *left;
+    Node<T> *right;
 
-    Node(int val)
+    Node(T d)
     {
-        data = val;
+        data = d;
         left = nullptr;
         right = nullptr;
     }
