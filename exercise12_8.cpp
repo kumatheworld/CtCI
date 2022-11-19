@@ -1,3 +1,5 @@
+#include <iostream>
+
 template <class T>
 class Node
 {
@@ -21,4 +23,20 @@ Node<T> *copy(Node<T> *p)
     q->left = copy(p->left);
     q->right = copy(p->right);
     return q;
+}
+
+template <typename T>
+std::ostream &operator<<(std::ostream &outs, const Node<T> n)
+{
+    outs << n.data << " ";
+    if (n.left)
+    {
+        outs << *n.left;
+    }
+    if (n.right)
+    {
+        outs << *n.right;
+    }
+
+    return outs;
 }
