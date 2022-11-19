@@ -6,12 +6,7 @@ public:
     Node<T> *left;
     Node<T> *right;
 
-    Node(T d)
-    {
-        data = d;
-        left = nullptr;
-        right = nullptr;
-    }
+    Node(T d) : data(d), left(nullptr), right(nullptr) {}
 };
 
 template <class T>
