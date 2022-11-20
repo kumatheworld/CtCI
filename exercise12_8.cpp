@@ -40,3 +40,18 @@ std::ostream &operator<<(std::ostream &outs, const Node<T> n)
 
     return outs;
 }
+
+int main()
+{
+    Node<int> *p = new Node(1);
+    p->left = new Node(2);
+    p->right = new Node(3);
+    p->right->left = new Node(4);
+
+    Node<int> *q = copy(p);
+    q->right->data = 5;
+    std::cout << *p << "\n"
+              << *q << "\n";
+
+    return 0;
+}
