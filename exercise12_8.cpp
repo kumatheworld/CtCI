@@ -9,6 +9,11 @@ public:
     Node<T> *right;
 
     Node(T d) : data(d), left(nullptr), right(nullptr) {}
+    ~Node()
+    {
+        delete left;
+        delete right;
+    }
 };
 
 template <class T>
