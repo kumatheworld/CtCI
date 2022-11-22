@@ -42,7 +42,6 @@ std::ostream &operator<<(std::ostream &outs, const Node<T> n)
     {
         outs << *n.right;
     }
-
     return outs;
 }
 
