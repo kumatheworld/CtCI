@@ -31,7 +31,7 @@ Node<T> *copy(Node<T> *p)
 }
 
 template <typename T>
-std::ostream &operator<<(std::ostream &outs, const Node<T> n)
+std::ostream &operator<<(std::ostream &outs, const Node<T> &n)
 {
     outs << n.data << " ";
     if (n.left)
