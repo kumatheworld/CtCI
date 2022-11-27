@@ -1,3 +1,23 @@
+class Counter
+{
+private:
+    int cnt{0};
+
+public:
+    void increment()
+    {
+        ++cnt;
+    }
+    int decrement()
+    {
+        return --cnt;
+    }
+    int count()
+    {
+        return cnt;
+    }
+};
+
 template <class T>
 class SmartPointer
 {
