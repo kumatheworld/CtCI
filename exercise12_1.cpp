@@ -9,7 +9,7 @@ int solve(std::string filename, int k)
 
 int main()
 {
-    std::string filename = "exercise12_1.cpp";
-    int k = 5;
+    std::string filename{"exercise12_1.cpp"};
+    int k{5};
     return solve(filename, k);
 }
