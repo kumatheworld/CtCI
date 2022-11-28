@@ -1,6 +1,5 @@
 class Counter
 {
-private:
     int cnt{0};
 
 public:
