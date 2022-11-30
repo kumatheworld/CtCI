@@ -24,7 +24,10 @@ class SmartPointer
     Count *cnt;
 
 public:
-    SmartPointer(T *p = nullptr) { ptr = p; }
+    SmartPointer(T *p = nullptr) : ptr{p}, cnt{new Counter()}
+    {
+        cnt->increment();
+    }
 
     ~SmartPointer() { delete (ptr); }
 
