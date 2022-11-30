@@ -21,6 +21,7 @@ template <class T>
 class SmartPointer
 {
     T *ptr;
+    Count *cnt;
 
 public:
     SmartPointer(T *p = nullptr) { ptr = p; }
