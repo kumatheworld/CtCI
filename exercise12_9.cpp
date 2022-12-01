@@ -21,7 +21,7 @@ template <class T>
 class SmartPointer
 {
     T *ptr;
-    Count *cnt;
+    Counter *cnt;
 
 public:
     SmartPointer(T *p = nullptr) : ptr{p}, cnt{new Counter()}
