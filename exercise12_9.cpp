@@ -7,9 +7,9 @@ public:
     {
         ++cnt;
     }
-    int decrement()
+    void decrement()
     {
-        return --cnt;
+        --cnt;
     }
     int count()
     {
