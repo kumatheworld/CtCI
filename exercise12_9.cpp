@@ -29,7 +29,20 @@ public:
         cnt->increment();
     }
 
-    ~SmartPointer() { delete (ptr); }
+    ~SmartPointer()
+    {
+        if (cnt)
+        {
+            cnt->decrement();
+            if (cnt->count() <= 0)
+            {
+                delete cnt;
+                delete ptr;
+                cnt = nullptr;
+                ptr = nullptr;
+            }
+        }
+    }
 
     T &operator*() { return *ptr; }
 
