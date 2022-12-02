@@ -7,9 +7,9 @@ public:
     {
         ++cnt;
     }
-    void decrement()
+    int decrement()
     {
-        --cnt;
+        return --cnt;
     }
     int count()
     {
@@ -33,8 +33,7 @@ public:
     {
         if (cnt)
         {
-            cnt->decrement();
-            if (cnt->count() <= 0)
+            if (cnt->decrement() <= 0)
             {
                 delete cnt;
                 delete ptr;
