@@ -49,6 +49,25 @@ public:
         cnt->increment();
     }
 
+    SmartPointer<T> &operator=(const SmartPointer<T> &other)
+    {
+        if (this != &other)
+        {
+            if (cnt)
+            {
+                if (cnt->decrement() <= 0)
+                {
+                    delete cnt;
+                    delete ptr;
+                }
+            }
+            ptr = other.ptr;
+            cnt = other.cnt;
+            cnt->increment();
+        }
+        return *this;
+    }
+
     T &operator*() { return *ptr; }
 
     T *operator->() { return ptr; }
