@@ -43,6 +43,12 @@ public:
         }
     }
 
+    SmartPointer(const SmartPointer<T> &other)
+        : ptr{other.ptr}, cnt{other.cnt}
+    {
+        cnt->increment();
+    }
+
     T &operator*() { return *ptr; }
 
     T *operator->() { return ptr; }
