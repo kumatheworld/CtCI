@@ -1,3 +1,6 @@
+// I owe most of this file to the following website.
+// https://www.acodersjourney.com/implementing-smart-pointer-using-reference-counting/
+
 class Counter
 {
     int cnt{0};
