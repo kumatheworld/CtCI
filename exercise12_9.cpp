@@ -1,5 +1,6 @@
 // I owe most of this file to the following website.
 // https://www.acodersjourney.com/implementing-smart-pointer-using-reference-counting/
+#include <iostream>
 
 class Counter
 {
@@ -74,4 +75,19 @@ public:
     T &operator*() { return *ptr; }
 
     T *operator->() { return ptr; }
+};
+
+class Something
+{
+    std::string name;
+
+public:
+    Something(const std::string &n) : name{n}
+    {
+        std::cout << "Creating object: " << n << "\n";
+    }
+    Something()
+    {
+        std::cout << "Deleting object:" << name << "\n";
+    }
 };
