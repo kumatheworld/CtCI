@@ -10,7 +10,7 @@ void reverse(char *str)
 
 int main()
 {
-    char str[] = "Cracking the Coding Interview";
+    char str[]{"Cracking the Coding Interview"};
     reverse(str);
     std::cout << str << std::endl;
 }
