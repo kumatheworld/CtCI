@@ -95,3 +95,13 @@ public:
         std::cout << "Deleting object: " << name << "\n";
     }
 };
+
+int main()
+{
+    SmartPointer<Something> p{new Something("P")};
+    p->printName();
+    (*p).printName();
+    SmartPointer<Something> q{new Something("Q")};
+    p = q;
+    return 0;
+}
