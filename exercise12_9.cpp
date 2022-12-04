@@ -86,6 +86,10 @@ public:
     {
         std::cout << "Creating object: " << n << "\n";
     }
+    void printName()
+    {
+        std::cout << "Object name: " << name << "\n";
+    }
     ~Something()
     {
         std::cout << "Deleting object: " << name << "\n";
