@@ -88,6 +88,6 @@ public:
     }
     ~Something()
     {
-        std::cout << "Deleting object:" << name << "\n";
+        std::cout << "Deleting object: " << name << "\n";
     }
 };
