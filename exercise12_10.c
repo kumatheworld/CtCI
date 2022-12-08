@@ -1,5 +1,11 @@
 #include <stdlib.h>
 
+typedef struct AlignedPointer
+{
+    char *ptr;
+    int offset;
+} AlignedPointer;
+
 char *align_malloc(size_t _Size, int div)
 {
     char *p = (char *)malloc(_Size + div);
