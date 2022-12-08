@@ -24,7 +24,7 @@ AlignedPointer align_malloc(size_t _Size, int div)
     return ap;
 }
 
-void aligned_free(char *_Memory)
+void aligned_free(AlignedPointer ap)
 {
-    free(_Memory);
+    free(ap.ptr - ap.offset);
 }
