@@ -28,3 +28,10 @@ void aligned_free(AlignedPointer ap)
 {
     free(ap.ptr - ap.offset);
 }
+
+int main(void)
+{
+    AlignedPointer ap = align_malloc(1000, 128);
+    aligned_free(ap);
+    return 0;
+}
