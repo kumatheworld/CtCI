@@ -39,3 +39,11 @@
   ```
 
 </details>
+
+<details>
+  <summary>13.3</summary>
+
+  `final` is an access modifier that keeps the class, field or method from being inherited. `finally` is a keyword that's used in `try-catch-finally` blocks, inside which the code is executed whether an exception was caught or not. `finalize` is a method of the `Object` class that's called before the deletion of the object.
+
+  Since I was not familiar with `finalize`, I referred to the following website: <https://www.geeksforgeeks.org/finalize-method-in-java-and-how-to-override-it/>.
+</details>
