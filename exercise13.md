@@ -47,3 +47,15 @@
 
   Since I was not familiar with `finalize`, I referred to the following website: <https://www.geeksforgeeks.org/finalize-method-in-java-and-how-to-override-it/>.
 </details>
+
+<details>
+  <summary>13.4</summary>
+
+  Both are meant to write classes or functions in a way that they can be instantiated with different types. Templates in C++ work like a macro and instantiated classes or functions of different types are compiled to different pieces of code. Generics in Java on the other hand, do type checking during compile time and are complied to one piece of code in which the type variables are substituted by `Object`, regardless of the actual types they are instantiated with.
+
+  Since I was not familiar with generics in Java, I referred to the following websites.
+
+* <https://www.geeksforgeeks.org/templates-in-c-vs-generics-in-java/>
+* <https://stackoverflow.com/questions/36347/what-are-the-differences-between-generic-types-in-c-and-java>
+
+</details>
