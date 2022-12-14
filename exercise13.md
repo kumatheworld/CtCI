@@ -59,3 +59,19 @@
 * <https://stackoverflow.com/questions/36347/what-are-the-differences-between-generic-types-in-c-and-java>
 
 </details>
+
+<details>
+  <summary>13.5</summary>
+
+  All of them implements the `java.util.Map` interface. Here's a table that compares those 3.
+
+  | Name          | Key order       | Lookup time complexity | Insertion time complexity | Implementation        |
+  | ------------- | --------------- | ---------------------- | ------------------------- | --------------------- |
+  | TreeMap       | Order in key    | Logarithmic            | Logarithmic               | Red-black tree        |
+  | HashMap       | Arbitrary       | Constant               | Constant                  | Array of linked lists |
+  | LinkedHashMap | Insertion order | Constant               | constant                  | Doubly-linked buckets |
+
+  Some examples will be added later.
+
+  Since I was not familiar with generics in Java, I referred to the following website: <https://www.geeksforgeeks.org/differences-treemap-hashmap-linkedhashmap-java/>
+</details>
