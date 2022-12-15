@@ -69,9 +69,9 @@
   | ------------- | --------------- | ---------------------- | ------------------------- | --------------------- |
   | TreeMap       | Order in key    | Logarithmic            | Logarithmic               | Red-black tree        |
   | HashMap       | Arbitrary       | Constant               | Constant                  | Array of linked lists |
-  | LinkedHashMap | Insertion order | Constant               | constant                  | Doubly-linked buckets |
+  | LinkedHashMap | Insertion order | Constant               | Constant                  | Doubly-linked buckets |
 
-  Some examples will be added later.
+  `Treemap` would be best if you want a map ordered by key, such as a seat map. `HashMap` would be best if you just need speed and don't care about order, such as when you need a large one such as a map of usernames to email addresses. `LinkedHashMap` would be best if you care about the insertion order, such as when you design a neural network by a sequence of layers
 
   Since I was not familiar with generics in Java, I referred to the following website: <https://www.geeksforgeeks.org/differences-treemap-hashmap-linkedhashmap-java/>
 </details>
