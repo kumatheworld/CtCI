@@ -75,3 +75,11 @@
 
   Since I was not familiar with generics in Java, I referred to the following website: <https://www.geeksforgeeks.org/differences-treemap-hashmap-linkedhashmap-java/>
 </details>
+
+<details>
+  <summary>13.6</summary>
+
+  Object reflection is a way to dynamically examine some properties of or invoke some methods of the given object. For example, by calling `cls.getDeclaredField(name);`, you can access the field `name` of the class `cls`. One way this feature could be useful is when you want to try some monkey patching.
+
+  Since I was not familiar with object reflection in Java, I referred to the following website: <https://www.geeksforgeeks.org/reflection-in-java/>
+</details>
