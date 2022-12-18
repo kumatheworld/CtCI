@@ -3,7 +3,7 @@ class Country {
     private int population;
 
     public Country(String name) {
-        continent = "Imaginary";
+        continent = String.valueOf(name.length());
         population = 1000;
     }
 
