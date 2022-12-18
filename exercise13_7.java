@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.List;
 
 class Country {
@@ -25,5 +26,16 @@ class Country {
             }
         }
         return p;
+    }
+
+    public static void main(String[] args) {
+        List<Country> countries = Arrays.asList(
+                new Country("China"),
+                new Country("DPRK"),
+                new Country("Korea"),
+                new Country("Japan"));
+        String continent = "5";
+        int p = getPopulation(countries, continent);
+        System.out.println(p);
     }
 }
