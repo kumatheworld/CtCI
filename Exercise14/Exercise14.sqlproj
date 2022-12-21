@@ -2,7 +2,7 @@
 <Project DefaultTargets="Build">
   <Sdk Name="Microsoft.Build.Sql" Version="0.1.3-preview" />
   <PropertyGroup>
-    <Name>Exercise14</Name>
+    <Name>exercise14</Name>
     <ProjectGuid>{FE8376C0-6688-48C4-875C-FFEB500D5CB5}</ProjectGuid>
     <DSP>Microsoft.Data.Tools.Schema.Sql.Sql160DatabaseSchemaProvider</DSP>
     <ModelCollation>1033, CI</ModelCollation>
