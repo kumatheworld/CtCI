@@ -10,3 +10,11 @@ WHERE name = N'Exercise14'
 )
 CREATE DATABASE Exercise14
 GO
+
+-- Create a new schema called 'exercise14'
+IF NOT EXISTS ( SELECT *
+FROM sys.schemas
+WHERE   name = N'exercise14' )
+    EXEC('CREATE SCHEMA [exercise14]');
+GO
+
