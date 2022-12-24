@@ -1,4 +1,4 @@
--- Create a new database called 'Exercise14'
+-- Create a new database called 'CtCIExercise14'
 -- Connect to the 'master' database to run this snippet
 USE master
 GO
@@ -6,9 +6,9 @@ GO
 IF NOT EXISTS (
   SELECT name
 FROM sys.databases
-WHERE name = N'Exercise14'
+WHERE name = N'CtCIExercise14'
 )
-CREATE DATABASE Exercise14
+CREATE DATABASE CtCIExercise14
 GO
 
 -- Create a new schema called 'exercise14'
