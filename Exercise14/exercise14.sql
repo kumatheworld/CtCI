@@ -18,3 +18,16 @@ WHERE   name = N'ctci_exercise14' )
     EXEC('CREATE SCHEMA [ctci_exercise14]');
 GO
 
+-- Create a new table called 'Apartment' in schema 'ctci_exercise14'
+-- Drop the table if it already exists
+IF OBJECT_ID('ctci_exercise14.Apartment', 'U') IS NOT NULL
+DROP TABLE ctci_exercise14.Apartment
+GO
+-- Create the table in the specified schema
+CREATE TABLE ctci_exercise14.Apartment
+(
+  AptID int,
+  UnitNumber varchar(100),
+  BuildingNumber int
+);
+GO
