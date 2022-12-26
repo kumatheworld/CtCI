@@ -26,8 +26,8 @@ GO
 -- Create the table in the specified schema
 CREATE TABLE ctci_exercise14.Apartment
 (
-  AptID int,
-  UnitNumber varchar(100),
-  BuildingNumber int
+  AptID INT,
+  UnitNumber VARCHAR(100),
+  BuildingNumber INT
 );
 GO
