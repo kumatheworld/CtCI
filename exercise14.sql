@@ -11,13 +11,13 @@ WHERE name = N'CtCIExercise14'
 CREATE DATABASE CtCIExercise14
 GO
 
--- Create a new table called 'Apartment' in schema 'ctci_exercise14'
+-- Create a new table called 'Apartment' in schema 'dbo'
 -- Drop the table if it already exists
-IF OBJECT_ID('ctci_exercise14.Apartment', 'U') IS NOT NULL
-DROP TABLE ctci_exercise14.Apartment
+IF OBJECT_ID('CtCIExercise14.dbo.Apartment', 'U') IS NOT NULL
+DROP TABLE CtCIExercise14.dbo.Apartment
 GO
 -- Create the table in the specified schema
-CREATE TABLE ctci_exercise14.Apartment
+CREATE TABLE CtCIExercise14.dbo.Apartment
 (
   AptID INT,
   UnitNumber VARCHAR(100),
@@ -25,13 +25,13 @@ CREATE TABLE ctci_exercise14.Apartment
 );
 GO
 
--- Create a new table called 'Buildings' in schema 'ctci_exercise14'
+-- Create a new table called 'Buildings' in schema 'dbo'
 -- Drop the table if it already exists
-IF OBJECT_ID('ctci_exercise14.Buildings', 'U') IS NOT NULL
-DROP TABLE ctci_exercise14.Buildings
+IF OBJECT_ID('CtCIExercise14.dbo.Buildings', 'U') IS NOT NULL
+DROP TABLE CtCIExercise14.dbo.Buildings
 GO
 -- Create the table in the specified schema
-CREATE TABLE ctci_exercise14.Buildings
+CREATE TABLE CtCIExercise14.dbo.Buildings
 (
   BuildingID INT,
   ComplexID INT,
@@ -40,13 +40,13 @@ CREATE TABLE ctci_exercise14.Buildings
 );
 GO
 
--- Create a new table called 'Requests' in schema 'ctci_exercise14'
+-- Create a new table called 'Requests' in schema 'dbo'
 -- Drop the table if it already exists
-IF OBJECT_ID('ctci_exercise14.Requests', 'U') IS NOT NULL
-DROP TABLE ctci_exercise14.Requests
+IF OBJECT_ID('CtCIExercise14.dbo.Requests', 'U') IS NOT NULL
+DROP TABLE CtCIExercise14.dbo.Requests
 GO
 -- Create the table in the specified schema
-CREATE TABLE ctci_exercise14.Requests
+CREATE TABLE CtCIExercise14.dbo.Requests
 (
   RequestID INT,
   Status VARCHAR(100),
@@ -55,39 +55,39 @@ CREATE TABLE ctci_exercise14.Requests
 );
 GO
 
--- Create a new table called 'Complexes' in schema 'ctci_exercise14'
+-- Create a new table called 'Complexes' in schema 'dbo'
 -- Drop the table if it already exists
-IF OBJECT_ID('ctci_exercise14.Complexes', 'U') IS NOT NULL
-DROP TABLE ctci_exercise14.Complexes
+IF OBJECT_ID('CtCIExercise14.dbo.Complexes', 'U') IS NOT NULL
+DROP TABLE CtCIExercise14.dbo.Complexes
 GO
 -- Create the table in the specified schema
-CREATE TABLE ctci_exercise14.Complexes
+CREATE TABLE CtCIExercise14.dbo.Complexes
 (
   ComplexID INT,
   ComplexName VARCHAR(100)
 );
 GO
 
--- Create a new table called 'AptTenants' in schema 'ctci_exercise14'
+-- Create a new table called 'AptTenants' in schema 'dbo'
 -- Drop the table if it already exists
-IF OBJECT_ID('ctci_exercise14.AptTenants', 'U') IS NOT NULL
-DROP TABLE ctci_exercise14.AptTenants
+IF OBJECT_ID('CtCIExercise14.dbo.AptTenants', 'U') IS NOT NULL
+DROP TABLE CtCIExercise14.dbo.AptTenants
 GO
 -- Create the table in the specified schema
-CREATE TABLE ctci_exercise14.AptTenants
+CREATE TABLE CtCIExercise14.dbo.AptTenants
 (
   TenantID INT,
   AptID INT
 );
 GO
 
--- Create a new table called 'Tenants' in schema 'ctci_exercise14'
+-- Create a new table called 'Tenants' in schema 'dbo'
 -- Drop the table if it already exists
-IF OBJECT_ID('ctci_exercise14.Tenants', 'U') IS NOT NULL
-DROP TABLE ctci_exercise14.Tenants
+IF OBJECT_ID('CtCIExercise14.dbo.Tenants', 'U') IS NOT NULL
+DROP TABLE CtCIExercise14.dbo.Tenants
 GO
 -- Create the table in the specified schema
-CREATE TABLE ctci_exercise14.Tenants
+CREATE TABLE CtCIExercise14.dbo.Tenants
 (
   TenantID INT,
   TenantName VARCHAR(100)
