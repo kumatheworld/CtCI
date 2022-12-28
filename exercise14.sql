@@ -11,13 +11,6 @@ WHERE name = N'CtCIExercise14'
 CREATE DATABASE CtCIExercise14
 GO
 
--- Create a new schema called 'ctci_exercise14'
-IF NOT EXISTS ( SELECT *
-FROM sys.schemas
-WHERE   name = N'ctci_exercise14' )
-    EXEC('CREATE SCHEMA [ctci_exercise14]');
-GO
-
 -- Create a new table called 'Apartment' in schema 'ctci_exercise14'
 -- Drop the table if it already exists
 IF OBJECT_ID('ctci_exercise14.Apartment', 'U') IS NOT NULL
