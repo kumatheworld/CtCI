@@ -11,13 +11,13 @@ WHERE name = N'CtCIExercise14'
 CREATE DATABASE CtCIExercise14
 GO
 
--- Create a new table called 'Apartment' in schema 'dbo'
+-- Create a new table called 'Apartments' in schema 'dbo'
 -- Drop the table if it already exists
-IF OBJECT_ID('CtCIExercise14.dbo.Apartment', 'U') IS NOT NULL
-DROP TABLE CtCIExercise14.dbo.Apartment
+IF OBJECT_ID('CtCIExercise14.dbo.Apartments', 'U') IS NOT NULL
+DROP TABLE CtCIExercise14.dbo.Apartments
 GO
 -- Create the table in the specified schema
-CREATE TABLE CtCIExercise14.dbo.Apartment
+CREATE TABLE CtCIExercise14.dbo.Apartments
 (
   AptID INT,
   UnitNumber VARCHAR(100),
