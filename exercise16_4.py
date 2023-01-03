@@ -30,7 +30,34 @@ def solve(b: Board) -> Optional[bool]:
 
 class TestSolution(TestCase):
     def test(self) -> None:
-        pass
+        data = [
+            (
+                (
+                    (True, False, False),
+                    (False, False, True),
+                    (False, True, True),
+                ),
+                False,
+            ),
+            (
+                (
+                    (True, False, False),
+                    (False, False, True),
+                    (True, True, True),
+                ),
+                True,
+            ),
+            (
+                (
+                    (True, False, False),
+                    (False, False, True),
+                    (None, True, True),
+                ),
+                None,
+            ),
+        ]
+        for b, w in data:
+            self.assertEqual(solve(b), w)
 
 
 if __name__ == "__main__":
