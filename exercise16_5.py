@@ -4,7 +4,12 @@ from unittest import TestCase, main
 
 
 def solve(n: int) -> int:
-    return 0
+    z = 0
+    w = n // 5
+    while w:
+        z += w
+        w //= 5
+    return z
 
 
 class TestSolution(TestCase):
