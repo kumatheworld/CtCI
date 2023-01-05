@@ -9,10 +9,11 @@ def solve(n: int) -> int:
 
 class TestSolution(TestCase):
     def test(self) -> None:
-        p = r"0*$"
+        p = re.compile(r"0*$")
         n = 1000
         for i in range(n):
-            j = len(re.findall(p, str(factorial(i)))[0])
+            m = p.search(str(factorial(i)))
+            j = len(m.group())
             self.assertEqual(solve(i), j)
 
 
