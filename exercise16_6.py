@@ -20,17 +20,21 @@ class TestSolution(TestCase):
             n = randrange(len(k))
             l = k[:n].tolist()
             m = k[n:].tolist()
-            p = solve(l, m)
 
             dmin = inf
-            q = None
+            pairs = []
             for i in sorted(l):
                 for j in sorted(m):
                     if (d := abs(i - j)) < dmin:
                         dmin = d
-                        q = (i, j)
+                        pairs = [(i, j)]
+                    elif d == dmin:
+                        pairs.append((i, j))
 
-            self.assertEqual(p, q)
+            if pairs:
+                self.assertIn(solve(l, m), pairs)
+            else:
+                self.assertIsNone(solve(l, m))
 
 
 if __name__ == "__main__":
