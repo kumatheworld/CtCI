@@ -11,7 +11,7 @@ def solve(l: list[int], m: list[int]) -> int:
 
 class TestSolution(TestCase):
     def test(self) -> None:
-        max_size = 100
+        max_size = 1000
         it = 100
         for _ in range(it):
             k = randint(
