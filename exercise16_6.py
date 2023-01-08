@@ -15,10 +15,7 @@ def solve(l: list[int], m: list[int]) -> Optional[tuple[int, int]]:
     a = np.asarray(lm)
     b = a[1:] - a[:-1]
     c = np.ma.masked_where(b[:, 1] == 0, b[:, 0])
-    i = c.argmin()
-    x = lm[i][0]
-    y = lm[i + 1][0]
-    return (x, y) if b[i, 1] > 0 else (y, x)
+    return c.min()
 
 
 class TestSolution(TestCase):
@@ -34,17 +31,13 @@ class TestSolution(TestCase):
             m = k[n:].tolist()
 
             dmin = inf
-            pairs = []
             for i in sorted(l):
                 for j in sorted(m):
                     if (d := abs(i - j)) < dmin:
                         dmin = d
-                        pairs = [(i, j)]
-                    elif d == dmin:
-                        pairs.append((i, j))
 
-            if pairs:
-                self.assertIn(solve(l, m), pairs)
+            if l and m:
+                self.assertEqual(solve(l, m), dmin)
             else:
                 self.assertIsNone(solve(l, m))
 
