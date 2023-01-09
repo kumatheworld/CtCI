@@ -3,7 +3,7 @@ from unittest import TestCase, main
 
 
 def solve(x: int, y: int) -> int:
-    return x
+    return (x + y + abs(x - y)) // 2
 
 
 class TestSolution(TestCase):
