@@ -10,7 +10,7 @@ class TestSolution(TestCase):
         data = [
             (0, "Zero"),
             (12, "Twelve"),
-            (43, "Forty "),
+            (43, "Forty Three"),
             (56, "Fifty Six"),
             (789, "Seven Hundred Eighty Nine"),
             (1234, "One Thousand, Two Hundred Thirty Four"),
