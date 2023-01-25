@@ -58,7 +58,7 @@ def solve(n: int) -> str:
             l.append("Hundred")
             l.append(one_to_nineteen[a])
         if n:
-            l.append(thousand_plus[i] + ",")
+            l.append(thousand_plus[i] + "," if l else thousand_plus[i])
             i += 1
         else:
             break
@@ -74,6 +74,7 @@ class TestSolution(TestCase):
             (43, "Forty Three"),
             (56, "Fifty Six"),
             (789, "Seven Hundred Eighty Nine"),
+            (1000, "One Thousand"),
             (1234, "One Thousand, Two Hundred Thirty Four"),
         ]
         for n, s in data:
