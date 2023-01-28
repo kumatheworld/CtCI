@@ -29,9 +29,16 @@ class TestSolution(TestCase):
         for x, y in self.data:
             self.assertEqual(subtract(x, y), x - y)
 
-    def test_divide(self) -> None:
+    def test_divide_by_zero(self) -> None:
+        for x, _ in self.data:
+            with self.assertRaises(ZeroDivisionError):
+                self.assertEqual(divide(x, 0))
+
+    def test_divide_by_nonzero(self) -> None:
         for x, y in self.data:
-            self.assertEqual(divide(x, y), x // y)
+            if y != 0:
+                print(x, y)
+                self.assertEqual(divide(x, y), x // y)
 
 
 if __name__ == "__main__":
