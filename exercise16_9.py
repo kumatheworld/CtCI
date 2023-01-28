@@ -4,15 +4,40 @@ from numpy.random import randint
 
 
 def multiply(x: int, y: int) -> int:
-    return 0
+    # '<' and '-' are here. Is that ok?
+    if y < 0:
+        return -multiply(x, -y)
+
+    z = 0
+    for _ in range(y):
+        z += x
+    return z
 
 
 def subtract(x: int, y: int) -> int:
-    return 0
+    return x + multiply(y, -1)
 
 
 def divide(x: int, y: int) -> int:
-    return 0
+    if y == 0:
+        raise ZeroDivisionError("integer division or modulo by zero")
+
+    if y < 0:
+        return divide(-x, -y)
+
+    z = 0
+    if x >= 0:
+        w = y
+        while x >= w:
+            w += y
+            z += 1
+        return z
+    else:
+        w = x
+        while w < 0:
+            w += y
+            z += 1
+        return -z
 
 
 class TestSolution(TestCase):
