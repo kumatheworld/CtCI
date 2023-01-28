@@ -31,7 +31,7 @@ class TestSolution(TestCase):
 
     def test_divide(self) -> None:
         for x, y in self.testcase:
-            self.assertEqual(divide(x, y), x / y)
+            self.assertEqual(divide(x, y), x // y)
 
 
 if __name__ == "__main__":
