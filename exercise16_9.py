@@ -19,18 +19,18 @@ class TestSolution(TestCase):
     def setUp(self) -> None:
         m = 1000
         n = 1000
-        self.testcase = randint(-m, m, (n, 2))
+        self.data = randint(-m, m, (n, 2))
 
     def test_multiply(self) -> None:
-        for x, y in self.testcase:
+        for x, y in self.data:
             self.assertEqual(multiply(x, y), x * y)
 
     def test_subtract(self) -> None:
-        for x, y in self.testcase:
+        for x, y in self.data:
             self.assertEqual(subtract(x, y), x - y)
 
     def test_divide(self) -> None:
-        for x, y in self.testcase:
+        for x, y in self.data:
             self.assertEqual(divide(x, y), x // y)
 
 
