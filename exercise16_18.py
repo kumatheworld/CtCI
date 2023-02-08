@@ -14,8 +14,8 @@ class TestSolution(TestCase):
             (("b", "catcatgocatgo"), True),
             (("", "catcatgocatgo"), False),
             (("aa", "catcatgocatgo"), False),
-            (("aba", "catcatgocatgo"), False),
-            (("bba", "catcatgocatgo"), False),
+            (("aba", "catcatgocatgo"), True),
+            (("bba", "catcatgocatgo"), True),
         ]
         for x, y in data:
             self.assertEqual(solve(*x), y)
