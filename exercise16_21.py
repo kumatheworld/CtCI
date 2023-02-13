@@ -1,3 +1,4 @@
+from bisect import bisect_left
 from itertools import product
 from random import choices, randrange
 from typing import Optional
@@ -5,7 +6,25 @@ from unittest import TestCase, main
 
 
 def solve(a: list[int], b: list[int]) -> Optional[tuple[int, int]]:
-    return None
+    sa = sum(a)
+    sb = sum(b)
+    diff = sb - sa
+    if diff % 2:
+        return None
+
+    h = diff // 2
+    l = sorted(a)
+    m = sorted(b)
+    lo = 0
+    for x in l:
+        y = x + h
+        idx = bisect_left(m, y, lo)
+        try:
+            if m[idx] == y:
+                return x, y
+        except IndexError:
+            return None
+        lo = idx
 
 
 class TestSolution(TestCase):
