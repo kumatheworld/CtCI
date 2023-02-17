@@ -6,6 +6,11 @@ class Grid:
         self.radius = 0
         self._squares = [choices([False, True], k=1)]
 
+    def __str__(self) -> str:
+        # Could be faster by bypassing __getitem__
+        rng = range(-self.radius, self.radius + 1)
+        return "\n".join("".join("xo"[self[i, j]] for j in rng) for i in rng)
+
     def __getitem__(self, ij: tuple[int, int]) -> bool:
         #  0 ~ 2r-1: ( n,  n) ... (-n+1, n)
         # 2r ~ 4r-1: (-n,  n) ... (-n, -n+1)
