@@ -1,10 +1,12 @@
-from random import choices
+from random import choices, getrandbits
 
 
 class Grid:
     def __init__(self) -> None:
         self.radius = 0
-        self._squares = [choices([False, True], k=1)]
+        center = bool(getrandbits(1))
+        self._squares_org = [[center]]
+        self._squares = [[center]]
 
     def __str__(self) -> str:
         # Could be faster by bypassing __getitem__
@@ -32,4 +34,6 @@ class Grid:
 
     def _expand(self) -> None:
         self.radius += 1
-        self._squares.append(choices([False, True], k=8 * self.radius))
+        layer = choices([False, True], k=8 * self.radius)
+        self._squares_org.append(layer)
+        self._squares.append(layer.copy())
