@@ -48,3 +48,30 @@ class Ant:
         layer = choices([False, True], k=8 * self.radius)
         self._squares_org.append(layer)
         self._squares.append(layer.copy())
+
+    def print_kmoves(self, k: int) -> None:
+        d = (0, 1)
+        i = j = 0
+        sq = self._squares
+
+        for _ in range(k):
+            r, t = self._translate_indices(i, j)
+
+            if r > self.radius:
+                self._expand()
+
+            c = sq[r][t]
+            sq[r][t] = not c
+
+            # d0d1c -> sign
+            # -------------
+            # 100 -> 1
+            # n00 -> 1
+            # 010 -> -1
+            # 0n0 -> -1
+            sign = 2 * (abs(d[1]) == c) - 1
+            d = sign * d[1], sign * d[0]
+            i += d[0]
+            j += d[1]
+
+        print(f"Before:\n{self._str(org=True)}\n\nAfter:\n{self}")
