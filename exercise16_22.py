@@ -1,4 +1,5 @@
 from random import choices, getrandbits
+from unittest import TestCase, main
 
 
 class Ant:
@@ -75,3 +76,14 @@ class Ant:
             j += d[1]
 
         print(f"Before:\n{self._str(org=True)}\n\nAfter:\n{self}")
+
+
+class TestSolution(TestCase):
+    def test(self) -> None:
+        # Just look at the printed grids!
+        a = Ant()
+        a.print_kmoves(6)
+
+
+if __name__ == "__main__":
+    main()
