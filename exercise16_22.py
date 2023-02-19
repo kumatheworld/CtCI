@@ -33,7 +33,7 @@ class Grid:
         r = max(abs(i), abs(j))
         if i <= j:
             if j == r:
-                t = i - r
+                t = r - i
             else:
                 t = 3 * r - j
         else:
