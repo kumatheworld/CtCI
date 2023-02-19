@@ -1,7 +1,7 @@
 from random import choices, getrandbits
 
 
-class Grid:
+class Ant:
     def __init__(self) -> None:
         self.radius = 0
         center = bool(getrandbits(1))
