@@ -7,6 +7,7 @@ from threading import Timer
 from typing import Any, Protocol, TypeVar
 
 T = TypeVar("T")
+U = TypeVar("U")
 
 
 class Comparable(Protocol):
