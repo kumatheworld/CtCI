@@ -1,10 +1,21 @@
-from itertools import chain, combinations
+from bisect import bisect_left, bisect_right
+from itertools import combinations
 from random import choices, randrange
 from unittest import TestCase, main
 
 
-def solve(l: list[int], s: int) -> list[list[int]]:
-    return []
+def solve(l: list[int], s: int) -> list[tuple[int]]:
+    a = sorted(l)
+    pairs = []
+    j = len(a)
+    for i, x in enumerate(a, 1):
+        y = s - x
+        j = bisect_right(a, y, i, j)
+        if j < i:
+            break
+        m = j - bisect_left(a, y, i, j)
+        pairs.extend([(x, y)] * m)
+    return pairs
 
 
 class TestSolution(TestCase):
