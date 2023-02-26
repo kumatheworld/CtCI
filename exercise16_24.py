@@ -9,17 +9,14 @@ def solve(l: list[int], s: int) -> list[list[int]]:
 
 class TestSolution(TestCase):
     def test(self) -> None:
-        it = 10
-        n = 10
+        it = 1000
+        n = 100
         rng = range(-n, n)
         for _ in range(it):
             l = choices(rng, k=randrange(n))
             s = randrange(n)
-            powerset = chain.from_iterable(
-                combinations(l, i) for i in range(len(l) + 1)
-            )
-            m = sorted(k for k in powerset if sum(k) == s)
-            self.assertEqual(sorted(solve(l, s)), m)
+            pairs = sorted(tuple(sorted(p)) for p in combinations(l, 2) if sum(p) == s)
+            self.assertEqual(sorted(tuple(sorted(p)) for p in solve(l, s)), pairs)
 
 
 if __name__ == "__main__":
