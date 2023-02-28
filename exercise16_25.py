@@ -18,7 +18,8 @@ class DequeLRUCache(MutableMapping[T, U]):
         return super().__setitem__(__key, __value)
 
     def __delitem__(self, __key: T) -> None:
-        return super().__delitem__(__key)
+        i, _ = self._find(__key)
+        del self._q[i]
 
     def __iter__(self):
         return iter(self._q)
