@@ -25,3 +25,9 @@ class DequeLRUCache(MutableMapping[T, U]):
 
     def __len__(self):
         return len(self._q)
+
+    def _find(self, __key: T) -> tuple[int, U]:
+        for i, (k, v) in enumerate(self._q):
+            if k == __key:
+                return i, v
+        raise KeyError(__key)
