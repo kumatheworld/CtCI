@@ -1,5 +1,6 @@
 from collections import deque
 from collections.abc import Iterable, MutableMapping
+from contextlib import suppress
 from typing import Optional
 
 from common import T, U
@@ -19,7 +20,9 @@ class DequeLRUCache(MutableMapping[T, U]):
         return v
 
     def __setitem__(self, __key: T, __value: U) -> None:
-        return super().__setitem__(__key, __value)
+        with suppress(KeyError):
+            del self[__key]
+        self._q.append((__key, __value))
 
     def __delitem__(self, __key: T) -> None:
         i, _ = self._find(__key)
