@@ -12,7 +12,11 @@ class DequeLRUCache(MutableMapping[T, U]):
         self._q = deque(iterable, maxlen)
 
     def __getitem__(self, __key: T) -> U:
-        return super().__getitem__(__key)
+        i, v = self._find(__key)
+        q = self._q
+        del q[i]
+        q.append((__key, v))
+        return v
 
     def __setitem__(self, __key: T, __value: U) -> None:
         return super().__setitem__(__key, __value)
