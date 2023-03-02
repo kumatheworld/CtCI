@@ -2,6 +2,7 @@ from collections import deque
 from collections.abc import Iterable, MutableMapping
 from contextlib import suppress
 from typing import Optional
+from unittest import TestCase, main
 
 from common import T, U
 
@@ -39,3 +40,19 @@ class DequeLRUCache(MutableMapping[T, U]):
             if k == __key:
                 return i, v
         raise KeyError(__key)
+
+
+class TestSolution(TestCase):
+    def test(self) -> None:
+        c = DequeLRUCache[str, int]([("cracking", 8)], maxlen=3)
+        c["the"] = 3
+        self.assertEqual(c["cracking"], 8)
+        c["coding"] = 6
+        c["interview"] = 9
+        with self.assertRaises(KeyError):
+            c["the"]
+        self.assertEqual(c["cracking"], 8)
+
+
+if __name__ == "__main__":
+    main()
