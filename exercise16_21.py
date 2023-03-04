@@ -29,11 +29,11 @@ def solve(a: list[int], b: list[int]) -> Optional[tuple[int, int]]:
 
 class TestSolution(TestCase):
     def test(self) -> None:
-        iter = 100
+        it = 100
         n = 1000
         p = range(-n, n)
 
-        for _ in range(iter):
+        for _ in range(it):
             l = randrange(n)
             m = randrange(n)
             a = choices(p, k=l)

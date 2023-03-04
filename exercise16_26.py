@@ -33,12 +33,12 @@ def solve(s: str) -> float:
 
 class TestSolution(TestCase):
     def test(self) -> None:
-        iter = 1000
+        it = 1000
         m = 100
         n = 1000
         nums = range(m)
         ops = "+-*/"
-        for _ in range(iter):
+        for _ in range(it):
             k = randrange(n)
             num_list = choices(nums, k=k + 1)
             op_list = choices(ops, k=k)

@@ -23,10 +23,10 @@ def solve(l: list[int]) -> int:
 
 class TestSolution(TestCase):
     def test(self) -> None:
-        iter = 1000
+        it = 1000
         m = 100
         p = range(-m, m)
-        for _ in range(iter):
+        for _ in range(it):
             k = randrange(m)
             l = choices(p, k=k)
             s = 0
