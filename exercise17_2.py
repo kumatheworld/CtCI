@@ -1,11 +1,14 @@
 from collections import Counter
 from pprint import pprint
-from random import shuffle
+from random import randrange
 from unittest import TestCase, main
 
 
 def solve(l: list) -> None:
-    shuffle(l)
+    # Maybe not the most efficient way
+    n = len(l)
+    for i in range(n - 1, 0, -1):
+        l.append(l.pop(randrange(i)))
 
 
 class TestSolution(TestCase):
