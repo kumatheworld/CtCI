@@ -1,35 +1,35 @@
 CREATE TABLE apartments (
-  apt_id INTEGER PRIMARY KEY,
-  unit_number VARCHAR(10),
-  building_number INTEGER
+  AptID INTEGER PRIMARY KEY,
+  UnitNumber VARCHAR(10),
+  BuildingID INTEGER
 );
 
 CREATE TABLE buildings (
-  building_id INTEGER PRIMARY KEY,
-  complex_id INTEGER,
-  building_name VARCHAR(100),
-  address VARCHAR(500)
+  BuildingID INTEGER PRIMARY KEY,
+  ComplexID INTEGER,
+  BuildingName VARCHAR(100),
+  Address VARCHAR(500)
 );
 
 CREATE TABLE requests (
-  request_id INTEGER PRIMARY KEY,
-  status VARCHAR(100),
-  apt_id INTEGER,
-  description VARCHAR(500)
+  RequestID INTEGER PRIMARY KEY,
+  Status VARCHAR(100),
+  AptID INTEGER,
+  Description VARCHAR(500)
 );
 
 CREATE TABLE complexes (
-  complex_id INTEGER PRIMARY KEY,
-  complex_name VARCHAR(100)
+  ComplexID INTEGER PRIMARY KEY,
+  ComplexName VARCHAR(100)
 );
 
 CREATE TABLE apt_tenants (
-  tenant_id INTEGER,
-  apt_id INTEGER,
-  PRIMARY KEY (tenant_id, apt_id)
+  TenantID INTEGER,
+  AptID INTEGER,
+  PRIMARY KEY (TenantID, AptID)
 );
 
 CREATE TABLE tenants (
-  tenant_id INTEGER PRIMARY KEY,
-  tenant_name VARCHAR(100)
+  TenantID INTEGER PRIMARY KEY,
+  TenantName VARCHAR(100)
 );
