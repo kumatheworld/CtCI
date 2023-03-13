@@ -12,7 +12,7 @@ class TestSolution(TestCase):
     def test(self) -> None:
         self.assertTrue(solve(0))
         for n in range(1, 100000):
-            self.assertEqual(solve(n), bin(n).count("1") == 1)
+            self.assertEqual(solve(n), n.bit_count() == 1)
 
 
 if __name__ == "__main__":
