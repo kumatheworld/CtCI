@@ -42,10 +42,9 @@ class TestSolution(TestCase):
         m = dict(family=1, person=2, firstName=3, lastName=4, state=5)
         s = "1 4 McDowell 5 CA 0 2 3 Gayle 0 Some Message 0 0\n"
 
-        f = StringIO()
-        with redirect_stdout(f):
+        with StringIO() as f, redirect_stdout(f):
             solve(t, m)
-        self.assertEqual(f.getvalue(), s)
+            self.assertEqual(f.getvalue(), s)
 
 
 if __name__ == "__main__":

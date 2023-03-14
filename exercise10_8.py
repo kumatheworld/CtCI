@@ -26,10 +26,9 @@ class TestSolution(TestCase):
         it = 1000
         for _ in range(it):
             a = np.random.randint(n, size=size).tolist()
-            stream = StringIO()
-            with redirect_stdout(stream):
+            with StringIO() as f, redirect_stdout(f):
                 solve(a)
-            output = [int(s) for s in stream.getvalue().split()]
+                output = [int(s) for s in f.getvalue().split()]
             cnt = Counter(a)
             dup = {k for k, v in cnt.items() if v > 1}
             assert set(output) == dup
