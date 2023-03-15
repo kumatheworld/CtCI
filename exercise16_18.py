@@ -9,7 +9,7 @@ def solve(p: str, v: str) -> bool:
     with StringIO() as f:
         for c in p:
             try:
-                f.write(f"\\{d[c]}")
+                f.write(rf"\{d[c]}")
             except KeyError:
                 i += 1
                 d[c] = i
