@@ -1,5 +1,6 @@
 import operator
 import re
+from io import StringIO
 from random import choices, randrange
 from typing import Callable
 from unittest import TestCase, main
@@ -42,11 +43,12 @@ class TestSolution(TestCase):
             k = randrange(n)
             num_list = choices(nums, k=k + 1)
             op_list = choices(ops, k=k)
-            l = [str(num_list[-1])]
-            for op, num in zip(op_list, num_list):
-                l.append(op)
-                l.append(str(num))
-            s = "".join(l)
+            with StringIO() as f:
+                f.write(str(num_list[-1]))
+                for op, num in zip(op_list, num_list):
+                    f.write(op)
+                    f.write(str(num))
+                s = f.getvalue()
             try:
                 y = eval(s)
             except ZeroDivisionError:

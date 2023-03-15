@@ -1,19 +1,20 @@
 import re
+from io import StringIO
 from unittest import TestCase, main
 
 
 def solve(p: str, v: str) -> bool:
     d = {}
-    l = []
     i = 0
-    for c in p:
-        try:
-            l.append(f"\\{d[c]}")
-        except KeyError:
-            i += 1
-            d[c] = i
-            l.append("(.*)")
-    q = "".join(l)
+    with StringIO() as f:
+        for c in p:
+            try:
+                f.write(f"\\{d[c]}")
+            except KeyError:
+                i += 1
+                d[c] = i
+                f.write("(.*)")
+        q = f.getvalue()
     r = re.compile(q)
     m = re.fullmatch(r, v)
     return bool(m)
