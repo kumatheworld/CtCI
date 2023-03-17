@@ -1,4 +1,4 @@
-from random import randrange, shuffle
+from random import shuffle
 from unittest import TestCase, main
 
 
@@ -20,12 +20,11 @@ def solve(a: MissingArray) -> int:
 
 class TestSolution(TestCase):
     def test(self) -> None:
-        it = 1000
-        n = 1000
-        for _ in range(it):
-            i = randrange(n)
-            a = MissingArray(i, n)
-            self.assertEqual(solve(a), i)
+        m = 100
+        for n in range(m):
+            for i in range(n + 1):
+                a = MissingArray(i, n)
+                self.assertEqual(solve(a), i)
 
 
 if __name__ == "__main__":
