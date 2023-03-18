@@ -14,8 +14,33 @@ class MissingArray:
 
 
 def solve(a: MissingArray) -> int:
-    l = a._a
-    return (len(l) * (len(l) + 1)) // 2 - sum(l)
+    n = 0
+    while True:
+        try:
+            a.query(n, 0)
+        except IndexError:
+            break
+        n += 1
+
+    if n == 0:
+        return 0
+
+    rem = list(range(n))
+    log2n = n.bit_length()
+    k = 0
+    for j in range(log2n):
+        zeros = []
+        ones = []
+        for i in rem:
+            b = a.query(i, j)
+            (ones if b else zeros).append(i)
+        if len(ones) < len(zeros):
+            rem = ones
+            k |= 1 << j
+        else:
+            rem = zeros
+
+    return k
 
 
 class TestSolution(TestCase):
