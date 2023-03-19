@@ -1,5 +1,5 @@
 from collections.abc import Iterator
-from itertools import chain, combinations
+from itertools import chain, combinations, pairwise
 from random import randint
 from typing import Any, NamedTuple
 from unittest import TestCase, main
@@ -45,7 +45,7 @@ class TestSolution(TestCase):
         )
         for boxes in powerset:
             s = sorted(boxes)
-            if all(b < c for b, c in zip(s[:-1], s[1:])):
+            if all(b < c for b, c in pairwise(s)):
                 yield sum(box.height for box in boxes)
 
     def test(self) -> None:

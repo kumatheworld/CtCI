@@ -1,3 +1,4 @@
+from itertools import pairwise
 from unittest import TestCase, main
 
 
@@ -5,7 +6,7 @@ def solve(x: int) -> int:
     y = [len(z) for z in f"{x:b}".split("0")]
     if len(y) == 1:
         return y[0]
-    return max([a + b for a, b in zip(y[:-1], y[1:])]) + 1
+    return max([a + b for a, b in pairwise(y)]) + 1
 
 
 class TestSolution(TestCase):
@@ -24,4 +25,5 @@ class TestSolution(TestCase):
 
 
 if __name__ == "__main__":
+    main()
     main()
