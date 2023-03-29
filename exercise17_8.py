@@ -4,7 +4,14 @@ from unittest import TestCase, main
 
 
 def solve(p: list[tuple[int, int]]) -> int:
-    return 0
+    q = [(0, 0), *sorted(p)]
+
+    longests = [0]
+    for r in q[1:]:
+        l_max = 1 + max(k for s, k in zip(q, longests) if s[0] < r[0] and s[1] < r[1])
+        longests.append(l_max)
+
+    return max(longests)
 
 
 class TestSolution(TestCase):
