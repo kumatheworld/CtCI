@@ -9,10 +9,10 @@ def solve(l: list[int]) -> int:
 class TestSolution(TestCase):
     def test_positive(self) -> None:
         n = 1000
-        for i in range(2, n):
-            k = randrange(1, i)
+        for i in range(1, n):
+            k = randrange(1, 2 * i)
             m = randrange(i // 2 + 1, i + 1)
-            l = [k] * m + choices(range(1, i), k=i - m)
+            l = [k] * m + choices(range(1, 2 * i), k=i - m)
             shuffle(l)
             self.assertEqual(solve(l), k)
 
