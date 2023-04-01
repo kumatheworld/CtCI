@@ -1,3 +1,4 @@
+from collections import Counter
 from random import choices, randrange, shuffle
 from unittest import TestCase, main
 
@@ -15,6 +16,16 @@ class TestSolution(TestCase):
             l = [k] * m + choices(range(1, 2 * i), k=i - m)
             shuffle(l)
             self.assertEqual(solve(l), k)
+
+    def test_negative_empty(self) -> None:
+        self.assertEqual(solve([]), -1)
+
+    def test_negative_nonempty(self) -> None:
+        n = 1000
+        for i in range(1, n):
+            l = choices(range(i + 1), k=i)
+            if Counter(l).most_common(1)[0][1] <= i // 2:
+                self.assertEqual(solve(l), -1)
 
 
 if __name__ == "__main__":
