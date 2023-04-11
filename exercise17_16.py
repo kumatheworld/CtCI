@@ -6,7 +6,11 @@ import numpy as np
 
 
 def solve(l: list[int]) -> int:
-    return 0
+    sum_inc = 0
+    sum_exc = 0
+    for x in l:
+        sum_inc, sum_exc = sum_exc + x, max(sum_inc, sum_exc)
+    return max(sum_inc, sum_exc)
 
 
 class TestSolution(TestCase):
