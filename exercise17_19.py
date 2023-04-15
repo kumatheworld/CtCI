@@ -1,27 +1,32 @@
-from itertools import islice
-from math import ceil, log2
+from contextlib import suppress
 from random import sample
 from unittest import TestCase, main
 
 
 def solve(l: list[int]) -> int:
+    # Technically this takes O(log(n)) space to store the number len(l)
     if not l:
         return 0
 
-    n = len(l) + 1
-    offset = 0
-    stride = 1
     digit = 0
-    for digit in range(ceil(log2(n))):
-        b = 1
-        for i in islice(l, offset, n, stride):
-            b ^= (i >> digit) & 1
-        if b:  # depends on the length? i'm confused...
-            offset += stride
-        stride <<= 1
+    while (n := len(l)) > 1:
+        num_ones = sum((x >> digit) & 1 for x in l)
+        if num_ones == 0:
+            last = min(l)
+            break
+        majority = 2 * num_ones >= n
+        with suppress(IndexError):
+            i = 0
+            while True:
+                if (l[i] >> digit) & 1 == majority:
+                    del l[i]
+                else:
+                    i += 1
+        digit += 1
+    else:
+        last = l[0]
 
-    print(l, offset)
-    return l[offset] ^ (1 << digit)
+    return last ^ (1 << digit)
 
 
 class TestSolution(TestCase):
