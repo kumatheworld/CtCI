@@ -1,5 +1,5 @@
 from contextlib import suppress
-from itertools import pairwise
+from itertools import count, pairwise
 from random import choices
 from unittest import TestCase, main
 
@@ -24,13 +24,11 @@ class TestSolution(TestCase):
         for i in range(n):
             l = choices(range(i), k=i)
 
-            j = 1
             vol = -sum(l)
             with suppress(IndexError):
-                while True:
+                for j in count(1):
                     (above,) = nonzero([x >= j for x in l])
                     vol += above[-1] - above[0] + 1
-                    j += 1
 
             self.assertEqual(solve(l), vol)
 

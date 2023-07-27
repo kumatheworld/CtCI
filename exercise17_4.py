@@ -1,3 +1,4 @@
+from itertools import count
 from random import shuffle
 from unittest import TestCase, main
 
@@ -15,12 +16,11 @@ class MissingArray:
 
 def solve(a: MissingArray) -> int:
     n = 0
-    while True:
+    for n in count():
         try:
             a.query(n, 0)
         except IndexError:
             break
-        n += 1
 
     if n == 0:
         return 0
